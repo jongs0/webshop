@@ -4,5 +4,5 @@ public enum Category {
     IPHONE,
     MACBOOK,
     IPAD,
-    IWATCH
+    IWATCH;
 }
