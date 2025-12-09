@@ -12,17 +12,11 @@ import jakarta.persistence.Id;
 @Entity
 @DiscriminatorValue("ipad")
 public class Ipad extends Product {
-    @GeneratedValue
-    @Id
-    Long id;
+
     Color color;
     Generation generation;
     Storage storage;
     Connectivity connectivity;
-
-    public Long getId() {
-        return id;
-    }
 
     public Color getColor() {
         return color;
