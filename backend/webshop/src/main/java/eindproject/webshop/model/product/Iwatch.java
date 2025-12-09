@@ -6,4 +6,6 @@ import jakarta.persistence.Entity;
 @Entity
 @DiscriminatorValue("iwatch")
 public class Iwatch extends Product {
+
+
 }
