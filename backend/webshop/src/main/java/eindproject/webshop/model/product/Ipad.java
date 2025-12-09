@@ -1,9 +1,58 @@
 package eindproject.webshop.model.product;
 
+import eindproject.webshop.model.enums.ipad.Color;
+import eindproject.webshop.model.enums.ipad.Connectivity;
+import eindproject.webshop.model.enums.ipad.Generation;
+import eindproject.webshop.model.enums.ipad.Storage;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 @DiscriminatorValue("ipad")
 public class Ipad extends Product {
+    @GeneratedValue
+    @Id
+    Long id;
+    Color color;
+    Generation generation;
+    Storage storage;
+    Connectivity connectivity;
+
+    public Long getId() {
+        return id;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Generation getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(Generation generation) {
+        this.generation = generation;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
+    public Connectivity getConnectivity() {
+        return connectivity;
+    }
+
+    public void setConnectivity(Connectivity connectivity) {
+        this.connectivity = connectivity;
+    }
 }
