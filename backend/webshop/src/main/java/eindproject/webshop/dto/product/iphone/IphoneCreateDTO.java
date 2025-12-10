@@ -1,6 +1,7 @@
 package eindproject.webshop.dto.product.iphone;
 
 import eindproject.webshop.model.enums.iphone.*;
+import eindproject.webshop.model.enums.product.Category;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Iphone;
 import jakarta.validation.constraints.NotBlank;
@@ -39,7 +40,10 @@ public record IphoneCreateDTO(
         Color color,
 
         @NotNull
-        SimType simType
+        SimType simType,
+
+        @NotNull
+        Category category
 
 ) {
 
@@ -59,6 +63,7 @@ public record IphoneCreateDTO(
         iphone.setNetworkType(this.networkType);
         iphone.setColor(this.color);
         iphone.setSimType(this.simType);
+        iphone.setCategory(this.category);
 
         return iphone;
     }
