@@ -14,7 +14,6 @@ public record AppUserDTO(
         AdressDTO address,
         List<OrderDTO> orders
 ) {
-    // Double-check getters when AppUser model is implemented
     // Make sure OrderDTO has fromEntity
     public static AppUserDTO fromEntity(AppUser appUser) {
         return new AppUserDTO(
