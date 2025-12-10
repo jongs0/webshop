@@ -1,6 +1,7 @@
 package eindproject.webshop.model.appuser;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Entity;
 import eindproject.webshop.model.Role;
 import eindproject.webshop.model.order.Order;
 import jakarta.persistence.*;
