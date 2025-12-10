@@ -26,7 +26,7 @@ public class AppUser {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private List<Role> role;
+    private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Adress adress;
