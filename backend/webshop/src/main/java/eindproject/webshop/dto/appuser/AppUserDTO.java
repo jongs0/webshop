@@ -22,7 +22,7 @@ public record AppUserDTO(
                 appUser.getEmail(),
                 appUser.getFirstName(),
                 appUser.getLastName(),
-                appUser.getAddress(),
+                appUser.getAdress(),
                 appUser.getOrders().stream().map(OrderDTO::fromEntity).toList()
         );
     }
