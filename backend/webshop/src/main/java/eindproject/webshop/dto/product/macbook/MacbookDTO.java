@@ -29,7 +29,9 @@ public record MacbookDTO(
         @NotNull
         Storage storage,
         @NotNull
-        Color color
+        Color color,
+        @NotBlank
+        Category category
 ) {
     public MacbookDTO fromEntity(Macbook macbook) {
         return new MacbookDTO(
@@ -44,7 +46,8 @@ public record MacbookDTO(
                 macbook.getChipType(),
                 macbook.getRamSize(),
                 macbook.getStorage(),
-                macbook.getColor()
+                macbook.getColor(),
+                macbook.getCategory()
         );
     }
 }

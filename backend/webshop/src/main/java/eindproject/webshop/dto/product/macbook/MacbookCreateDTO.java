@@ -1,6 +1,7 @@
 package eindproject.webshop.dto.product.macbook;
 
 import eindproject.webshop.model.enums.macbook.*;
+import eindproject.webshop.model.enums.product.Category;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Macbook;
 import jakarta.validation.constraints.*;
@@ -27,7 +28,9 @@ public record MacbookCreateDTO(
         @NotNull
         Storage storage,
         @NotNull
-        Color color
+        Color color,
+        @NotBlank
+        Category category
 ) {
     public Macbook toEntity() {
         Macbook macbook = new Macbook();
@@ -42,6 +45,7 @@ public record MacbookCreateDTO(
         macbook.setRamSize(this.ram);
         macbook.setStorage(this.storage);
         macbook.setColor(this.color);
+        macbook.setCategory(this.category);
         return macbook;
     }
 }
