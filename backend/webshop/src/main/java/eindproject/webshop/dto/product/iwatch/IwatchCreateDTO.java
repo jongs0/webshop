@@ -1,6 +1,7 @@
 package eindproject.webshop.dto.product.iwatch;
 
 import eindproject.webshop.model.enums.iwatch.*;
+import eindproject.webshop.model.enums.product.Category;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Iwatch;
 import jakarta.validation.constraints.NotBlank;
@@ -39,7 +40,10 @@ public record IwatchCreateDTO(
         Connectivity connectivity,
 
         @NotNull
-        BandType bandType
+        BandType bandType,
+
+        @NotNull
+        Category category
 
 ) {
 
@@ -58,6 +62,7 @@ public record IwatchCreateDTO(
         iwatch.setBandColor(this.bandColor);
         iwatch.setConnectivity(this.connectivity);
         iwatch.setBandType(this.bandType);
+        iwatch.setCategory(this.category);
 
         return iwatch;
     }
