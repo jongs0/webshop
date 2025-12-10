@@ -13,10 +13,10 @@ import jakarta.persistence.Id;
 @DiscriminatorValue("ipad")
 public class Ipad extends Product {
 
-    Color color;
-    Generation generation;
-    Storage storage;
-    Connectivity connectivity;
+    private Color color;
+    private Generation generation;
+    private Storage storage;
+    private Connectivity connectivity;
 
     public Color getColor() {
         return color;
