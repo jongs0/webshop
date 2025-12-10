@@ -1,6 +1,7 @@
 package eindproject.webshop.model.appuser;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eindproject.webshop.model.cart.Cart;
 import jakarta.persistence.Entity;
 import eindproject.webshop.model.Role;
 import eindproject.webshop.model.order.Order;
@@ -26,7 +27,7 @@ public class AppUser {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private List<Role> role;
+    private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Adress adress;
@@ -34,4 +35,66 @@ public class AppUser {
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
+    @OneToOne
+    private Cart cart;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public void setAdress(Adress adress) {
+        this.adress = adress;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
