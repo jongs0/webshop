@@ -12,11 +12,11 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("iwatch")
 public class Iwatch extends Product {
 
-    Integer releaseYear;
-    CaseColor caseColor;
-    BandColor bandColor;
-    Connectivity connectivity;
-    BandType bandType;
+    private Integer releaseYear;
+    private CaseColor caseColor;
+    private BandColor bandColor;
+    private Connectivity connectivity;
+    private BandType bandType;
 
     public Integer getReleaseYear() {
         return releaseYear;
