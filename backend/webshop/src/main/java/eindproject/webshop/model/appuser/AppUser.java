@@ -1,6 +1,7 @@
 package eindproject.webshop.model.appuser;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eindproject.webshop.model.cart.Cart;
 import jakarta.persistence.Entity;
 import eindproject.webshop.model.Role;
 import eindproject.webshop.model.order.Order;
@@ -33,6 +34,9 @@ public class AppUser {
 
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
+
+    @OneToOne
+    private Cart cart;
 
     public Long getId() {
         return id;
