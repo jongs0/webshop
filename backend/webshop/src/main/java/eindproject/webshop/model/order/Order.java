@@ -14,8 +14,6 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-    private Long userId;
-
     private Double totalSum;
 
     @ManyToOne
