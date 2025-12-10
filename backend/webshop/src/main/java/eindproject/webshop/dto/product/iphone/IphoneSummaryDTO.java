@@ -9,8 +9,7 @@ public record IphoneSummaryDTO(
         String name,
         Double price,
         String model,
-        Generation generation,
-        Integer stock
+        Generation generation
 
 ) {
 
@@ -20,8 +19,7 @@ public record IphoneSummaryDTO(
                 iphone.getName(),
                 iphone.getPrice(),
                 iphone.getModel(),
-                iphone.getGeneration(),
-                iphone.getStock()
+                iphone.getGeneration()
         );
     }
 }
