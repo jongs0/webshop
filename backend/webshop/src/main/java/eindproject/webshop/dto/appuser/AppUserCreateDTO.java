@@ -14,12 +14,12 @@ public record AppUserCreateDTO(
         String lastName
 ) {
     public AppUser toEntity() {
-        AppUser user = new AppUser();
-        user.setEmail(this.email);
-        user.setPassword(this.password);
+        AppUser appUser = new AppUser();
+        appUser.setEmail(this.email);
+        appUser.setPassword(this.password);
         // vervang setPassword met een hash later als we security doen
-        user.setFirstName(this.firstName);
-        user.setLastName(this.lastName);
-        return user;
+        appUser.setFirstName(this.firstName);
+        appUser.setLastName(this.lastName);
+        return appUser;
     }
 }
