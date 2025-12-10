@@ -9,6 +9,7 @@ import eindproject.webshop.model.product.Ipad;
 
 public record IpadDTO(
 
+        Long id,
         String name,
         String description,
         Double price,
@@ -25,6 +26,7 @@ public record IpadDTO(
     public static IpadDTO fromEntity(Ipad ipad) {
         return new IpadDTO(
 
+        ipad.getId(),
         ipad.getName(),
         ipad.getDescription(),
         ipad.getPrice(),
