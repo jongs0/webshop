@@ -1,6 +1,6 @@
 package eindproject.webshop.model.product;
 
-import eindproject.webshop.model.enums.ipad.Connectivity;
+import eindproject.webshop.model.enums.iwatch.Connectivity;
 import eindproject.webshop.model.enums.iwatch.BandColor;
 import eindproject.webshop.model.enums.iwatch.BandType;
 import eindproject.webshop.model.enums.iwatch.CaseColor;
