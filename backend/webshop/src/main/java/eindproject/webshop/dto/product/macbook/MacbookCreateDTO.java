@@ -29,7 +29,7 @@ public record MacbookCreateDTO(
         Storage storage,
         @NotNull
         Color color,
-        @NotBlank
+        @NotNull
         Category category
 ) {
     public Macbook toEntity() {
