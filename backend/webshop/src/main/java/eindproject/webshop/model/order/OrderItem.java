@@ -7,16 +7,16 @@ import jakarta.validation.constraints.NotNull;
 public class OrderItem {
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
     @NotNull
-    Long productId;
-    String productName;
+    private Long productId;
+    private String productName;
     @NotNull
-    Integer quantity;
-    Double lineTotal;
+    private Integer quantity;
+    private Double lineTotal;
     @ManyToOne
     @JoinColumn(name = "order_id")
-    Order order;
+    private Order order;
 
     public Long getId() {
         return id;}
