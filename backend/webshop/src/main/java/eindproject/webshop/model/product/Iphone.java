@@ -8,11 +8,11 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("iphone")
 public class Iphone extends Product {
 
-    Color color;
-    Generation generation;
-    Storage storage;
-    NetworkType networkType;
-    SimType simType;
+    private Color color;
+    private Generation generation;
+    private Storage storage;
+    private NetworkType networkType;
+    private SimType simType;
 
     public Color getColor() {
         return color;
