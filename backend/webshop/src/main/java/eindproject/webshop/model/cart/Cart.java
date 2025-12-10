@@ -44,3 +44,5 @@ public class Cart {
     }
 
 }
+
+//id, userId, List<CartItem>	Holds List<CartItem> One-to-one User
