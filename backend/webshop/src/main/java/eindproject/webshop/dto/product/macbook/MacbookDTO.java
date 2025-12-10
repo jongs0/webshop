@@ -29,8 +29,8 @@ public record MacbookDTO(
         @NotNull
         Storage storage,
         @NotNull
-        Color color)
-{
+        Color color
+) {
     public MacbookDTO fromEntity(Macbook macbook) {
         return new MacbookDTO(
                 macbook.getId(),
