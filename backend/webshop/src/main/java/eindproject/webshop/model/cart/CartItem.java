@@ -7,11 +7,11 @@ public class CartItem {
 
     @GeneratedValue
     @Id
-    Long id;
-    Long productId;
-    Integer quantity;
+    private Long id;
+    private Long productId;
+    private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name="cart_id")
-    Cart cart;
+    private Cart cart;
 }
