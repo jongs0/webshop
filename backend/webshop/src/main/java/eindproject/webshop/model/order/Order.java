@@ -23,7 +23,7 @@ public class Order {
     private AppUser appUser;
 
     @Enumerated(EnumType.STRING)
-    private List<PaymentMethod> paymentMethod;
+    private PaymentMethod paymentMethod;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
@@ -55,11 +55,11 @@ public class Order {
         this.appUser = appUser;
     }
 
-    public List<PaymentMethod> getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(List<PaymentMethod> paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -74,10 +74,6 @@ public class Order {
     public void removeOrderItem(OrderItem orderItem){
         orderItems.remove(orderItem);
     }
-
-//    public void setOrderItems(List<OrderItem> orderItems) {
-//        this.orderItems = orderItems;
-//    }
 
     public Adress getAddress() {
         return address;
