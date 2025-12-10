@@ -15,11 +15,11 @@ import jakarta.persistence.Id;
 @DiscriminatorValue("macbook")
 public class Macbook extends Product {
 
-    Integer releaseYear;
-    ChipType chipType;
-    RamSize ramSize;
-    Storage storage;
-    Color color;
+    private Integer releaseYear;
+    private ChipType chipType;
+    private RamSize ramSize;
+    private Storage storage;
+    private Color color;
 
     public Integer getReleaseYear() {
         return releaseYear;

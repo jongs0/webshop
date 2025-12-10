@@ -9,11 +9,11 @@ public class Adress {
 
     @GeneratedValue
     @Id
-    Long id;
-    String street;
-    Integer houseNumber;
-    String postalCode;
-    String city;
+    private Long id;
+    private String street;
+    private Integer houseNumber;
+    private String postalCode;
+    private String city;
 
     public Long getId() {
         return id;
