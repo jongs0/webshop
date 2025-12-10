@@ -57,4 +57,5 @@ public class Iwatch extends Product {
     public void setBandType(BandType bandType) {
         this.bandType = bandType;
     }
+
 }
