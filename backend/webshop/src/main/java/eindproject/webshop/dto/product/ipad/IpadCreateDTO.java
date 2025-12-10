@@ -1,6 +1,7 @@
 package eindproject.webshop.dto.product.ipad;
 
 import eindproject.webshop.model.enums.ipad.*;
+import eindproject.webshop.model.enums.product.Category;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Ipad;
 import jakarta.validation.constraints.NotBlank;
@@ -36,7 +37,10 @@ public record IpadCreateDTO(
         Connectivity connectivity,
 
         @NotNull
-        Color color
+        Color color,
+
+        @NotNull
+        Category category
 
 ) {
 
@@ -55,6 +59,7 @@ public record IpadCreateDTO(
         ipad.setStorage(this.storage);
         ipad.setConnectivity(this.connectivity);
         ipad.setColor(this.color);
+        ipad.setCategory(this.category);
 
         return ipad;
     }
