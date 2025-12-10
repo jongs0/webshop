@@ -24,16 +24,13 @@ public class AppUser {
     @JsonIgnore
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "appUser_roles", joinColumns = @JoinColumn(name = "appUser_id"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private List<Role> roles = new ArrayList<>();
+    private List<Role> role;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Adress adress;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
 }
