@@ -33,10 +33,6 @@ public class Order {
         return id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
     public Double getTotalSum() {
         return totalSum;
     }
