@@ -4,7 +4,6 @@ import eindproject.webshop.model.enums.ipad.Connectivity;
 import eindproject.webshop.model.enums.iwatch.BandColor;
 import eindproject.webshop.model.enums.iwatch.BandType;
 import eindproject.webshop.model.enums.iwatch.CaseColor;
-import eindproject.webshop.model.enums.iwatch.Connectivity;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
