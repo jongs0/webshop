@@ -3,6 +3,7 @@ package eindproject.webshop.dto.appuser;
 import eindproject.webshop.dto.adress.AdressDTO;
 import eindproject.webshop.dto.order.OrderDTO;
 import eindproject.webshop.model.appuser.AppUser;
+
 import java.util.List;
 
 public record AppUserDTO(

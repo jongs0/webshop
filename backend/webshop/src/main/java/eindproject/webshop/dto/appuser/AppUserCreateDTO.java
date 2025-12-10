@@ -12,7 +12,7 @@ public record AppUserCreateDTO(
         String firstName,
         @NotBlank(message = "Fields cannot be empty")
         String lastName
-        ) {
+) {
     public AppUser toEntity() {
         AppUser user = new AppUser();
         user.setEmail(this.email);
@@ -20,5 +20,6 @@ public record AppUserCreateDTO(
         // vervang setPassword met een hash later als we security doen
         user.setFirstName(this.firstName);
         user.setLastName(this.lastName);
+        return user;
     }
-    }
+}
