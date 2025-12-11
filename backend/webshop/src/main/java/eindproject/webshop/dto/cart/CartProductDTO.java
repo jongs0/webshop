@@ -21,4 +21,12 @@ public record CartProductDTO(
         );
 
     }
+
+    public CartItem toEntity() {
+        CartItem cartItem = new CartItem();
+
+        cartItem.setProductId(productId);
+        cartItem.setQuantity(quantity);
+        return cartItem;
+    }
 }
