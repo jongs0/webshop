@@ -1,10 +1,15 @@
 package eindproject.webshop.controllers;
 
+import eindproject.webshop.dto.appuser.AppUserCreateDTO;
+import eindproject.webshop.dto.appuser.AppUserDTO;
+import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.service.AppUserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
@@ -21,5 +26,11 @@ public class AppUserController {
     // Incoming PUT for data update - updateUser method
     // optional incoming DELETE for single user (admin-only) - deleteUser method
 
+    @PostMapping
+    public ResponseEntity<AppUserSummaryDTO> createAccount(@Valid @RequestBody AppUserCreateDTO createDTO)
+    {
+        AppUserSummaryDTO created = appUserService.createAccount(createDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(created);
+    }
 
 }
