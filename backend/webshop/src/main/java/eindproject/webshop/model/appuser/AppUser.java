@@ -94,11 +94,11 @@ public class AppUser {
         return orders;
     }
 
-    public void addOrders(Order order) {
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
-    public void removeOrders(Order order) {
+    public void removeOrder(Order order) {
         orders.remove(order);
     }
 
