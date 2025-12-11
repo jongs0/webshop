@@ -16,7 +16,7 @@ public class Cart {
     @OneToOne
     private AppUser appUser;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();
 
     public Long getId() {
@@ -37,12 +37,12 @@ public class Cart {
 
     public void addCartItem(CartItem cartItem) {
         cartItems.add(cartItem);
+        cartItem.setCart(this);
     }
-
     public void removeCartItem(CartItem cartItem) {
         cartItems.remove(cartItem);
+        cartItem.setCart(null);
     }
-
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = new ArrayList<>(cartItems);
     }
