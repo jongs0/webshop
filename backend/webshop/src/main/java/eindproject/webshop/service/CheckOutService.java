@@ -49,7 +49,8 @@ public class CheckOutService {
         Adress address = appUser.getAdress();
         if (address == null) {
             throw new RuntimeException("User must have an address before checking out");
-        }
+        } // ookal heeft de user een account nodig met adres om te bestellen,
+        // deze is misschien handig bij het testen vd endpoints
 
         Order order = new Order();
         order.setAppUser(appUser);

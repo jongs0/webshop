@@ -31,50 +31,6 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
-    @Transactional
-    public OrderDTO createOrder(OrderCreateDTO createDTO) {
-
-        AppUser user = appUserRepository.findById(createDTO.userId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Order order = new Order();
-        order.setAppUser(user);
-        order.setPaymentMethod(createDTO.paymentMethod());
-
-        Adress addressToUse = user.getAdress();
-        if (addressToUse == null) {
-            throw new RuntimeException("User does not have an adress");
-        }
-        order.setAddress(addressToUse);
-
-        double total = 0.0;
-
-        for (OrderItemDTO itemDTO : createDTO.items()) {
-
-            Product product = productRepository.findById(itemDTO.productId())
-                    .orElseThrow(() -> new RuntimeException("Product not found"));
-
-            OrderItem item = new OrderItem();
-            item.setOrder(order);
-            item.setProductId(product.getId());
-            item.setProductName(product.getName());
-            item.setQuantity(itemDTO.quantity());
-
-            double lineTotal = product.getPrice() * itemDTO.quantity();
-            item.setLineTotal(lineTotal);
-
-            order.addOrderItem(item);
-
-            total += lineTotal;
-        }
-
-        order.setTotalSum(total);
-
-        Order saved = orderRepository.save(order);
-
-        return OrderDTO.fromEntity(saved);
-    }
-
     public OrderDTO getOrderById(Long id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
