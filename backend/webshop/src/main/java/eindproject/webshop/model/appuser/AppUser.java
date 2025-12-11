@@ -94,7 +94,12 @@ public class AppUser {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void addOrder(Order order) {
+        orders.add(order);
     }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
+    }
+
 }

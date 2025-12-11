@@ -43,6 +43,9 @@ public class Cart {
         cartItems.remove(cartItem);
     }
 
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = new ArrayList<>(cartItems);
+    }
 }
 
 //id, userId, List<CartItem>	Holds List<CartItem> One-to-one User
