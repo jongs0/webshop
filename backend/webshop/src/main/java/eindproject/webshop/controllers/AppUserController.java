@@ -20,7 +20,6 @@ public class AppUserController {
     @Autowired
     public AppUserController(AppUserService appUserService) { this.appUserService = appUserService; }
 
-    // Incoming POST for new users - createUser method
     // Incoming GET for single user (for profile page) - getUser method
     // Incoming GET for all users (admin-only) - getAllUsers method
     // Incoming PUT for data update - updateUser method
@@ -29,7 +28,7 @@ public class AppUserController {
     @PostMapping
     public ResponseEntity<AppUserSummaryDTO> createAccount(@Valid @RequestBody AppUserCreateDTO createDTO)
     {
-        AppUserSummaryDTO created = appUserService.createAccount(createDTO);
+        AppUserSummaryDTO created = appUserService.createAppUser(createDTO);
         return ResponseEntity.status(HttpStatus.OK).body(created);
     }
 

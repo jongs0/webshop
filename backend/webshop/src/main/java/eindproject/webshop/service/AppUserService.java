@@ -14,7 +14,6 @@ public class AppUserService {
     @Autowired
     public AppUserService(AppUserRepository appUserRepository) {this.appUserRepository = appUserRepository;}
 
-    // Incoming POST for new users - createUser method
     // Incoming GET for single user (for profile page) - getUser method
     // Incoming GET for all users (admin-only) - getAllUsers method
     // Incoming PUT for data update - updateUser method
