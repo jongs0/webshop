@@ -9,13 +9,15 @@ public class OrderItem {
     @GeneratedValue
     private Long id;
     @NotNull
+    @Column(nullable = false)
     private Long productId;
     private String productName;
     @NotNull
     private Integer quantity;
+    @Column(nullable = false)
     private Double lineTotal;
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     public Long getId() {
@@ -46,11 +48,9 @@ public class OrderItem {
     public void setOrder(Order order) {
         this.order = order;}
 
-    // calculateLineTotal in OrderService?
-    // public Double calculateLineTotal(Integer quantity, Long productId) {
-    // Double price = productRepository.findById(productId).getPrice();
-    // Double total = price * quantity;
-    // return total;}
+    public void calculateLineTotal(double price) {
+        this.lineTotal = price * quantity;
+    }
 }
 
 
