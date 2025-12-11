@@ -26,7 +26,7 @@ public class IphoneController {
 
     //Een iphone ophalen, GetProductsById (andere Kaart uit Trello)
     @GetMapping("/{id}")
-    public IphoneDTO getIphoneById(Long id) {
+    public IphoneDTO getIphoneById(@PathVariable Long id) {
         return iphoneService.getIphoneById(id);
     }
 
