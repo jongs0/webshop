@@ -81,6 +81,9 @@ public class AppUserService {
             if (!Objects.equals(appUseruser.getLastName(), updateDTO.lastName())) {
                 appUseruser.setLastName(updateDTO.lastName());
             }
+            if (!Objects.equals(appUseruser.getAdress(), updateDTO.address()) {
+                appUseruser.setAdress(updateDTO.address());
+        }
         }
         appUserRepository.save(appUseruser);
         return AppUserSummaryDTO.fromEntity(appUseruser);
