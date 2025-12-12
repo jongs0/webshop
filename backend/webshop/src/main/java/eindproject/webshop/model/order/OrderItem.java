@@ -40,8 +40,6 @@ public class OrderItem {
 
     public Double getLineTotal() {
         return lineTotal;}
-    public void setLineTotal(Double lineTotal) {
-        this.lineTotal = lineTotal;}
 
     public Order getOrder() {
         return order;}

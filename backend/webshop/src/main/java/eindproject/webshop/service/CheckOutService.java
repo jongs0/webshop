@@ -71,10 +71,10 @@ public class CheckOutService {
             orderItem.setProductName(product.getName());
             orderItem.setQuantity(cartItem.getQuantity());
 
-            double lineTotal = product.getPrice() * cartItem.getQuantity();
-            orderItem.setLineTotal(lineTotal);
+            orderItem.calculateLineTotal(product.getPrice());
+            total += orderItem.getLineTotal();
 
-            total += lineTotal;
+
 
             order.addOrderItem(orderItem);
         }
