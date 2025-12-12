@@ -59,4 +59,9 @@ public class AppUserController {
         AppUserSummaryDTO updated = appUserService.updateUser(id, updateDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
+
+    @DeleteMapping("/id")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        return appUserService.deleteUser(id);
+    }
 }

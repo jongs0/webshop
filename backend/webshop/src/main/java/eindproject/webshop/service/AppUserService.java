@@ -8,6 +8,8 @@ import eindproject.webshop.model.Role;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,22 +68,30 @@ public class AppUserService {
     }
 
     public AppUserSummaryDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
-        AppUser user = appUserRepository.findById(id)
+        AppUser appUseruser = appUserRepository.findById(id)
                         .orElse(null);
-        assert user != null;
+        assert appUseruser != null;
         {
-            if (!Objects.equals(user.getEmail(), updateDTO.email())) {
-                user.setEmail(updateDTO.email());
+            if (!Objects.equals(appUseruser.getEmail(), updateDTO.email())) {
+                appUseruser.setEmail(updateDTO.email());
             }
-            if (!Objects.equals(user.getFirstName(), updateDTO.firstName())) {
-                user.setFirstName(updateDTO.firstName());
+            if (!Objects.equals(appUseruser.getFirstName(), updateDTO.firstName())) {
+                appUseruser.setFirstName(updateDTO.firstName());
             }
-            if (!Objects.equals(user.getLastName(), updateDTO.lastName())) {
-                user.setLastName(updateDTO.lastName());
+            if (!Objects.equals(appUseruser.getLastName(), updateDTO.lastName())) {
+                appUseruser.setLastName(updateDTO.lastName());
             }
         }
-        appUserRepository.save(user);
-        return AppUserSummaryDTO.fromEntity(user);
+        appUserRepository.save(appUseruser);
+        return AppUserSummaryDTO.fromEntity(appUseruser);
+    }
+
+    public ResponseEntity<String> deleteUser(Long id) {
+        AppUser appUser = appUserRepository.findById(id)
+                .orElse(null);
+        assert appUser != null;
+        appUserRepository.delete(appUser);
+        return ResponseEntity.status(HttpStatus.OK).body("AppUser deleted.");
     }
 
 
