@@ -84,6 +84,7 @@ public class CheckOutService {
         order.setTotalSum(total);
 
         Order savedOrder = orderRepository.save(order);
+        appUser.addOrder(savedOrder);
 
         cart.getCartItems().clear();
         cartRepository.save(cart);
