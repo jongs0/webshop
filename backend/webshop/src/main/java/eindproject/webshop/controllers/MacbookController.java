@@ -45,7 +45,6 @@ public class MacbookController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {macbookService.deleteMacbook(id);
     }
 }
