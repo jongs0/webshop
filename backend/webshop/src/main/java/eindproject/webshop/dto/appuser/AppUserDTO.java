@@ -1,7 +1,7 @@
 package eindproject.webshop.dto.appuser;
 
-import eindproject.webshop.dto.adress.AdressDTO;
 import eindproject.webshop.dto.order.OrderDTO;
+import eindproject.webshop.model.appuser.Adress;
 import eindproject.webshop.model.appuser.AppUser;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,17 +18,18 @@ public record AppUserDTO(
         @NotBlank
         String lastName,
         @NotNull
-        AdressDTO address,
+        Adress address,
         @NotNull
         List<OrderDTO> orders
 ) {
     // Make sure OrderDTO has fromEntity
-    public static AppUserDTO fromEntity(AppUser appUser) {
+    public AppUserDTO fromEntity(AppUser appUser) {
         return new AppUserDTO(
                 appUser.getId(),
                 appUser.getEmail(),
                 appUser.getFirstName(),
                 appUser.getLastName(),
+                appUser.getAdress(),
                 appUser.getAdress(),
                 appUser.getOrders().stream().map(OrderDTO::fromEntity).toList()
         );
