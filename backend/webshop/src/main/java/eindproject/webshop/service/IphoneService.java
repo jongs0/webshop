@@ -4,38 +4,38 @@ import eindproject.webshop.dto.product.iphone.IphoneCreateDTO;
 import eindproject.webshop.dto.product.iphone.IphoneDTO;
 import eindproject.webshop.dto.product.iphone.IphoneUpdateDTO;
 import eindproject.webshop.model.product.Iphone;
-import eindproject.webshop.repository.IphoneRepository;
+import eindproject.webshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class IphoneService {
 
-    final private IphoneRepository iphoneRepository;
+    final private ProductRepository productRepository;
 
     @Autowired
-    public IphoneService(IphoneRepository iphoneRepository) {
-        this.iphoneRepository = iphoneRepository;
+    public IphoneService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     //createIphone (to Entity is rood omdat de DTO van Iphone mist nog dus die is nu rood)
     public IphoneDTO createIphone(IphoneCreateDTO dto) {
         Iphone iphone = dto.toEntity();
-        Iphone saved = iphoneRepository.save(iphone);
+        Iphone saved = productRepository.save(iphone);
         return IphoneDTO.fromEntity(saved);
 //        return new IphoneDTO(saved);
     }
 
     //Get IphoneById
     public IphoneDTO getIphoneById(Long id) {
-        Iphone iphone = iphoneRepository.findById(id)
+        Iphone iphone = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Iphone not found"));
         return new IphoneDTO(iphone);
     }
 
     //get all iphones
     public IphoneDTO getAllIphones() {
-        return iphoneRepository.findAll()
+        return productRepository.findAll()
                 .stream()
                 .map(IphoneDTO::new)
                 .toList();
@@ -43,10 +43,10 @@ public class IphoneService {
 
     //Update iphone
     public IphoneDTO updateIphone(Long id, IphoneUpdateDTO dto) {
-        Iphone iphone = iphoneRepository.findById(id)
+        Iphone iphone = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Iphone not found"));
         dto.toEntity(iphone);
-        Iphone saved = iphoneRepository.save(iphone);
+        Iphone saved = productRepository.save(iphone);
         return new IphoneUpdateDTO.fromEntity(saved);
 //        return new IphoneDTO(saved);
     }
@@ -54,7 +54,7 @@ public class IphoneService {
 
     //Delete iphone
     public void deleteIphone(Long id) {
-        iphoneRepository.deleteById(id);
+        productRepository.deleteById(id);
     }
 
 
