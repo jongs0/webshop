@@ -1,10 +1,14 @@
 package eindproject.webshop.controllers;
 
-import eindproject.webshop.dto.appuser.*;
+import eindproject.webshop.dto.appuser.AppUserCreateDTO;
+import eindproject.webshop.dto.appuser.AppUserDTO;
+import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
+import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
 import eindproject.webshop.service.AppUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +25,10 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    // made an extra GET by mistake. Good news, we can now search by email!
-    // maybe implement incoming DELETE for single user (admin-only) - deleteUser method
+    // Incoming GET for single user (for profile page) - getUser method
+    // Incoming GET for all users (admin-only) - getAllUsers method
+    // Incoming PUT for data update - updateUser method
+    // optional incoming DELETE for single user (admin-only) - deleteUser method
 
     @PostMapping
     public ResponseEntity<AppUserSummaryDTO> createAppUser(@Valid @RequestBody AppUserCreateDTO createDTO) {

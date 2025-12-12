@@ -1,13 +1,18 @@
 package eindproject.webshop.service;
 
-import eindproject.webshop.dto.appuser.*;
+import eindproject.webshop.dto.appuser.AppUserCreateDTO;
+import eindproject.webshop.dto.appuser.AppUserDTO;
+import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
+import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class AppUserService {
@@ -18,9 +23,10 @@ public class AppUserService {
         this.appUserRepository = appUserRepository;
     }
 
-    // made an extra GET by mistake. Good news, we can now search by email!
-    // maybe implement incoming DELETE for single user (admin-only) - deleteUser method
-
+    // Incoming GET for single user (for profile page) - getUser method
+    // Incoming GET for all users (admin-only) - getAllUsers method
+    // Incoming PUT for data update - updateUser method
+    // optional incoming DELETE for single user (admin-only) - deleteUser method
 
     public AppUserSummaryDTO createAppUser(AppUserCreateDTO createDTO) {
         // check if account already exists?
