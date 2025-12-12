@@ -35,8 +35,19 @@ public class AppUser {
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL)
     private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+        if (cart != null) {
+            cart.setAppUser(this);
+        }
+    }
 
     public Long getId() {
         return id;
@@ -96,10 +107,11 @@ public class AppUser {
 
     public void addOrder(Order order) {
         orders.add(order);
+        order.setAppUser(this);
     }
 
     public void removeOrder(Order order) {
         orders.remove(order);
+        order.setAppUser(null);
     }
-
 }

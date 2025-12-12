@@ -5,6 +5,7 @@ import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.model.enums.PaymentMethod;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,8 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-    private Double totalSum;
+    @Column(nullable = false)
+    private Double totalSum = 0.0;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -23,10 +25,11 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "address_id")
     private Adress address;
 
     public Long getId() {
@@ -62,10 +65,11 @@ public class Order {
     }
 
     public void addOrderItem(OrderItem orderItem) {
+        orderItem.setOrder(this);
         orderItems.add(orderItem);
     }
-
     public void removeOrderItem(OrderItem orderItem){
+        orderItem.setOrder(null);
         orderItems.remove(orderItem);
     }
 
