@@ -4,6 +4,7 @@ import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
+import eindproject.webshop.model.Role;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class AppUserService {
     public AppUserSummaryDTO createAppUser(AppUserCreateDTO createDTO) {
         // check if account already exists?
         AppUser newAppUser = createDTO.toEntity();
+        newAppUser.setRole(Role.USER);
         AppUser savedNewAppUser = appUserRepository.save(newAppUser);
         return AppUserSummaryDTO.fromEntity(savedNewAppUser);
     }
