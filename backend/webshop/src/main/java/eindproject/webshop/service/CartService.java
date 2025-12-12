@@ -34,7 +34,7 @@ public class CartService {
         this.productService = productService;
     }
 
-    public CartDTO getCart(Long userId) {
+    public CartDTO getCartByUserId(Long userId) {
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

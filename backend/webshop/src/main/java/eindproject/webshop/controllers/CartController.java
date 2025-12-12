@@ -22,8 +22,8 @@ public class CartController {
     }
 
     @GetMapping("/{appUserId}")
-    public ResponseEntity<CartDTO> getCart(@PathVariable Long appUserId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.getCart(appUserId));
+    public ResponseEntity<CartDTO> getCartByUserId(@PathVariable Long appUserId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.getCartByUserId(appUserId));
     }
 
     @PostMapping("/{appUserId}/add/{productId}")
