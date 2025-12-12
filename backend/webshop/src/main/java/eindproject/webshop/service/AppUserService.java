@@ -3,12 +3,16 @@ package eindproject.webshop.service;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
+import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class AppUserService {
@@ -59,6 +63,25 @@ public class AppUserService {
                 .map(AppUserDTO::fromEntity)
                 .toList();
          return all;
+    }
+
+    public AppUserSummaryDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
+        AppUser user = appUserRepository.findById(id)
+                        .orElse(null);
+        assert user != null;
+        {
+            if (!Objects.equals(user.getEmail(), updateDTO.email())) {
+                user.setEmail(updateDTO.email());
+            }
+            if (!Objects.equals(user.getFirstName(), updateDTO.firstName())) {
+                user.setFirstName(updateDTO.firstName());
+            }
+            if (!Objects.equals(user.getLastName(), updateDTO.lastName())) {
+                user.setLastName(updateDTO.lastName());
+            }
+        }
+        appUserRepository.save(user);
+        return AppUserSummaryDTO.fromEntity(user);
     }
 
 

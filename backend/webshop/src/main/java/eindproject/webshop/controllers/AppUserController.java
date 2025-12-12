@@ -3,6 +3,7 @@ package eindproject.webshop.controllers;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
+import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
 import eindproject.webshop.service.AppUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,11 @@ public class AppUserController {
     public ResponseEntity<List<AppUserDTO>> getAllAppUsers() {
         List<AppUserDTO> allUsers = appUserService.findAllAppUsers();
         return ResponseEntity.status(HttpStatus.OK).body(allUsers);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AppUserSummaryDTO> updateUser(@PathVariable Long id, @RequestBody AppUserUpdateDTO updateDTO) {
+        AppUserSummaryDTO updated = appUserService.updateUser(id, updateDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 }
