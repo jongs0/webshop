@@ -5,10 +5,12 @@ import eindproject.webshop.dto.product.iphone.IphoneDTO;
 import eindproject.webshop.dto.product.iphone.IphoneUpdateDTO;
 import eindproject.webshop.service.IphoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/product/iphone")
+@RequestMapping("/iphone")
 public class IphoneController {
 
     final private IphoneService iphoneService;
@@ -20,26 +22,26 @@ public class IphoneController {
 
     //Iphone aanmaken
     @PostMapping
-    public IphoneDTO create(@RequestBody IphoneCreateDTO dto) {
-        return iphoneService.createIphone(dto);
+    public ResponseEntity<IphoneDTO> create(@RequestBody IphoneCreateDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.createIphone(dto));
     }
 
     //Een iphone ophalen, GetProductsById (andere Kaart uit Trello)
     @GetMapping("/{id}")
-    public IphoneDTO getIphoneById(@PathVariable Long id) {
-        return iphoneService.getIphoneById(id);
+    public ResponseEntity<IphoneDTO> getIphoneById(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.getIphoneById(id));
     }
 
     //Alle iphones ophalen
     @GetMapping
-    public IphoneDTO getAllIphones() {
-        return iphoneService.getAllIphones();
+    public ResponseEntity<IphoneDTO> getAllIphones() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.getAllIphones());
     }
 
     //Iphone aanpassen
     @PutMapping
-    public IphoneDTO update(@PathVariable Long id, @RequestBody IphoneUpdateDTO dto) {
-        return iphoneService.updateIphone(id, dto);
+    public ResponseEntity<IphoneDTO> update(@PathVariable Long id, @RequestBody IphoneUpdateDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.updateIphone(id, dto));
     }
 
     //Iphone verwijderen
