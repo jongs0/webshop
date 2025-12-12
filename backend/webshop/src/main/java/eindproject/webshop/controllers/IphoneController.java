@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/iphone")
 public class IphoneController {
@@ -34,7 +36,7 @@ public class IphoneController {
 
     //Alle iphones ophalen
     @GetMapping
-    public ResponseEntity<IphoneDTO> getAllIphones() {
+    public ResponseEntity<List<IphoneDTO>> getAllIphones() {
         return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.getAllIphones());
     }
 
@@ -53,7 +55,4 @@ public class IphoneController {
     //Check voor later:
     // Moeten we hier nog andere paden specificeren voor spring security later
     // zodat je wie er bij mag, of is allen de security config voldoende?
-
-
-
 }
