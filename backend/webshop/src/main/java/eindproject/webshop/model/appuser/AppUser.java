@@ -114,9 +114,4 @@ public class AppUser {
         orders.remove(order);
         order.setAppUser(null);
     }
-
-    public void removeOrder(Order order) {
-        orders.remove(order);
-    }
-
 }
