@@ -33,8 +33,7 @@ public record MacbookUpdateDTO(
         @NotNull
         Color color
 ) {
-    public Macbook toEntity() {
-        Macbook macbook = new Macbook();
+    public void updateMacbook(Macbook macbook) {
         macbook.setName(this.name);
         macbook.setDescription(this.description);
         macbook.setPrice(this.price);
@@ -46,6 +45,5 @@ public record MacbookUpdateDTO(
         macbook.setRamSize(this.ram);
         macbook.setStorage(this.storage);
         macbook.setColor(this.color);
-        return macbook;
     }
 }

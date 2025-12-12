@@ -3,10 +3,13 @@ package eindproject.webshop.service;
 import eindproject.webshop.dto.product.iphone.IphoneCreateDTO;
 import eindproject.webshop.dto.product.iphone.IphoneDTO;
 import eindproject.webshop.dto.product.iphone.IphoneUpdateDTO;
+import eindproject.webshop.model.enums.product.Category;
 import eindproject.webshop.model.product.Iphone;
 import eindproject.webshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class IphoneService {
@@ -18,7 +21,6 @@ public class IphoneService {
         this.productRepository = productRepository;
     }
 
-    //createIphone (to Entity is rood omdat de DTO van Iphone mist nog dus die is nu rood)
     public IphoneDTO createIphone(IphoneCreateDTO dto) {
         Iphone iphone = dto.toEntity();
         Iphone saved = productRepository.save(iphone);
@@ -28,27 +30,26 @@ public class IphoneService {
 
     //Get IphoneById
     public IphoneDTO getIphoneById(Long id) {
-        Iphone iphone = productRepository.findById(id)
+        Iphone iphone = productRepository.findIphoneByIdAndCategory(id, Category.IPHONE)
                 .orElseThrow(() -> new RuntimeException("Iphone not found"));
-        return new IphoneDTO(iphone);
+        return IphoneDTO.fromEntity(iphone);
     }
 
     //get all iphones
-    public IphoneDTO getAllIphones() {
-        return productRepository.findAll()
+    public List<IphoneDTO> getAllIphones() {
+        return productRepository.findByCategory(Category.IPHONE)
                 .stream()
-                .map(IphoneDTO::new)
+                .map(product -> IphoneDTO.fromEntity((Iphone) product))
                 .toList();
     }
 
     //Update iphone
     public IphoneDTO updateIphone(Long id, IphoneUpdateDTO dto) {
-        Iphone iphone = productRepository.findById(id)
+        Iphone iphone = productRepository.findIphoneByIdAndCategory(id, Category.IPHONE)
                 .orElseThrow(() -> new RuntimeException("Iphone not found"));
-        dto.toEntity(iphone);
+        dto.updateIphone(iphone);
         Iphone saved = productRepository.save(iphone);
-        return new IphoneUpdateDTO.fromEntity(saved);
-//        return new IphoneDTO(saved);
+        return IphoneDTO.fromEntity(saved);
     }
 
 

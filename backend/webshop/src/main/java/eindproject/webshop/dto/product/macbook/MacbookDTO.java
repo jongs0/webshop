@@ -33,7 +33,7 @@ public record MacbookDTO(
         @NotBlank
         Category category
 ) {
-    public MacbookDTO fromEntity(Macbook macbook) {
+    public static MacbookDTO fromEntity(Macbook macbook) {
         return new MacbookDTO(
                 macbook.getId(),
                 macbook.getName(),
