@@ -55,7 +55,7 @@ public class AppUserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AppUserSummaryDTO> updateUser(@PathVariable Long id, @RequestBody AppUserUpdateDTO updateDTO) {
+    public ResponseEntity<AppUserSummaryDTO> updateUser(@PathVariable Long id, @Valid @RequestBody AppUserUpdateDTO updateDTO) {
         AppUserSummaryDTO updated = appUserService.updateUser(id, updateDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
