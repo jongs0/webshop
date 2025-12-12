@@ -7,12 +7,10 @@ import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class AppUserService {

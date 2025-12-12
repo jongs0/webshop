@@ -12,6 +12,7 @@ public record AppUserCreateDTO(
         String firstName,
         @NotBlank(message = "Fields cannot be empty")
         String lastName
+
 ) {
     public AppUser toEntity() {
         AppUser appUser = new AppUser();
