@@ -19,6 +19,7 @@ public record AppUserUpdateDTO(
         appUser.setEmail(email);
         appUser.setFirstName(firstName);
         appUser.setLastName(lastName);
+        appUser.setAdress(address);
         return appUser;
     }
 }
