@@ -11,6 +11,7 @@ import eindproject.webshop.model.product.Product;
 import eindproject.webshop.repository.AppUserRepository;
 import eindproject.webshop.repository.OrderRepository;
 import eindproject.webshop.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class OrderService {
     private final AppUserRepository appUserRepository;
     private final ProductRepository productRepository;
 
+    @Autowired
     public OrderService(OrderRepository orderRepository,
                         AppUserRepository appUserRepository,
                         ProductRepository productRepository) {

@@ -14,6 +14,7 @@ import eindproject.webshop.repository.CartRepository;
 import eindproject.webshop.repository.OrderRepository;
 import eindproject.webshop.repository.ProductRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +25,7 @@ public class CheckOutService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
 
+    @Autowired
     public CheckOutService(AppUserRepository appUserRepository,
                            CartRepository cartRepository,
                            OrderRepository orderRepository,
