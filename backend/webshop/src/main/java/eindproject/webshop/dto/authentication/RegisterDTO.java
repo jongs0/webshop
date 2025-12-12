@@ -7,8 +7,8 @@ public record RegisterDTO(
         String email,
         @NotBlank(message = "Fields may not be empty")
         String password,
-        @NotBlank(message = "Fields may not be empty")
-        String passwordConfirm
+        // @NotBlank(message = "Fields may not be empty")
+        // String passwordConfirm
 ) {
 
     // overbodig vanwege User Create DTO?
