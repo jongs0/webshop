@@ -81,6 +81,12 @@ public class AppUserService {
             if (!Objects.equals(appUseruser.getLastName(), updateDTO.lastName())) {
                 appUseruser.setLastName(updateDTO.lastName());
             }
+            if ((!Objects.equals(appUseruser.getAdress().getCity(), updateDTO.address().getCity())) ||
+                (!Objects.equals(appUseruser.getAdress().getStreet(), updateDTO.address().getStreet())) ||
+                (!Objects.equals(appUseruser.getAdress().getHouseNumber(), updateDTO.address().getHouseNumber())) ||
+                (!Objects.equals(appUseruser.getAdress().getPostalCode(), updateDTO.address().getPostalCode()))) {
+                appUseruser.setAdress(updateDTO.address());
+            }
         }
         appUserRepository.save(appUseruser);
         return AppUserSummaryDTO.fromEntity(appUseruser);
