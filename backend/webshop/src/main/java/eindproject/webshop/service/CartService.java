@@ -54,12 +54,12 @@ public class CartService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        Optional<CartItem> existing = cart.getCartItems().stream()
+        Optional<CartItem> existingProduct = cart.getCartItems().stream()
                 .filter(cartItem -> cartItem.getProductId().equals(productId))
                 .findFirst();
 
-        if (existing.isPresent()) {
-            existing.get().setQuantity(existing.get().getQuantity() + quantity);
+        if (existingProduct.isPresent()) {
+            existingProduct.get().setQuantity(existingProduct.get().getQuantity() + quantity);
         } else {
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
