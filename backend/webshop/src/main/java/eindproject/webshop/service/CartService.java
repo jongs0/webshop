@@ -8,6 +8,7 @@ import eindproject.webshop.model.product.Product;
 import eindproject.webshop.repository.AppUserRepository;
 import eindproject.webshop.repository.CartRepository;
 import eindproject.webshop.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,6 +21,7 @@ public class CartService {
     private final AppUserRepository appUserRepository;
     private final ProductRepository productRepository;
 
+    @Autowired
     private final ProductService productService;
 
     public CartService(CartRepository cartRepository,
