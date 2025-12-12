@@ -1,5 +1,7 @@
 package eindproject.webshop.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,31 +22,31 @@ public class CartController {
     }
 
     @GetMapping("/{appUserId}")
-    public CartDTO getCart(@PathVariable Long appUserId) {
-        return cartService.getCart(appUserId);
+    public ResponseEntity<CartDTO> getCart(@PathVariable Long appUserId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.getCart(appUserId));
     }
 
     @PostMapping("/{appUserId}/add/{productId}")
-    public CartDTO addToCart(
+    public ResponseEntity<CartDTO> addToCart(
             @PathVariable Long appUserId,
             @PathVariable Long productId,
             @RequestParam int quantity
     ) {
-        return cartService.addToCart(appUserId, productId, quantity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCart(appUserId, productId, quantity));
     }
 
 
     @PutMapping("/{appUserId}/update/{productId}")
-    public CartDTO updateItem(
+    public ResponseEntity<CartDTO> updateItem(
             @PathVariable Long appUserId,
             @PathVariable Long productId,
             @RequestParam int quantity
     ) {
-        return cartService.updateItem(appUserId, productId, quantity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.updateItem(appUserId, productId, quantity));
     }
 
     @DeleteMapping("/{appUserId}/clear")
-    public CartDTO clearCart(@PathVariable Long appUserId) {
-        return cartService.clearCart(appUserId);
+    public ResponseEntity<CartDTO> clearCart(@PathVariable Long appUserId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.clearCart(appUserId));
     }
 }

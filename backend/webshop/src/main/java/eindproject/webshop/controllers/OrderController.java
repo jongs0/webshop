@@ -1,5 +1,7 @@
 package eindproject.webshop.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,28 +29,28 @@ public class OrderController {
     }
 
     @PostMapping("/{appUserId}/checkout")
-    public OrderDTO checkout(
+    public ResponseEntity<OrderDTO> checkout(
             @PathVariable Long appUserId,
             @RequestParam PaymentMethod paymentMethod
     ) {
-        return checkOutService.checkout(appUserId, paymentMethod);
+        return ResponseEntity.status(HttpStatus.CREATED).body(checkOutService.checkout(appUserId, paymentMethod));
     }
 
 
     @GetMapping("/{orderId}")
-    public OrderDTO getOrder(@PathVariable Long orderId) {
-        return orderService.getOrderById(orderId);
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable Long orderId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getOrderById(orderId));
     }
 
 
     @GetMapping("/user/{appUserId}")
-    public List<OrderDTO> getOrdersForUser(@PathVariable Long appUserId) {
-        return orderService.getOrdersForUser(appUserId);
+    public ResponseEntity<List<OrderDTO>> getOrdersForUser(@PathVariable Long appUserId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getOrdersForUser(appUserId));
     }
 
 
     @GetMapping // deze moeten we met sec. config. permission based maken
-    public List<OrderDTO> getAllOrders() {
-        return orderService.getAllOrders();
+    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getAllOrders());
     }
 }
