@@ -23,13 +23,12 @@ public record AppUserDTO(
         List<OrderDTO> orders
 ) {
     // Make sure OrderDTO has fromEntity
-    public AppUserDTO fromEntity(AppUser appUser) {
+    public static AppUserDTO fromEntity(AppUser appUser) {
         return new AppUserDTO(
                 appUser.getId(),
                 appUser.getEmail(),
                 appUser.getFirstName(),
                 appUser.getLastName(),
-                appUser.getAdress(),
                 appUser.getAdress(),
                 appUser.getOrders().stream().map(OrderDTO::fromEntity).toList()
         );
