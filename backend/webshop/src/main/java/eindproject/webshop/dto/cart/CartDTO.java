@@ -1,7 +1,7 @@
 package eindproject.webshop.dto.cart;
 
 import eindproject.webshop.model.cart.Cart;
-import eindproject.webshop.service.ProductService;
+import eindproject.webshop.service.product.ProductService;
 
 import java.util.List;
 

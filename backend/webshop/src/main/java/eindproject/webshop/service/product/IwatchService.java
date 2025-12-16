@@ -1,4 +1,4 @@
-package eindproject.webshop.service;
+package eindproject.webshop.service.product;
 
 
 import eindproject.webshop.dto.product.iwatch.IwatchCreateDTO;
@@ -50,9 +50,5 @@ public class IwatchService {
 
         Iwatch saved = productRepository.save(iwatch);
         return IwatchDTO.fromEntity(saved);
-    }
-
-    public void deleteIwatch(Long id) {
-        productRepository.deleteById(id);
     }
 }

@@ -13,12 +13,10 @@ public record AddressUpdateDTO(
         @NotBlank
         String city
 ) {
-    public Adress toEntity() {
-        Adress adress = new Adress();
-        adress.setStreet(this.street);
-        adress.setHouseNumber(this.houseNumber);
-        adress.setPostalCode(this.postalCode);
-        adress.setCity(this.city);
-        return adress;
+    public void applyTo(Adress adress) {
+        adress.setStreet(street);
+        adress.setHouseNumber(houseNumber);
+        adress.setPostalCode(postalCode);
+        adress.setCity(city);
     }
 }

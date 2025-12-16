@@ -1,12 +1,9 @@
 package eindproject.webshop.controllers;
 
 import eindproject.webshop.dto.product.ProductAdminSummaryDTO;
-import eindproject.webshop.service.ProductService;
+import eindproject.webshop.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class ProductController {
     @GetMapping("/all")
     public List<ProductAdminSummaryDTO> getAllProductsForAdmin() {
         return productService.getAllProductsForAdmin();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
     }
 }

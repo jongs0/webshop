@@ -4,7 +4,7 @@ package eindproject.webshop.controllers;
 import eindproject.webshop.dto.product.macbook.MacbookCreateDTO;
 import eindproject.webshop.dto.product.macbook.MacbookDTO;
 import eindproject.webshop.dto.product.macbook.MacbookUpdateDTO;
-import eindproject.webshop.service.MacbookService;
+import eindproject.webshop.service.product.MacbookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +42,5 @@ public class MacbookController {
     public ResponseEntity<MacbookDTO> update(@PathVariable Long id, @RequestBody MacbookUpdateDTO dto
     ) {
         return ResponseEntity.ok(macbookService.updateMacbook(id, dto));
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {macbookService.deleteMacbook(id);
     }
 }

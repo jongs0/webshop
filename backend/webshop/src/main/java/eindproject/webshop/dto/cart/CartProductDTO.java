@@ -2,7 +2,7 @@ package eindproject.webshop.dto.cart;
 
 import eindproject.webshop.model.cart.CartItem;
 import eindproject.webshop.model.product.Product;
-import eindproject.webshop.service.ProductService;
+import eindproject.webshop.service.product.ProductService;
 
 public record CartProductDTO(
         Long productId,

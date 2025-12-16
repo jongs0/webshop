@@ -1,4 +1,4 @@
-package eindproject.webshop.service;
+package eindproject.webshop.service.product;
 
 import eindproject.webshop.dto.product.ProductAdminSummaryDTO;
 import eindproject.webshop.model.product.Product;
@@ -28,5 +28,13 @@ public class ProductService {
                 .stream()
                 .map(ProductAdminSummaryDTO::fromEntity)
                 .toList();
+    }
+
+    public void deleteProduct(Long id) {
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found with ID: " + id));
+
+        productRepository.deleteById(product.getId());
     }
 }

@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/userAPI")
+@RequestMapping("/user")
 public class AppUserController {
     private final AppUserService appUserService;
 
@@ -51,8 +51,8 @@ public class AppUserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AppUserSummaryDTO> updateUser(@PathVariable Long id, @Valid @RequestBody AppUserUpdateDTO updateDTO) {
-        AppUserSummaryDTO updated = appUserService.updateUser(id, updateDTO);
+    public ResponseEntity<AppUserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody AppUserUpdateDTO updateDTO) {
+        AppUserDTO updated = appUserService.updateUser(id, updateDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 

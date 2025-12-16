@@ -82,29 +82,26 @@ public class AppUserService {
          return all;
     }
 
-    public AppUserSummaryDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
-        AppUser appUseruser = appUserRepository.findById(id)
-                        .orElse(null);
-        assert appUseruser != null;
-        {
-            if (!Objects.equals(appUseruser.getEmail(), updateDTO.email())) {
-                appUseruser.setEmail(updateDTO.email());
-            }
-            if (!Objects.equals(appUseruser.getFirstName(), updateDTO.firstName())) {
-                appUseruser.setFirstName(updateDTO.firstName());
-            }
-            if (!Objects.equals(appUseruser.getLastName(), updateDTO.lastName())) {
-                appUseruser.setLastName(updateDTO.lastName());
-            }
-            if ((!Objects.equals(appUseruser.getAdress().getCity(), updateDTO.address().getCity())) ||
-                (!Objects.equals(appUseruser.getAdress().getStreet(), updateDTO.address().getStreet())) ||
-                (!Objects.equals(appUseruser.getAdress().getHouseNumber(), updateDTO.address().getHouseNumber())) ||
-                (!Objects.equals(appUseruser.getAdress().getPostalCode(), updateDTO.address().getPostalCode()))) {
-                appUseruser.setAdress(updateDTO.address());
-            }
+    public AppUserDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
+
+        AppUser user = appUserRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEmail(updateDTO.email());
+        user.setFirstName(updateDTO.firstName());
+        user.setLastName(updateDTO.lastName());
+
+        Adress adress = user.getAdress();
+        if (adress == null) {
+            adress = new Adress();
+            user.setAdress(adress);
         }
-        appUserRepository.save(appUseruser);
-        return AppUserSummaryDTO.fromEntity(appUseruser);
+
+        updateDTO.address().applyTo(adress);
+
+        appUserRepository.save(user);
+
+        return AppUserDTO.fromEntity(user);
     }
 
     public ResponseEntity<String> deleteUser(Long id) {
