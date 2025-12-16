@@ -1,10 +1,14 @@
 package eindproject.webshop.service;
 
+import eindproject.webshop.controllers.exceptions.AccountWithEmailAlreadyExistsException;
+import eindproject.webshop.dto.adress.AddressCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
+import eindproject.webshop.dto.authentication.RegisterDTO;
 import eindproject.webshop.model.Role;
+import eindproject.webshop.model.appuser.Adress;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +33,23 @@ public class AppUserService {
     // Incoming PUT for data update - updateUser method
     // optional incoming DELETE for single user (admin-only) - deleteUser method
 
-    public AppUserSummaryDTO createAppUser(AppUserCreateDTO createDTO) {
-        // check if account already exists?
-        AppUser newAppUser = createDTO.toEntity();
+    public AppUserDTO createAppUser(RegisterDTO registerDTO) {
+
+        AppUserCreateDTO appUser = registerDTO.appUser();
+        AddressCreateDTO address = registerDTO.adress();
+
+        String email = appUser.email();
+        if (appUserRepository.existsByEmail(email)) {
+            throw new AccountWithEmailAlreadyExistsException("An account with this email already exists.");
+        }
+
+        AppUser newAppUser = appUser.toEntity();
+        Adress newAddress = address.toEntity();
+
         newAppUser.setRole(Role.USER);
-        AppUser savedNewAppUser = appUserRepository.save(newAppUser);
-        return AppUserSummaryDTO.fromEntity(savedNewAppUser);
+        newAppUser.setAdress(newAddress);
+        AppUser savedAppUser = appUserRepository.save(newAppUser);
+        return AppUserDTO.fromEntity(savedAppUser);
     }
 
     public AppUserDTO findAppUserById(Long appUserId) {

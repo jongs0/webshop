@@ -1,9 +1,11 @@
 package eindproject.webshop.controllers;
 
+import eindproject.webshop.dto.adress.AddressCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
+import eindproject.webshop.dto.authentication.RegisterDTO;
 import eindproject.webshop.service.AppUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +33,14 @@ public class AppUserController {
     // optional incoming DELETE for single user (admin-only) - deleteUser method
 
     @PostMapping
-    public ResponseEntity<AppUserSummaryDTO> createAppUser(@Valid @RequestBody AppUserCreateDTO createDTO) {
-        AppUserSummaryDTO created = appUserService.createAppUser(createDTO);
+    public ResponseEntity<AppUserDTO> createAppUser(@Valid @RequestBody RegisterDTO registerDTO) {
+        AppUserDTO created = appUserService.createAppUser(registerDTO);
         return ResponseEntity.status(HttpStatus.OK).body(created);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AppUserDTO> getAppUserById(@PathVariable Long id) {
         AppUserDTO appUser = appUserService.findAppUserById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(appUser);
-    }
-
-    @GetMapping("/{email}")
-    public ResponseEntity<AppUserDTO> getAppUserByEmail(@PathVariable String email) {
-        AppUserDTO appUser = appUserService.findAppUserByEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body(appUser);
     }
 
@@ -60,7 +56,7 @@ public class AppUserController {
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return appUserService.deleteUser(id);
     }
