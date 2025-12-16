@@ -70,14 +70,14 @@ public class CheckOutService {
 
             OrderItem orderItem = new OrderItem();
 
-            if (product.getStock() < orderItem.getQuantity()) {
-                throw new NotEnoughStockException("We only have " + product.getStock() + " of these in stock.");
-            }
-
             orderItem.setOrder(order);
             orderItem.setProductId(product.getId());
             orderItem.setProductName(product.getName());
             orderItem.setQuantity(cartItem.getQuantity());
+
+            if (product.getStock() < orderItem.getQuantity()) {
+                throw new NotEnoughStockException("We only have " + product.getStock() + " of these in stock.");
+            }
 
             orderItem.calculateLineTotal(product.getPrice());
             total += orderItem.getLineTotal();

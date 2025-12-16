@@ -20,22 +20,10 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    private final CheckOutService checkOutService;
 
-    public OrderController(OrderService orderService,
-                           CheckOutService checkOutService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.checkOutService = checkOutService;
     }
-
-    @PostMapping("/{appUserId}/checkout")
-    public ResponseEntity<OrderDTO> checkout(
-            @PathVariable Long appUserId,
-            @RequestParam PaymentMethod paymentMethod
-    ) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(checkOutService.checkout(appUserId, paymentMethod));
-    }
-
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable Long orderId) {
