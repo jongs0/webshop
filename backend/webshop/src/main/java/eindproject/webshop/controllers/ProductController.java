@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
     final private ProductService productService;
@@ -22,7 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/all")
     public List<ProductAdminSummaryDTO> getAllProductsForAdmin() {
         return productService.getAllProductsForAdmin();
     }
