@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/ipad")
 public class IpadController {
 
@@ -29,20 +30,20 @@ public class IpadController {
 
     @GetMapping("/{id}")
     public ResponseEntity<IpadDTO> getIpadById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ipadService.getIpadById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(ipadService.getIpadById(id));
     }
 
     @GetMapping
     public ResponseEntity<List<IpadDTO>> getAllIpads() {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ipadService.getAllIpads());
+        return ResponseEntity.status(HttpStatus.OK).body(ipadService.getAllIpads());
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<IpadDTO> update(@PathVariable Long id, @RequestBody IpadUpdateDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ipadService.updateIpad(id, dto));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void delete (@PathVariable Long id) {
         ipadService.deleteIpad(id);
     }

@@ -1,5 +1,6 @@
 package eindproject.webshop.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ public class OrderController {
     private final OrderService orderService;
     private final CheckOutService checkOutService;
 
+    @Autowired
     public OrderController(OrderService orderService,
                            CheckOutService checkOutService) {
         this.orderService = orderService;
@@ -39,18 +41,18 @@ public class OrderController {
 
     @GetMapping("/{orderId}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable Long orderId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getOrderById(orderId));
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getOrderById(orderId));
     }
 
 
     @GetMapping("/user/{appUserId}")
     public ResponseEntity<List<OrderDTO>> getOrdersForUser(@PathVariable Long appUserId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getOrdersForUser(appUserId));
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getOrdersForUser(appUserId));
     }
 
 
     @GetMapping // deze moeten we met sec. config. permission based maken
     public ResponseEntity<List<OrderDTO>> getAllOrders() {
-        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.getAllOrders());
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getAllOrders());
     }
 }

@@ -42,7 +42,7 @@ public class AppUserController {
         return ResponseEntity.status(HttpStatus.OK).body(appUser);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public ResponseEntity<AppUserDTO> getAppUserByEmail(@PathVariable String email) {
         AppUserDTO appUser = appUserService.findAppUserByEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body(appUser);
@@ -60,7 +60,7 @@ public class AppUserController {
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         return appUserService.deleteUser(id);
     }

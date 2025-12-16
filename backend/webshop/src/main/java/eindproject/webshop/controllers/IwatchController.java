@@ -5,6 +5,7 @@ import eindproject.webshop.dto.product.iwatch.IwatchCreateDTO;
 import eindproject.webshop.dto.product.iwatch.IwatchDTO;
 import eindproject.webshop.dto.product.iwatch.IwatchUpdateDTO;
 import eindproject.webshop.service.IwatchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class IwatchController {
 
     private final IwatchService iwatchService;
 
+    @Autowired
     public IwatchController(IwatchService iwatchService) {
         this.iwatchService = iwatchService;
     }
