@@ -61,6 +61,7 @@ public class CheckOutService {
         order.setAddress(address);
 
         double total = 0.0;
+        double roundedTotal = 0.0;
 
         for (CartItem cartItem : cart.getCartItems()) {
 
@@ -81,12 +82,13 @@ public class CheckOutService {
 
             orderItem.calculateLineTotal(product.getPrice());
             total += orderItem.getLineTotal();
+            roundedTotal = (double) Math.round(total * 100 / 100);
 
             product.setStock(product.getStock()-cartItem.getQuantity());
             order.addOrderItem(orderItem);
         }
 
-        order.setTotalSum(total);
+        order.setTotalSum(roundedTotal);
 
         Order savedOrder = orderRepository.save(order);
         appUser.addOrder(savedOrder);
