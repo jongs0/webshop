@@ -18,6 +18,7 @@ public class IwatchController {
 
     private final IwatchService iwatchService;
 
+    @Autowired
     public IwatchController(IwatchService iwatchService) {
         this.iwatchService = iwatchService;
     }

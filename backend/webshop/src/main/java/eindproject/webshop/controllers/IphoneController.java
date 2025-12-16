@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/iphone")
 public class IphoneController {
 
@@ -31,13 +32,13 @@ public class IphoneController {
     //Een iphone ophalen, GetProductsById (andere Kaart uit Trello)
     @GetMapping("/{id}")
     public ResponseEntity<IphoneDTO> getIphoneById(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.getIphoneById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(iphoneService.getIphoneById(id));
     }
 
     //Alle iphones ophalen
     @GetMapping
     public ResponseEntity<List<IphoneDTO>> getAllIphones() {
-        return ResponseEntity.status(HttpStatus.CREATED).body(iphoneService.getAllIphones());
+        return ResponseEntity.status(HttpStatus.OK).body(iphoneService.getAllIphones());
     }
 
     //Iphone aanpassen
