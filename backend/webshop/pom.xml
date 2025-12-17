@@ -79,10 +79,6 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<groupId>cz.habarta.typescript-generator</groupId>
 				<artifactId>typescript-generator-maven-plugin</artifactId>
 				<version>3.2.1263</version>
@@ -101,12 +97,12 @@
 
 					<!-- Java packages to scan -->
 					<classPatterns>
-						<classPattern>nl.codecafe.crud.dto.*</classPattern>
-						<classPattern>nl.codecafe.crud.dto.*.*</classPattern>
+						<classPattern>eindproject.webshop.dto.*</classPattern>
+						<classPattern>eindproject.webshop.dto.**</classPattern>
 					</classPatterns>
 
 					<!-- Where to write TS file -->
-					<outputFile>VOLLEDIG_PAD/src/types/models.d.ts</outputFile>
+					<outputFile>/Users/josh/Documents/Eindproject/webshop/frontend/src/types/models.d.ts</outputFile>
 
 					<!-- Options -->
 

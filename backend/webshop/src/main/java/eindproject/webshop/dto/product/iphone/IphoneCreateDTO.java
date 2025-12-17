@@ -28,19 +28,19 @@ public record IphoneCreateDTO(
         String model,
 
         @NotNull
-        Generation generation,
+        IphoneGeneration iphoneGeneration,
 
         @NotNull
-        Storage storage,
+        IphoneStorage iphoneStorage,
 
         @NotNull
-        NetworkType networkType,
+        IphoneNetworkType iphoneNetworkType,
 
         @NotNull
-        Color color,
+        IphoneColor iphoneColor,
 
         @NotNull
-        SimType simType,
+        IphoneSimType iphoneSimType,
 
         @NotNull
         Category category
@@ -58,11 +58,11 @@ public record IphoneCreateDTO(
         iphone.setState(this.state);
         iphone.setModel(this.model);
 
-        iphone.setGeneration(this.generation);
-        iphone.setStorage(this.storage);
-        iphone.setNetworkType(this.networkType);
-        iphone.setColor(this.color);
-        iphone.setSimType(this.simType);
+        iphone.setGeneration(this.iphoneGeneration);
+        iphone.setStorage(this.iphoneStorage);
+        iphone.setNetworkType(this.iphoneNetworkType);
+        iphone.setColor(this.iphoneColor);
+        iphone.setSimType(this.iphoneSimType);
         iphone.setCategory(this.category);
 
         return iphone;

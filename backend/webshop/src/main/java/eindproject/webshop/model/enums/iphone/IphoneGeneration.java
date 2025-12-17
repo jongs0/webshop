@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.iphone;
 
-public enum Generation {
+public enum IphoneGeneration {
 
         GEN_13("13"),
         GEN_14("14"),
@@ -10,7 +10,7 @@ public enum Generation {
 
         private final String label;
 
-        Generation(String label) { this.label = label; }
+        IphoneGeneration(String label) { this.label = label; }
 
         public String getLabel() { return label; }
     }

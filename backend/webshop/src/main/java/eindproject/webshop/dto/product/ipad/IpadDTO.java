@@ -1,9 +1,9 @@
 package eindproject.webshop.dto.product.ipad;
 
-import eindproject.webshop.model.enums.ipad.Color;
-import eindproject.webshop.model.enums.ipad.Connectivity;
-import eindproject.webshop.model.enums.ipad.Generation;
-import eindproject.webshop.model.enums.ipad.Storage;
+import eindproject.webshop.model.enums.ipad.IpadColor;
+import eindproject.webshop.model.enums.ipad.IpadConnectivity;
+import eindproject.webshop.model.enums.ipad.IpadGeneration;
+import eindproject.webshop.model.enums.ipad.IpadStorage;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Ipad;
 
@@ -17,10 +17,10 @@ public record IpadDTO(
         State state,
         String model,
 
-        Generation generation,
-        Storage storage,
-        Color color,
-        Connectivity connectivity
+        IpadGeneration ipadGeneration,
+        IpadStorage ipadStorage,
+        IpadColor ipadColor,
+        IpadConnectivity ipadConnectivity
 
 ) {
     public static IpadDTO fromEntity(Ipad ipad) {

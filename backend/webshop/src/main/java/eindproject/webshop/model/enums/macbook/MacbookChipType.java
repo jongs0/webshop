@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.macbook;
 
-public enum ChipType {
+public enum MacbookChipType {
     M1,
     M2,
     M3,

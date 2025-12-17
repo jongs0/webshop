@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.ipad;
 
-public enum Connectivity {
+public enum IpadConnectivity {
     WIFI_BLUETOOTH,
     WIFI_BLUETOOTH_MOBILEDATA;
 }

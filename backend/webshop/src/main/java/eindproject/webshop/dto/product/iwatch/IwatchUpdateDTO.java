@@ -14,10 +14,10 @@ public record IwatchUpdateDTO(
         String model,
 
         Integer releaseYear,
-        CaseColor caseColor,
-        BandColor bandColor,
-        Connectivity connectivity,
-        BandType bandType
+        IwatchCaseColor iwatchCaseColor,
+        IwatchBandColor iwatchBandColor,
+        IwatchConnectivity iwatchConnectivity,
+        IwatchBandType iwatchBandType
 
 ) {
 
@@ -31,9 +31,9 @@ public record IwatchUpdateDTO(
         iwatch.setModel(this.model);
 
         iwatch.setReleaseYear(this.releaseYear);
-        iwatch.setCaseColor(this.caseColor);
-        iwatch.setBandColor(this.bandColor);
-        iwatch.setConnectivity(this.connectivity);
-        iwatch.setBandType(this.bandType);
+        iwatch.setCaseColor(this.iwatchCaseColor);
+        iwatch.setBandColor(this.iwatchBandColor);
+        iwatch.setConnectivity(this.iwatchConnectivity);
+        iwatch.setBandType(this.iwatchBandType);
     }
 }

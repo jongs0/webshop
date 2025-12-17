@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.macbook;
 
-public enum Color {
+public enum MacbookColor {
     SPACE_GREY,
     GOLD,
     SILVER;

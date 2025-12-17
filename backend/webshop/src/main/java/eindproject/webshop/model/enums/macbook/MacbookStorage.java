@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.macbook;
 
-public enum Storage {
+public enum MacbookStorage {
     GB_128("128GB"),
     GB_256("256GB"),
     GB_512("512GB"),
@@ -8,7 +8,7 @@ public enum Storage {
 
     private final String label;
 
-    Storage(String label) { this.label = label; }
+    MacbookStorage(String label) { this.label = label; }
 
     public String getLabel() { return label; }
 }

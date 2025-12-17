@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.ipad;
 
-public enum Color {
+public enum IpadColor {
     SPACE_GREY,
     WHITE,
     PINK,

@@ -16,10 +16,10 @@ public record IwatchDTO(
         String model,
 
         Integer releaseYear,
-        CaseColor caseColor,
-        BandColor bandColor,
-        Connectivity connectivity,
-        BandType bandType
+        IwatchCaseColor iwatchCaseColor,
+        IwatchBandColor iwatchBandColor,
+        IwatchConnectivity iwatchConnectivity,
+        IwatchBandType iwatchBandType
 
 ) {
 

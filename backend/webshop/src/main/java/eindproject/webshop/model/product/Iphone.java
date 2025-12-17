@@ -8,49 +8,49 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("iphone")
 public class Iphone extends Product {
 
-    private Color color;
-    private Generation generation;
-    private Storage storage;
-    private NetworkType networkType;
-    private SimType simType;
+    private IphoneColor iphoneColor;
+    private IphoneGeneration iphoneGeneration;
+    private IphoneStorage iphoneStorage;
+    private IphoneNetworkType iphoneNetworkType;
+    private IphoneSimType iphoneSimType;
 
-    public Color getColor() {
-        return color;
+    public IphoneColor getColor() {
+        return iphoneColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(IphoneColor iphoneColor) {
+        this.iphoneColor = iphoneColor;
     }
 
-    public Generation getGeneration() {
-        return generation;
+    public IphoneGeneration getGeneration() {
+        return iphoneGeneration;
     }
 
-    public void setGeneration(Generation generation) {
-        this.generation = generation;
+    public void setGeneration(IphoneGeneration iphoneGeneration) {
+        this.iphoneGeneration = iphoneGeneration;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public IphoneStorage getStorage() {
+        return iphoneStorage;
     }
 
-    public void setStorage(Storage storage) {
-        this.storage = storage;
+    public void setStorage(IphoneStorage iphoneStorage) {
+        this.iphoneStorage = iphoneStorage;
     }
 
-    public NetworkType getNetworkType() {
-        return networkType;
+    public IphoneNetworkType getNetworkType() {
+        return iphoneNetworkType;
     }
 
-    public void setNetworkType(NetworkType networkType) {
-        this.networkType = networkType;
+    public void setNetworkType(IphoneNetworkType iphoneNetworkType) {
+        this.iphoneNetworkType = iphoneNetworkType;
     }
 
-    public SimType getSimType() {
-        return simType;
+    public IphoneSimType getSimType() {
+        return iphoneSimType;
     }
 
-    public void setSimType(SimType simType) {
-        this.simType = simType;
+    public void setSimType(IphoneSimType iphoneSimType) {
+        this.iphoneSimType = iphoneSimType;
     }
 }

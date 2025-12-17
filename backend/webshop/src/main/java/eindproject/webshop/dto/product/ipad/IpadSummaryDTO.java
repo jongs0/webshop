@@ -1,5 +1,5 @@
 package eindproject.webshop.dto.product.ipad;
-import eindproject.webshop.model.enums.ipad.Generation;
+import eindproject.webshop.model.enums.ipad.IpadGeneration;
 import eindproject.webshop.model.product.Ipad;
 
 public record IpadSummaryDTO(
@@ -7,7 +7,7 @@ public record IpadSummaryDTO(
         String name,
         Double price,
         String model,
-        Generation generation
+        IpadGeneration ipadGeneration
 ) {
     public static IpadSummaryDTO fromEntity(Ipad ipad) {
         return new IpadSummaryDTO(
