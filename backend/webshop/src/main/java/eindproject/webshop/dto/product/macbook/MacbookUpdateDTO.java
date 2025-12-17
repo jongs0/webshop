@@ -1,9 +1,9 @@
 package eindproject.webshop.dto.product.macbook;
 
-import eindproject.webshop.model.enums.macbook.ChipType;
-import eindproject.webshop.model.enums.macbook.Color;
-import eindproject.webshop.model.enums.macbook.RamSize;
-import eindproject.webshop.model.enums.macbook.Storage;
+import eindproject.webshop.model.enums.macbook.MacbookChipType;
+import eindproject.webshop.model.enums.macbook.MacbookColor;
+import eindproject.webshop.model.enums.macbook.MacbookRamSize;
+import eindproject.webshop.model.enums.macbook.MacbookStorage;
 import eindproject.webshop.model.enums.product.State;
 import eindproject.webshop.model.product.Macbook;
 import jakarta.validation.constraints.NotBlank;
@@ -25,13 +25,13 @@ public record MacbookUpdateDTO(
         @NotNull
         Integer releaseYear,
         @NotNull
-        ChipType chipType,
+        MacbookChipType macbookChipType,
         @NotNull
-        RamSize ram,
+        MacbookRamSize macbookRamSize,
         @NotNull
-        Storage storage,
+        MacbookStorage macbookStorage,
         @NotNull
-        Color color
+        MacbookColor macbookColor
 ) {
     public void updateMacbook(Macbook macbook) {
         macbook.setName(this.name);
@@ -41,9 +41,9 @@ public record MacbookUpdateDTO(
         macbook.setState(this.state);
         macbook.setModel(this.model);
         macbook.setReleaseYear(this.releaseYear);
-        macbook.setChipType(this.chipType);
-        macbook.setRamSize(this.ram);
-        macbook.setStorage(this.storage);
-        macbook.setColor(this.color);
+        macbook.setChipType(this.macbookChipType);
+        macbook.setRamSize(this.macbookRamSize);
+        macbook.setStorage(this.macbookStorage);
+        macbook.setColor(this.macbookColor);
     }
 }

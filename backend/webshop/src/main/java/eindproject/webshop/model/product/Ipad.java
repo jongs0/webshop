@@ -1,52 +1,50 @@
 package eindproject.webshop.model.product;
 
-import eindproject.webshop.model.enums.ipad.Color;
-import eindproject.webshop.model.enums.ipad.Connectivity;
-import eindproject.webshop.model.enums.ipad.Generation;
-import eindproject.webshop.model.enums.ipad.Storage;
+import eindproject.webshop.model.enums.ipad.IpadColor;
+import eindproject.webshop.model.enums.ipad.IpadConnectivity;
+import eindproject.webshop.model.enums.ipad.IpadGeneration;
+import eindproject.webshop.model.enums.ipad.IpadStorage;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
 @Entity
 @DiscriminatorValue("ipad")
 public class Ipad extends Product {
 
-    private Color color;
-    private Generation generation;
-    private Storage storage;
-    private Connectivity connectivity;
+    private IpadColor ipadColor;
+    private IpadGeneration ipadGeneration;
+    private IpadStorage ipadStorage;
+    private IpadConnectivity ipadConnectivity;
 
-    public Color getColor() {
-        return color;
+    public IpadColor getColor() {
+        return ipadColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(IpadColor ipadColor) {
+        this.ipadColor = ipadColor;
     }
 
-    public Generation getGeneration() {
-        return generation;
+    public IpadGeneration getGeneration() {
+        return ipadGeneration;
     }
 
-    public void setGeneration(Generation generation) {
-        this.generation = generation;
+    public void setGeneration(IpadGeneration ipadGeneration) {
+        this.ipadGeneration = ipadGeneration;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public IpadStorage getStorage() {
+        return ipadStorage;
     }
 
-    public void setStorage(Storage storage) {
-        this.storage = storage;
+    public void setStorage(IpadStorage ipadStorage) {
+        this.ipadStorage = ipadStorage;
     }
 
-    public Connectivity getConnectivity() {
-        return connectivity;
+    public IpadConnectivity getConnectivity() {
+        return ipadConnectivity;
     }
 
-    public void setConnectivity(Connectivity connectivity) {
-        this.connectivity = connectivity;
+    public void setConnectivity(IpadConnectivity ipadConnectivity) {
+        this.ipadConnectivity = ipadConnectivity;
     }
 }

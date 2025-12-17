@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.iphone;
 
-public enum Color {
+public enum IphoneColor {
     BLACK,
     WHITE,
     PINK,

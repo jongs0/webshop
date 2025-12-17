@@ -14,11 +14,11 @@ public record IphoneDTO(
         State state,
         String model,
 
-        Generation generation,
-        Storage storage,
-        NetworkType networkType,
-        Color color,
-        SimType simType
+        IphoneGeneration iphoneGeneration,
+        IphoneStorage iphoneStorage,
+        IphoneNetworkType iphoneNetworkType,
+        IphoneColor iphoneColor,
+        IphoneSimType iphoneSimType
 ) {
 
     public static IphoneDTO fromEntity(Iphone iphone) {

@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.iwatch;
 
-public enum Connectivity {
+public enum IwatchConnectivity {
     WIFI_BLUETOOTH,
     WIFI_BLUETOOTH_MOBILEDATA;
 }

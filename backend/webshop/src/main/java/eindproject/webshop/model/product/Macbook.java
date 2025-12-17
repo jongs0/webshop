@@ -1,25 +1,21 @@
 package eindproject.webshop.model.product;
 
-import eindproject.webshop.model.enums.macbook.ChipType;
-import eindproject.webshop.model.enums.macbook.Color;
-import eindproject.webshop.model.enums.macbook.RamSize;
-import eindproject.webshop.model.enums.macbook.Storage;
-import eindproject.webshop.model.enums.product.Category;
-import eindproject.webshop.model.enums.product.State;
+import eindproject.webshop.model.enums.macbook.MacbookChipType;
+import eindproject.webshop.model.enums.macbook.MacbookColor;
+import eindproject.webshop.model.enums.macbook.MacbookRamSize;
+import eindproject.webshop.model.enums.macbook.MacbookStorage;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 
 @Entity
 @DiscriminatorValue("macbook")
 public class Macbook extends Product {
 
     private Integer releaseYear;
-    private ChipType chipType;
-    private RamSize ramSize;
-    private Storage storage;
-    private Color color;
+    private MacbookChipType macbookChipType;
+    private MacbookRamSize macbookRamSize;
+    private MacbookStorage macbookStorage;
+    private MacbookColor macbookColor;
 
     public Integer getReleaseYear() {
         return releaseYear;
@@ -29,36 +25,36 @@ public class Macbook extends Product {
         this.releaseYear = releaseYear;
     }
 
-    public ChipType getChipType() {
-        return chipType;
+    public MacbookChipType getChipType() {
+        return macbookChipType;
     }
 
-    public void setChipType(ChipType chipType) {
-        this.chipType = chipType;
+    public void setChipType(MacbookChipType macbookChipType) {
+        this.macbookChipType = macbookChipType;
     }
 
-    public RamSize getRamSize() {
-        return ramSize;
+    public MacbookRamSize getRamSize() {
+        return macbookRamSize;
     }
 
-    public void setRamSize(RamSize ramSize) {
-        this.ramSize = ramSize;
+    public void setRamSize(MacbookRamSize macbookRamSize) {
+        this.macbookRamSize = macbookRamSize;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public MacbookStorage getStorage() {
+        return macbookStorage;
     }
 
-    public void setStorage(Storage storage) {
-        this.storage = storage;
+    public void setStorage(MacbookStorage macbookStorage) {
+        this.macbookStorage = macbookStorage;
     }
 
-    public Color getColor() {
-        return color;
+    public MacbookColor getColor() {
+        return macbookColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(MacbookColor macbookColor) {
+        this.macbookColor = macbookColor;
     }
 
 }

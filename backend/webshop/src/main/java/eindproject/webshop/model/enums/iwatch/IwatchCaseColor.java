@@ -1,6 +1,7 @@
 package eindproject.webshop.model.enums.iwatch;
 
-public enum BandColor {
+public enum IwatchCaseColor {
     BLACK,
-    BEIGE;
+    DARK_GREEN,
+    BLUE;
 }

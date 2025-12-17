@@ -1,6 +1,6 @@
 package eindproject.webshop.dto.product.iphone;
 
-import eindproject.webshop.model.enums.iphone.Generation;
+import eindproject.webshop.model.enums.iphone.IphoneGeneration;
 import eindproject.webshop.model.product.Iphone;
 
 public record IphoneSummaryDTO(
@@ -9,7 +9,7 @@ public record IphoneSummaryDTO(
         String name,
         Double price,
         String model,
-        Generation generation
+        IphoneGeneration iphoneGeneration
 
 ) {
 

@@ -22,13 +22,13 @@ public record MacbookCreateDTO(
         @NotNull
         Integer releaseYear,
         @NotNull
-        ChipType chipType,
+        MacbookChipType macbookChipType,
         @NotNull
-        RamSize ram,
+        MacbookRamSize macbookRamSize,
         @NotNull
-        Storage storage,
+        MacbookStorage macbookStorage,
         @NotNull
-        Color color,
+        MacbookColor macbookColor,
         @NotNull
         Category category
 ) {
@@ -41,10 +41,10 @@ public record MacbookCreateDTO(
         macbook.setState(this.state);
         macbook.setModel(this.model);
         macbook.setReleaseYear(this.releaseYear);
-        macbook.setChipType(this.chipType);
-        macbook.setRamSize(this.ram);
-        macbook.setStorage(this.storage);
-        macbook.setColor(this.color);
+        macbook.setChipType(this.macbookChipType);
+        macbook.setRamSize(this.macbookRamSize);
+        macbook.setStorage(this.macbookStorage);
+        macbook.setColor(this.macbookColor);
         macbook.setCategory(this.category);
         return macbook;
     }

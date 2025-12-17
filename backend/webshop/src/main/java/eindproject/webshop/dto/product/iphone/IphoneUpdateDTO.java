@@ -13,11 +13,11 @@ public record IphoneUpdateDTO(
         State state,
         String model,
 
-        Generation generation,
-        Storage storage,
-        NetworkType networkType,
-        Color color,
-        SimType simType
+        IphoneGeneration iphoneGeneration,
+        IphoneStorage iphoneStorage,
+        IphoneNetworkType iphoneNetworkType,
+        IphoneColor iphoneColor,
+        IphoneSimType iphoneSimType
 
 ) {
 
@@ -30,10 +30,10 @@ public record IphoneUpdateDTO(
         iphone.setState(state);
         iphone.setModel(model);
 
-        iphone.setGeneration(generation);
-        iphone.setStorage(storage);
-        iphone.setNetworkType(networkType);
-        iphone.setColor(color);
-        iphone.setSimType(simType);
+        iphone.setGeneration(iphoneGeneration);
+        iphone.setStorage(iphoneStorage);
+        iphone.setNetworkType(iphoneNetworkType);
+        iphone.setColor(iphoneColor);
+        iphone.setSimType(iphoneSimType);
     }
 }

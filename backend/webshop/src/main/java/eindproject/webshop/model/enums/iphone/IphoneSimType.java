@@ -1,6 +1,6 @@
 package eindproject.webshop.model.enums.iphone;
 
-public enum SimType {
+public enum IphoneSimType {
     ESIM,
     SIM;
 }
