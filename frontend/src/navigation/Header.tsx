@@ -1,7 +1,6 @@
-import { Button, Container, Image } from 'react-bootstrap';
+import { Container, Image } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import BannerPlaceHolder from './src/images/banner_placeholder_rerefurbed.png'
 
 const Header = () => {
     return (
