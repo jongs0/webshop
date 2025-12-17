@@ -1,27 +1,35 @@
-import { Container } from 'react-bootstrap';
+import { Button, Container, Image } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+// import BannerPlaceHolder from './src/images/banner_placeholder_rerefurbed.png'
 
 const Header = () => {
-  return (
-    <Navbar>
-        <Container>
-            <Nav>
-            <Nav.Link type="button" href="#home">Home</Nav.Link>
-            <Nav.Link href="#iPhone">iPhone</Nav.Link>
-            <Nav.Link href="#iPad">iPad</Nav.Link>
-            <Nav.Link href="#Macbook">Macbook</Nav.Link>
-            <Nav.Link href="iWatch">iWatch</Nav.Link>
-            </Nav>
-            <Nav className="justify-content-end"> 
-            <Nav.Link href="#support">Support</Nav.Link>
-            <Nav.Link href="#cart">Cart</Nav.Link>
-            <Nav.Link href="#profile">Profile</Nav.Link>
-            <Nav.Link href="#login">Login</Nav.Link>
-            </Nav>
+    return (
+        <>
+        <Image src="/images/banner_placeholder_rerefurbed.png" fluid />
+        <Navbar>
+            
+            <Container>
+
+                <Nav className="justify-content-front">
+                    <Nav.Link type="button" href="#home">Home</Nav.Link>
+                    <Nav.Link href="c/iphone">iPhone</Nav.Link>
+                    <Nav.Link href="c/ipad">iPad</Nav.Link>
+                    <Nav.Link href="c/macbook">Macbook</Nav.Link>
+                    <Nav.Link href="c/iwatch">iWatch</Nav.Link>
+                </Nav>
+
+                <Nav className="justify-content-end">
+                    <Nav.Link href="support">Support</Nav.Link>
+                    <Nav.Link href="cart">Cart</Nav.Link>
+                    <Nav.Link href="profile">Profile</Nav.Link>
+                    <Nav.Link href="login">Login</Nav.Link>
+                </Nav>
+
             </Container>
-    </Navbar>
-  );
+        </Navbar>
+        </>
+    );
 }
 
 export default Header;
