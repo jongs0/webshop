@@ -1,4 +1,7 @@
 package eindproject.webshop.dto.cart;
 
-public record CartSummaryDTO() {
+public record CartSummaryDTO(
+        Long id,
+        Double total
+) {
 }

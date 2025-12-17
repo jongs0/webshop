@@ -1,7 +1,9 @@
 package eindproject.webshop.repository;
 
+import eindproject.webshop.model.cart.Cart;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CartRepository {
+public interface CartRepository  extends JpaRepository<Cart, Long> {
 }

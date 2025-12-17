@@ -1,4 +1,18 @@
 package eindproject.webshop.dto.order;
 
-public record OrderSummaryDTO() {
+import eindproject.webshop.model.enums.PaymentMethod;
+import eindproject.webshop.model.order.Order;
+
+public record OrderSummaryDTO(
+        Long id,
+        Long userId,
+        Double totalSum
+) {
+    public static OrderSummaryDTO fromEntity(Order order) {
+        return new OrderSummaryDTO(
+                order.getId(),
+                order.getAppUser().getId(),
+                order.getTotalSum()
+        );
+    }
 }
