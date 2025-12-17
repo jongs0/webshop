@@ -1,6 +1,7 @@
 package eindproject.webshop.controllers;
 
 import eindproject.webshop.dto.product.ProductAdminSummaryDTO;
+import eindproject.webshop.dto.product.ProductDTO;
 import eindproject.webshop.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/bestsellers")
+    public List<ProductDTO> getBestSellers() {
+        return productService.getBestSellers();
     }
 }
