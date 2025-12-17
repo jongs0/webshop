@@ -4,7 +4,7 @@ package eindproject.webshop.controllers;
 import eindproject.webshop.dto.product.iwatch.IwatchCreateDTO;
 import eindproject.webshop.dto.product.iwatch.IwatchDTO;
 import eindproject.webshop.dto.product.iwatch.IwatchUpdateDTO;
-import eindproject.webshop.service.IwatchService;
+import eindproject.webshop.service.product.IwatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +42,5 @@ public class IwatchController {
     @PutMapping("/{id}")
     public ResponseEntity<IwatchDTO> update(@PathVariable Long id, @RequestBody IwatchUpdateDTO dto) {
         return ResponseEntity.ok(iwatchService.updateIwatch(id, dto));
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {iwatchService.deleteIwatch(id);
     }
 }

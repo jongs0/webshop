@@ -1,4 +1,4 @@
-package eindproject.webshop.service;
+package eindproject.webshop.service.product;
 
 import eindproject.webshop.dto.product.ipad.IpadCreateDTO;
 import eindproject.webshop.dto.product.ipad.IpadDTO;
@@ -47,9 +47,4 @@ public class IpadService {
         Ipad saved = productRepository.save(ipad);
         return IpadDTO.fromEntity(saved);
     }
-
-    public void deleteIpad(Long id) {
-        productRepository.deleteById(id);
-    }
-
 }

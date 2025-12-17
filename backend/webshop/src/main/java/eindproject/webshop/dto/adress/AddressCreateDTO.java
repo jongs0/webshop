@@ -8,7 +8,7 @@ public record AddressCreateDTO(
         String street,
         @NotNull
         Integer houseNumber,
-        @NotBlank
+        @NotNull
         String postalCode,
         @NotBlank
         String city

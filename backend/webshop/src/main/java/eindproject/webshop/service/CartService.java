@@ -8,6 +8,7 @@ import eindproject.webshop.model.product.Product;
 import eindproject.webshop.repository.AppUserRepository;
 import eindproject.webshop.repository.CartRepository;
 import eindproject.webshop.repository.ProductRepository;
+import eindproject.webshop.service.product.ProductService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class CartService {
         return CartDTO.fromEntity(cart, productService);
     }
 
-    public CartDTO addToCart(Long userId, Long productId, int quantity) {
+    public CartDTO addToCart(Long userId, Long productId) {
 
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -58,13 +59,15 @@ public class CartService {
                 .filter(cartItem -> cartItem.getProductId().equals(productId))
                 .findFirst();
 
+        int quantity = 1;
+
         if (existingProduct.isPresent()) {
             existingProduct.get().setQuantity(existingProduct.get().getQuantity() + quantity);
         } else {
             CartItem newItem = new CartItem();
             newItem.setCart(cart);
             newItem.setProductId(productId);
-            newItem.setQuantity(quantity);
+            newItem.setQuantity(1);
             cart.addCartItem(newItem);
         }
 
@@ -73,7 +76,7 @@ public class CartService {
         return CartDTO.fromEntity(cart, productService);
     }
 
-    public CartDTO updateItem(Long userId, Long productId, int quantity) {
+    public CartDTO increaseItem(Long userId, Long productId) {
 
         AppUser user = appUserRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -85,14 +88,38 @@ public class CartService {
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Cart item not found"));
 
-        if (quantity <= 0) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (item.getQuantity() >= product.getStock()) {
+            throw new RuntimeException("Not enough stock");
+        }
+
+        item.setQuantity(item.getQuantity() + 1);
+
+        cartRepository.save(cart);
+        return CartDTO.fromEntity(cart, productService);
+    }
+
+    public CartDTO decreaseItem(Long userId, Long productId) {
+
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Cart cart = loadOrCreateCart(user);
+
+        CartItem item = cart.getCartItems().stream()
+                .filter(cartItem -> cartItem.getProductId().equals(productId))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Cart item not found"));
+
+        if (item.getQuantity() <= 1) {
             cart.removeCartItem(item);
         } else {
-            item.setQuantity(quantity);
+            item.setQuantity(item.getQuantity() - 1);
         }
 
         cartRepository.save(cart);
-
         return CartDTO.fromEntity(cart, productService);
     }
 

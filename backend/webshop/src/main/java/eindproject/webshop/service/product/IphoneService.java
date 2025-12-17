@@ -1,4 +1,4 @@
-package eindproject.webshop.service;
+package eindproject.webshop.service.product;
 
 import eindproject.webshop.dto.product.iphone.IphoneCreateDTO;
 import eindproject.webshop.dto.product.iphone.IphoneDTO;
@@ -51,13 +51,4 @@ public class IphoneService {
         Iphone saved = productRepository.save(iphone);
         return IphoneDTO.fromEntity(saved);
     }
-
-
-    //Delete iphone
-    public void deleteIphone(Long id) {
-        productRepository.deleteById(id);
-    }
-
-
-
 }

@@ -1,4 +1,4 @@
-package eindproject.webshop.service;
+package eindproject.webshop.service.product;
 
 import eindproject.webshop.dto.product.macbook.MacbookCreateDTO;
 import eindproject.webshop.dto.product.macbook.MacbookDTO;
@@ -51,9 +51,5 @@ public class MacbookService {
 
         Macbook saved = productRepository.save(macbook);
         return MacbookDTO.fromEntity(saved);
-    }
-
-    public void deleteMacbook(Long id) {
-        productRepository.deleteById(id);
     }
 }
