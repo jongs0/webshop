@@ -32,11 +32,11 @@ public class AppUserController {
     // Incoming PUT for data update - updateUser method
     // optional incoming DELETE for single user (admin-only) - deleteUser method
 
-    @PostMapping
-    public ResponseEntity<AppUserDTO> createAppUser(@Valid @RequestBody RegisterDTO registerDTO) {
-        AppUserDTO created = appUserService.createAppUser(registerDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(created);
-    }
+//    @PostMapping
+//    public ResponseEntity<AppUserDTO> createAppUser(@Valid @RequestBody RegisterDTO registerDTO) {
+//        AppUserDTO created = appUserService.createAppUser(registerDTO);
+//        return ResponseEntity.status(HttpStatus.OK).body(created);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<AppUserDTO> getAppUserById(@PathVariable Long id) {
