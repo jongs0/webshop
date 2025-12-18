@@ -64,7 +64,7 @@ public class CartController {
         return ResponseEntity.ok(cartService.decreaseItem(userId, productId));
     }
 
-    @DeleteMapping("/{userId}clear/")
+    @DeleteMapping("/{userId}/clear")
     public ResponseEntity<CartDTO> clearCart(@PathVariable Long userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(cartService.clearCart(userId));
     }
