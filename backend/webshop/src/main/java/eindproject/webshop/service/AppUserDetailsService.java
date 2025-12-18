@@ -42,21 +42,4 @@ public class AppUserDetailsService implements UserDetailsService {
                 .authorities(authorities)
                 .build();
     }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails appUser = User.withDefaultPasswordEncoder()
-                .username("henk")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("admin123")
-                .roles("ADMIN"
-                        , "USER")
-                .build();
-        return new InMemoryUserDetailsManager(appUser, admin);
-    }
 }
