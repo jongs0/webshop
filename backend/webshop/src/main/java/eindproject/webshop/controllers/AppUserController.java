@@ -27,11 +27,6 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    // Incoming GET for single user (for profile page) - getUser method
-    // Incoming GET for all users (admin-only) - getAllUsers method
-    // Incoming PUT for data update - updateUser method
-    // optional incoming DELETE for single user (admin-only) - deleteUser method
-
 //    @PostMapping
 //    public ResponseEntity<AppUserDTO> createAppUser(@Valid @RequestBody RegisterDTO registerDTO) {
 //        AppUserDTO created = appUserService.createAppUser(registerDTO);

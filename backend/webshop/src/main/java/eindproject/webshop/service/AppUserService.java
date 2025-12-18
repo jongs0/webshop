@@ -14,6 +14,7 @@ import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +23,12 @@ import java.util.Objects;
 @Service
 public class AppUserService {
     final private AppUserRepository appUserRepository;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository) {
+    public AppUserService(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
         this.appUserRepository = appUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Incoming GET for single user (for profile page) - getUser method
@@ -46,6 +49,8 @@ public class AppUserService {
         AppUser newAppUser = appUser.toEntity();
         Adress newAddress = address.toEntity();
 
+        newAppUser.setPassword(passwordEncoder.encode(appUser.password()));
+
         newAppUser.setRole(Role.USER);
         newAppUser.setAdress(newAddress);
         AppUser savedAppUser = appUserRepository.save(newAppUser);
@@ -59,13 +64,13 @@ public class AppUserService {
     }
 
     // null returnen is even snel, kan later vervangen met proper 404 error
-    public AppUserDTO findAppUserByEmail(String appUserEmail) {
-        List<AppUserDTO> all = appUserRepository.findAll()
+    public AppUserSummaryDTO findAppUserByEmail(String appUserEmail) {
+        List<AppUserSummaryDTO> all = appUserRepository.findAll()
                 .stream()
-                .map(AppUserDTO::fromEntity)
+                .map(AppUserSummaryDTO::fromEntity)
                 .toList();
-        AppUserDTO output = null;
-        for (AppUserDTO user : all) {
+        AppUserSummaryDTO output = null;
+        for (AppUserSummaryDTO user : all) {
             if (user.email().equals(appUserEmail)) {
                 output = user;
             }

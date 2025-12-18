@@ -22,7 +22,6 @@ public record AppUserDTO(
         @NotNull
         List<OrderDTO> orders
 ) {
-    // Make sure OrderDTO has fromEntity
     public static AppUserDTO fromEntity(AppUser appUser) {
         return new AppUserDTO(
                 appUser.getId(),
