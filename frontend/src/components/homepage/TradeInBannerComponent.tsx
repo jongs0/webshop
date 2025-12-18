@@ -1,6 +1,5 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 
 const TradeInBannerComponent = () => {
   return (
@@ -10,9 +9,13 @@ const TradeInBannerComponent = () => {
         <Col xs={12} md={6} className="text-start">
           <h3 className="trade-in-title">Sell your phone</h3>
           <p>Up to €200 for your current phone!</p>
-          <Button variant="primary">
-            Contact us
-          </Button>
+          <a
+            href="mailto:info@info.nl"
+          >
+            <button className="btn-white">
+              Contact us
+            </button>
+          </a>
         </Col>
 
         {/* Afbeelding rechts */}
