@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from "react-router";
+import Header from "./navigation/Header";
+import Footer from "./navigation/Footer";
 // import Footer from "./components/navigation/Footer";
 
 const MainLayout = () => {
@@ -6,14 +8,11 @@ const MainLayout = () => {
   return (
     <>
       <div className="app">
-        {/* <Header/> */}
-        <nav className="navmenu">
-          {/* <NavLink to="/" end>Home</NavLink> */}
-        </nav>
+        <Header/>
         <main>
           <Outlet />
         </main>
-        {/* <Footer/> */}
+        <Footer/>
       </div>
     </>
   );
@@ -21,3 +20,6 @@ const MainLayout = () => {
 
 export default MainLayout;
 
+// {/* <nav className="navmenu">
+//           {/* <NavLink to="/" end>Home</NavLink> */}
+//         </nav> */}
