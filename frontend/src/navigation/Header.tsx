@@ -5,7 +5,6 @@ import Navbar from 'react-bootstrap/Navbar';
 const Header = () => {
     return (
         <>
-        <div className='bg-green header'>
         <Image src="/images/banner_placeholder_rerefurbed.png" fluid/>
         <Navbar bg="primary">
             <Container>
@@ -27,7 +26,6 @@ const Header = () => {
 
             </Container>
         </Navbar>
-        </div>
         </>
     );
 }
