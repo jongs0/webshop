@@ -23,7 +23,6 @@ public record AppUserCreateDTO(
         AppUser appUser = new AppUser();
         appUser.setEmail(this.email);
         appUser.setPassword(this.password);
-        // vervang setPassword met een hash later als we security doen
         appUser.setFirstName(this.firstName);
         appUser.setLastName(this.lastName);
         return appUser;
