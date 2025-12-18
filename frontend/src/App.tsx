@@ -6,6 +6,7 @@ import './styles/general/generalStyling.css';
 import './styles/general/buttonStyling.css';
 import './styles/pages/homepageStyling.css';
 import './styles/general/imageStyling.css';
+import './styles/general/colorStyling.css';
 
 
 

@@ -1,6 +1,17 @@
 button {
-  padding: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }
 
 /* PRIMARY */
@@ -39,5 +50,15 @@ button.btn-gray {
 }
 
 button.btn-gray:hover {
+  opacity: 0.85;
+}
+
+/* White */
+.btn-white {
+  background-color: var(--white);
+  color: black;
+}
+
+button.btn-white:hover {
   opacity: 0.85;
 }
