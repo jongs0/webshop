@@ -1,0 +1,43 @@
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* PRIMARY */
+button.btn-primary {
+  background-color: blue;
+  color: white;
+}
+
+button.btn-primary:hover {
+  background-color: white;
+  color: blue;
+}
+
+/* SECONDARY */
+button.btn-secondary {
+  color: rgb(142, 142, 142);
+}
+
+button.btn-secondary:hover {
+  color: rgb(255, 255, 255);
+}
+
+/* GREEN */
+button.btn-green {
+  color: var(--green);
+}
+
+button.btn-green:hover {
+  opacity: 0.8; /* subtiele hover */
+}
+
+/* GRAY */
+button.btn-gray {
+  background-color: var(--gray);
+  color: white;
+}
+
+button.btn-gray:hover {
+  opacity: 0.85;
+}

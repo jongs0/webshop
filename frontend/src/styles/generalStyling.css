@@ -1,0 +1,22 @@
+.container{
+    padding: 10px;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+}
+
+.vertical{
+    display: inline-block;
+}
+
+.horizontal{
+    display: flex;
+}
+
+.card{
+
+}
