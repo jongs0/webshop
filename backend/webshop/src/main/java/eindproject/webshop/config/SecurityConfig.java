@@ -14,26 +14,56 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    // Wordt automatisch aangeroepen door Spring Security
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/api/auth").permitAll()
-                        // Publieke endpoints - iedereen mag
-                        .requestMatchers(HttpMethod.GET, "/api/quotes").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/quotes/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                        // Public
+                        .requestMatchers(HttpMethod.GET, "/products/bestsellers").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/ipad").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/ipad/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/iphone").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/iphone/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/iwatch").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/iwatch/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/macbook").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/macbook/**").permitAll()
 
-                        // POST /api/posts - alleen USERS en ADMINS
-                        .requestMatchers(HttpMethod.POST, "/api/quotes")
-                        .hasAnyRole("USER", "ADMIN")
+                        // Admin only
+                        .requestMatchers(HttpMethod.GET, "/products/all")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/products/**")
+                        .hasAnyRole("ADMIN")
 
-                        // DELETE /api/posts/** - alleen ADMINS
-                        .requestMatchers(HttpMethod.DELETE, "/api/quotes/**")
-                        .authenticated()
+                        .requestMatchers(HttpMethod.POST, "/ipad")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/ipad/**")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/iphone")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/iphone/**")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/iwatch")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/iwatch/**")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/macbook")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/macbook/**")
+                        .hasAnyRole("ADMIN")
 
-                        // Alle andere requests vereisen authenticatie
+                        .requestMatchers(HttpMethod.GET, "/user")
+                        .hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/user/**")
+                        .hasAnyRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/order")
+                        .hasAnyRole("ADMIN")
+
+                        // Other endpoints: authenticated users
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
