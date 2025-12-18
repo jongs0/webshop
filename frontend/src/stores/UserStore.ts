@@ -1,19 +1,21 @@
-// import { createStore } from "@odemian/react-store";
-// import type { Role } from "../types/models.js";
+import { createStore } from "@odemian/react-store";
 
-// interface User {
-//     email: String
-//     id: number | null
-// }
+interface User {
+    email: String
+    password: String
+    id: number | null
+}
 
-// export const [currentUser, updateUser] = createStore<User>({
-//     email: "",
-//     id: null,
-// });
+export const [currentUser, updateUser] = createStore<User>({
+    email: "",
+    password: "",
+    id: null
+});
 
-// export const logout = () => {
-//     updateUser({
-//         email: "",
-//         id: null,
-//     });
-// };
+export const logout = () => {
+    updateUser({
+        email: "",
+        password: "",
+        id: null
+    });
+};
