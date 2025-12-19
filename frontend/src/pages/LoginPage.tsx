@@ -61,6 +61,7 @@ const LoginPage = () => {
     return (
         <>
             <Header />
+            <p/>
             <Form onSubmit={handleSubmit}>
                 <h1>LOGIN</h1>
                 <div />
@@ -81,6 +82,7 @@ const LoginPage = () => {
                     Submit
                 </Button>
             </Form>
+            <p/>
             <Footer />
         </>
     )
