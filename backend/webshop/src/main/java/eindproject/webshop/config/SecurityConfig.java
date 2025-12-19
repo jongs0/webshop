@@ -34,6 +34,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/iwatch/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/macbook").permitAll()
                         .requestMatchers(HttpMethod.GET, "/macbook/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
 
                         // Admin only
                         .requestMatchers(HttpMethod.GET, "/products/all")
