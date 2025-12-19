@@ -10,7 +10,8 @@ public record ProductDTO(
         Category category,
         Double price,
         Integer stock,
-        State state
+        State state,
+        String description
 ) {
     public static ProductDTO fromEntity(Product product) {
         return new ProductDTO(
@@ -19,7 +20,8 @@ public record ProductDTO(
                 product.getCategory(),
                 product.getPrice(),
                 product.getStock(),
-                product.getState()
+                product.getState(),
+                product.getDescription()
         );
     }
 }

@@ -128,6 +128,7 @@ export interface ProductAdminSummaryDTO {
 export interface ProductDTO {
     id: number;
     name: string;
+    description: string,
     category: Category;
     price: number;
     stock: number;

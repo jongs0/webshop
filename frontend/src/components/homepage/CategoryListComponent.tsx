@@ -9,25 +9,25 @@ const CategoryListComponent = () => {
             id: 1,
             name: 'Iphones',
             image: '/src/assets/images/category/iphone-category.webp',
-            link: '/category/iphone'
+            link: '/product/iphone'
         },
         {
             id: 2,
             name: 'Macbooks',
             image: 'src/assets/images/category/macbook-category.webp',
-            link: '/category/macbook'
+            link: '/product/macbook'
         },
         {
             id: 3,
             name: 'Ipads',
             image: 'src/assets/images/category/ipad-category.webp',
-            link: '/category/ipad'
+            link: '/product/ipad'
         },
         {
             id: 4,
             name: 'Iwatches',
             image: 'src/assets/images/category/iwatch-category.webp',
-            link: '/category/iwatch'
+            link: '/product/iwatch'
         }
     ];
 
