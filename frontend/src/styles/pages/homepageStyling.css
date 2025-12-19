@@ -1,0 +1,32 @@
+.usp{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 8px;
+    width: 100%;
+}
+
+.usp-background{
+    background-color: rgb(244, 244, 244);
+     width: 100vw;
+}
+
+.category-list{
+    display: flex;
+}
+
+.trade-in{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 80px;
+    font-size: 8px;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: white;
+    border-radius: 15px;
+    background-color: rgb(49, 0, 211);
+}
