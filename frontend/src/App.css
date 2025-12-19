@@ -1,9 +1,28 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  height: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
+  background-color:white;
+  color: black;
 }
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  background-color: white;
+  color: black;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
 
 .logo {
   height: 6em;
