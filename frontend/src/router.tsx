@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router"; // react-router-dom
 import MainLayout from "./layout";
+import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 
 const Router = () => {
@@ -10,6 +11,7 @@ const Router = () => {
           {/* <Route index element={<HomePage />} /> */}
           <Route path="/" index element={<HomePage />} />
         </Route>
+        <Route path="login" element={<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
   );

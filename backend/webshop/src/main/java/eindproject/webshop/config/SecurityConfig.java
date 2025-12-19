@@ -21,6 +21,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                         // Public
@@ -33,6 +34,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/iwatch/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/macbook").permitAll()
                         .requestMatchers(HttpMethod.GET, "/macbook/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
 
                         // Admin only
                         .requestMatchers(HttpMethod.GET, "/products/all")
