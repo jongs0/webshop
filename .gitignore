@@ -34,3 +34,4 @@ dist-ssr
 !/.gitattributes
 backend/webshop/target/classes/application.properties
 /backend/webshop/target
+backend/webshop/src/main/resources/application.properties
