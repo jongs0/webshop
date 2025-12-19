@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import type { AppUserCreateDTO } from "../types/models.js";
+import type { AppUserCreateDTO, RegisterDTO } from "../types/models.js";
 import { currentUser, updateUser } from "../stores/UserStore.ts"
 // import { Form, FormSelect } from "react-bootstrap";
 import { API_URL } from "../App.js";
@@ -34,7 +34,7 @@ const SignupPage = () => {
     const navigate = useNavigate();
 
     const handleRegistration = useMutation({
-        mutationFn: async (dto: AppUserCreateDTO) => {
+        mutationFn: async (dto: RegisterDTO) => {
             const res = await fetch(`${API_URL}/user`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -205,11 +205,19 @@ const SignupPage = () => {
                 <button
                     disabled={handleRegistration.isPending || !passwordsMatch || register.email === ""}
                     onClick={() => {
-                        const registerDto: AppUserCreateDTO = {
-                            email: register.email,
-                            password: register.verifiedPassword,
-                            firstName: register.firstName,
-                            lastName: register.lastName
+                        const registerDto: RegisterDTO = {
+                            appUser: {
+                                email: register.email,
+                                password: register.verifiedPassword,
+                                firstName: register.firstName,
+                                lastName: register.lastName
+                            },
+                            adress: {
+                                street: register.street,
+                                houseNumber: register.houseNumber,
+                                postalCode: register.postalCode,
+                                city: register.city
+                            }
                         };
 
                         handleRegistration.mutate(registerDto);
