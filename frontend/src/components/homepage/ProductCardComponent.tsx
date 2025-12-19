@@ -30,7 +30,7 @@ const ProductCardComponent = ({ queryKey, endpoint, title}: ProductCardProps) =>
   if (!products || products.length === 0) return <p>Producten niet gevonden...</p>;
 
   return (
-    <div className="container bestseller">
+    <div className="container">
       <Row className="g-4">
         {products.map(product => (
           <Col key={product.id} xs={12} sm={6} md={6} lg={3}>
