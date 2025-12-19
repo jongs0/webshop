@@ -74,7 +74,7 @@ const LoginPage = () => {
                     <Form.Control name="password" type="password" placeholder="Password" onChange={handleChange} />
                 </Form.Group>
                 <p />
-                <Button variant="primary" href="register"
+                <Button variant="primary" href="signup"
                     >
                     Register
                 </Button>
