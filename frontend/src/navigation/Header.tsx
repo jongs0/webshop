@@ -10,7 +10,7 @@ const Header = () => {
             <Container>
 
                 <Nav className="justify-content-front">
-                    <Nav.Link type="button" href="#home">Home</Nav.Link>
+                    <Nav.Link type="button" href="/">Home</Nav.Link>
                     <Nav.Link href="c/iphone">iPhone</Nav.Link>
                     <Nav.Link href="c/ipad">iPad</Nav.Link>
                     <Nav.Link href="c/macbook">Macbook</Nav.Link>
