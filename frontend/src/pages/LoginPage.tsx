@@ -61,6 +61,7 @@ const LoginPage = () => {
     return (
         <>
             <Header />
+            <p/>
             <Form onSubmit={handleSubmit}>
                 <h1>LOGIN</h1>
                 <div />
@@ -73,8 +74,7 @@ const LoginPage = () => {
                     <Form.Control name="password" type="password" placeholder="Password" onChange={handleChange} />
                 </Form.Group>
                 <p />
-                <Button variant="primary" type="submit"
-                    // open SignUpPage
+                <Button variant="primary" href="signup"
                     >
                     Register
                 </Button>
@@ -82,6 +82,7 @@ const LoginPage = () => {
                     Submit
                 </Button>
             </Form>
+            <p/>
             <Footer />
         </>
     )
