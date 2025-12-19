@@ -35,7 +35,7 @@ const SignupPage = () => {
 
     const handleRegistration = useMutation({
         mutationFn: async (dto: RegisterDTO) => {
-            const res = await fetch(`${API_URL}/user`, {
+            const res = await fetch(`${API_URL}/auth`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dto),
@@ -57,6 +57,42 @@ const SignupPage = () => {
     return (
 
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+
+            <div style={{ textAlign: "center" }}>First name</div>
+            <input
+                type="text"
+                value={register.firstName}
+                onChange={(e) => setRegister({ ...register, firstName: e.target.value })}
+                placeholder="First name"
+                style={{
+                    width: "300px",
+                    height: "40px",
+                    padding: "8px",
+                    borderRadius: "8px",
+                    color: "white",
+                    border: "2px solid white",
+                    margin: "0px"
+
+                }}
+            />
+
+            <div style={{ textAlign: "center" }}>Last name</div>
+            <input
+                type="text"
+                value={register.lastName}
+                onChange={(e) => setRegister({ ...register, lastName: e.target.value })}
+                placeholder="Last name"
+                style={{
+                    width: "300px",
+                    height: "40px",
+                    padding: "8px",
+                    borderRadius: "8px",
+                    color: "white",
+                    border: "2px solid white",
+                    margin: "0px"
+
+                }}
+            />
 
             <div style={{ textAlign: "center" }}>Email</div>
             <input
