@@ -1,0 +1,14 @@
+.usp-image{
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.image-small{
+    width:140px;
+    height:140px;
+}
+
+.image-medium{
+    width:240px;
+    height:240px;
+}

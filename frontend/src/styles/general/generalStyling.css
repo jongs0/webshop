@@ -1,0 +1,30 @@
+.app{
+display: flex;
+flex-direction: column;
+}
+
+.container{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+}
+
+.vertical{
+    display: inline-block;
+}
+
+.horizontal{
+    display: flex;
+}
+
+.card{
+
+}
