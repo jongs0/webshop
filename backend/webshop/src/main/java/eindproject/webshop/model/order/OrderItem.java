@@ -47,7 +47,9 @@ public class OrderItem {
         this.order = order;}
 
     public void calculateLineTotal(double price) {
-        this.lineTotal = price * quantity;
+        double i = 0.0;
+        i = price * quantity;
+        this.lineTotal = (double) Math.round(i * 100) / 100;
     }
 }
 

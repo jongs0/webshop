@@ -23,13 +23,13 @@ public record MacbookDTO(
         @NotNull
         Integer releaseYear,
         @NotNull
-        ChipType chipType,
+        MacbookChipType macbookChipType,
         @NotNull
-        RamSize ram,
+        MacbookRamSize ram,
         @NotNull
-        Storage storage,
+        MacbookStorage macbookStorage,
         @NotNull
-        Color color,
+        MacbookColor macbookColor,
         @NotBlank
         Category category
 ) {

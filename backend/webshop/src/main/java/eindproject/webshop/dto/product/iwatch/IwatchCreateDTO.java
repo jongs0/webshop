@@ -31,16 +31,16 @@ public record IwatchCreateDTO(
         Integer releaseYear,
 
         @NotNull
-        CaseColor caseColor,
+        IwatchCaseColor iwatchCaseColor,
 
         @NotNull
-        BandColor bandColor,
+        IwatchBandColor iwatchBandColor,
 
         @NotNull
-        Connectivity connectivity,
+        IwatchConnectivity iwatchConnectivity,
 
         @NotNull
-        BandType bandType,
+        IwatchBandType iwatchBandType,
 
         @NotNull
         Category category
@@ -58,10 +58,10 @@ public record IwatchCreateDTO(
         iwatch.setModel(this.model);
 
         iwatch.setReleaseYear(this.releaseYear);
-        iwatch.setCaseColor(this.caseColor);
-        iwatch.setBandColor(this.bandColor);
-        iwatch.setConnectivity(this.connectivity);
-        iwatch.setBandType(this.bandType);
+        iwatch.setCaseColor(this.iwatchCaseColor);
+        iwatch.setBandColor(this.iwatchBandColor);
+        iwatch.setConnectivity(this.iwatchConnectivity);
+        iwatch.setBandType(this.iwatchBandType);
         iwatch.setCategory(this.category);
 
         return iwatch;

@@ -1,9 +1,9 @@
 package eindproject.webshop.model.product;
 
-import eindproject.webshop.model.enums.iwatch.Connectivity;
-import eindproject.webshop.model.enums.iwatch.BandColor;
-import eindproject.webshop.model.enums.iwatch.BandType;
-import eindproject.webshop.model.enums.iwatch.CaseColor;
+import eindproject.webshop.model.enums.iwatch.IwatchConnectivity;
+import eindproject.webshop.model.enums.iwatch.IwatchBandColor;
+import eindproject.webshop.model.enums.iwatch.IwatchBandType;
+import eindproject.webshop.model.enums.iwatch.IwatchCaseColor;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -12,10 +12,10 @@ import jakarta.persistence.Entity;
 public class Iwatch extends Product {
 
     private Integer releaseYear;
-    private CaseColor caseColor;
-    private BandColor bandColor;
-    private Connectivity connectivity;
-    private BandType bandType;
+    private IwatchCaseColor iwatchCaseColor;
+    private IwatchBandColor iwatchBandColor;
+    private IwatchConnectivity iwatchConnectivity;
+    private IwatchBandType iwatchBandType;
 
     public Integer getReleaseYear() {
         return releaseYear;
@@ -25,36 +25,36 @@ public class Iwatch extends Product {
         this.releaseYear = releaseYear;
     }
 
-    public CaseColor getCaseColor() {
-        return caseColor;
+    public IwatchCaseColor getCaseColor() {
+        return iwatchCaseColor;
     }
 
-    public void setCaseColor(CaseColor caseColor) {
-        this.caseColor = caseColor;
+    public void setCaseColor(IwatchCaseColor iwatchCaseColor) {
+        this.iwatchCaseColor = iwatchCaseColor;
     }
 
-    public BandColor getBandColor() {
-        return bandColor;
+    public IwatchBandColor getBandColor() {
+        return iwatchBandColor;
     }
 
-    public void setBandColor(BandColor bandColor) {
-        this.bandColor = bandColor;
+    public void setBandColor(IwatchBandColor iwatchBandColor) {
+        this.iwatchBandColor = iwatchBandColor;
     }
 
-    public Connectivity getConnectivity() {
-        return connectivity;
+    public IwatchConnectivity getConnectivity() {
+        return iwatchConnectivity;
     }
 
-    public void setConnectivity(Connectivity connectivity) {
-        this.connectivity = connectivity;
+    public void setConnectivity(IwatchConnectivity iwatchConnectivity) {
+        this.iwatchConnectivity = iwatchConnectivity;
     }
 
-    public BandType getBandType() {
-        return bandType;
+    public IwatchBandType getBandType() {
+        return iwatchBandType;
     }
 
-    public void setBandType(BandType bandType) {
-        this.bandType = bandType;
+    public void setBandType(IwatchBandType iwatchBandType) {
+        this.iwatchBandType = iwatchBandType;
     }
 
 }

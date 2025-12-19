@@ -11,8 +11,10 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByCategory(Category category);
+    List<Product> findTop8ByOrderByStockAsc();
     Optional<Iphone> findIphoneByIdAndCategory(Long id, Category category);
     Optional<Ipad> findIpadByIdAndCategory(Long id, Category category);
     Optional<Macbook> findMacbookByIdAndCategory(Long id, Category category);
     Optional<Iwatch> findIwatchByIdAndCategory(Long id, Category category);
+
 }

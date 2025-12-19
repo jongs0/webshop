@@ -1,15 +1,20 @@
 package eindproject.webshop.service;
 
+import eindproject.webshop.controllers.exceptions.AccountWithEmailAlreadyExistsException;
+import eindproject.webshop.dto.adress.AddressCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
+import eindproject.webshop.dto.authentication.RegisterDTO;
 import eindproject.webshop.model.Role;
+import eindproject.webshop.model.appuser.Adress;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +23,12 @@ import java.util.Objects;
 @Service
 public class AppUserService {
     final private AppUserRepository appUserRepository;
+    final private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AppUserService(AppUserRepository appUserRepository) {
+    public AppUserService(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
         this.appUserRepository = appUserRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Incoming GET for single user (for profile page) - getUser method
@@ -29,12 +36,25 @@ public class AppUserService {
     // Incoming PUT for data update - updateUser method
     // optional incoming DELETE for single user (admin-only) - deleteUser method
 
-    public AppUserSummaryDTO createAppUser(AppUserCreateDTO createDTO) {
-        // check if account already exists?
-        AppUser newAppUser = createDTO.toEntity();
+    public AppUserDTO createAppUser(RegisterDTO registerDTO) {
+
+        AppUserCreateDTO appUser = registerDTO.appUser();
+        AddressCreateDTO address = registerDTO.adress();
+
+        String email = appUser.email();
+        if (appUserRepository.existsByEmail(email)) {
+            throw new AccountWithEmailAlreadyExistsException("An account with this email already exists.");
+        }
+
+        AppUser newAppUser = appUser.toEntity();
+        Adress newAddress = address.toEntity();
+
+        newAppUser.setPassword(passwordEncoder.encode(appUser.password()));
+
         newAppUser.setRole(Role.USER);
-        AppUser savedNewAppUser = appUserRepository.save(newAppUser);
-        return AppUserSummaryDTO.fromEntity(savedNewAppUser);
+        newAppUser.setAdress(newAddress);
+        AppUser savedAppUser = appUserRepository.save(newAppUser);
+        return AppUserDTO.fromEntity(savedAppUser);
     }
 
     public AppUserDTO findAppUserById(Long appUserId) {
@@ -44,13 +64,13 @@ public class AppUserService {
     }
 
     // null returnen is even snel, kan later vervangen met proper 404 error
-    public AppUserDTO findAppUserByEmail(String appUserEmail) {
-        List<AppUserDTO> all = appUserRepository.findAll()
+    public AppUserSummaryDTO findAppUserByEmail(String appUserEmail) {
+        List<AppUserSummaryDTO> all = appUserRepository.findAll()
                 .stream()
-                .map(AppUserDTO::fromEntity)
+                .map(AppUserSummaryDTO::fromEntity)
                 .toList();
-        AppUserDTO output = null;
-        for (AppUserDTO user : all) {
+        AppUserSummaryDTO output = null;
+        for (AppUserSummaryDTO user : all) {
             if (user.email().equals(appUserEmail)) {
                 output = user;
             }
@@ -67,29 +87,26 @@ public class AppUserService {
          return all;
     }
 
-    public AppUserSummaryDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
-        AppUser appUseruser = appUserRepository.findById(id)
-                        .orElse(null);
-        assert appUseruser != null;
-        {
-            if (!Objects.equals(appUseruser.getEmail(), updateDTO.email())) {
-                appUseruser.setEmail(updateDTO.email());
-            }
-            if (!Objects.equals(appUseruser.getFirstName(), updateDTO.firstName())) {
-                appUseruser.setFirstName(updateDTO.firstName());
-            }
-            if (!Objects.equals(appUseruser.getLastName(), updateDTO.lastName())) {
-                appUseruser.setLastName(updateDTO.lastName());
-            }
-            if ((!Objects.equals(appUseruser.getAdress().getCity(), updateDTO.address().getCity())) ||
-                (!Objects.equals(appUseruser.getAdress().getStreet(), updateDTO.address().getStreet())) ||
-                (!Objects.equals(appUseruser.getAdress().getHouseNumber(), updateDTO.address().getHouseNumber())) ||
-                (!Objects.equals(appUseruser.getAdress().getPostalCode(), updateDTO.address().getPostalCode()))) {
-                appUseruser.setAdress(updateDTO.address());
-            }
+    public AppUserDTO updateUser(Long id, AppUserUpdateDTO updateDTO) {
+
+        AppUser user = appUserRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setEmail(updateDTO.email());
+        user.setFirstName(updateDTO.firstName());
+        user.setLastName(updateDTO.lastName());
+
+        Adress adress = user.getAdress();
+        if (adress == null) {
+            adress = new Adress();
+            user.setAdress(adress);
         }
-        appUserRepository.save(appUseruser);
-        return AppUserSummaryDTO.fromEntity(appUseruser);
+
+        updateDTO.address().applyTo(adress);
+
+        appUserRepository.save(user);
+
+        return AppUserDTO.fromEntity(user);
     }
 
     public ResponseEntity<String> deleteUser(Long id) {

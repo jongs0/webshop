@@ -7,6 +7,8 @@ import eindproject.webshop.model.Role;
 import eindproject.webshop.model.order.Order;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,6 @@ public class AppUser {
     private String firstName;
     private String lastName;
 
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -32,10 +33,10 @@ public class AppUser {
     @OneToOne(cascade = CascadeType.ALL)
     private Adress adress;
 
-    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
-    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
 
     public Cart getCart() {

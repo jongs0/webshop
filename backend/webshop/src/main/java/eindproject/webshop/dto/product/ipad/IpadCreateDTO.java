@@ -28,16 +28,16 @@ public record IpadCreateDTO(
         String model,
 
         @NotNull
-        Generation generation,
+        IpadGeneration ipadGeneration,
 
         @NotNull
-        Storage storage,
+        IpadStorage ipadStorage,
 
         @NotNull
-        Connectivity connectivity,
+        IpadConnectivity ipadConnectivity,
 
         @NotNull
-        Color color,
+        IpadColor ipadColor,
 
         @NotNull
         Category category
@@ -55,10 +55,10 @@ public record IpadCreateDTO(
         ipad.setState(this.state);
         ipad.setModel(this.model);
 
-        ipad.setGeneration(this.generation);
-        ipad.setStorage(this.storage);
-        ipad.setConnectivity(this.connectivity);
-        ipad.setColor(this.color);
+        ipad.setGeneration(this.ipadGeneration);
+        ipad.setStorage(this.ipadStorage);
+        ipad.setConnectivity(this.ipadConnectivity);
+        ipad.setColor(this.ipadColor);
         ipad.setCategory(this.category);
 
         return ipad;

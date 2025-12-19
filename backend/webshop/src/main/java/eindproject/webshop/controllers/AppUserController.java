@@ -1,9 +1,11 @@
 package eindproject.webshop.controllers;
 
+import eindproject.webshop.dto.adress.AddressCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserCreateDTO;
 import eindproject.webshop.dto.appuser.AppUserDTO;
 import eindproject.webshop.dto.appuser.AppUserSummaryDTO;
 import eindproject.webshop.dto.appuser.AppUserUpdateDTO;
+import eindproject.webshop.dto.authentication.RegisterDTO;
 import eindproject.webshop.service.AppUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/userAPI")
+@RequestMapping("/user")
 public class AppUserController {
     private final AppUserService appUserService;
 
@@ -25,26 +27,15 @@ public class AppUserController {
         this.appUserService = appUserService;
     }
 
-    // Incoming GET for single user (for profile page) - getUser method
-    // Incoming GET for all users (admin-only) - getAllUsers method
-    // Incoming PUT for data update - updateUser method
-    // optional incoming DELETE for single user (admin-only) - deleteUser method
-
-    @PostMapping
-    public ResponseEntity<AppUserSummaryDTO> createAppUser(@Valid @RequestBody AppUserCreateDTO createDTO) {
-        AppUserSummaryDTO created = appUserService.createAppUser(createDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(created);
-    }
+//    @PostMapping
+//    public ResponseEntity<AppUserDTO> createAppUser(@Valid @RequestBody RegisterDTO registerDTO) {
+//        AppUserDTO created = appUserService.createAppUser(registerDTO);
+//        return ResponseEntity.status(HttpStatus.OK).body(created);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<AppUserDTO> getAppUserById(@PathVariable Long id) {
         AppUserDTO appUser = appUserService.findAppUserById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(appUser);
-    }
-
-    @GetMapping("/email/{email}")
-    public ResponseEntity<AppUserDTO> getAppUserByEmail(@PathVariable String email) {
-        AppUserDTO appUser = appUserService.findAppUserByEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body(appUser);
     }
 
@@ -55,8 +46,8 @@ public class AppUserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AppUserSummaryDTO> updateUser(@PathVariable Long id, @Valid @RequestBody AppUserUpdateDTO updateDTO) {
-        AppUserSummaryDTO updated = appUserService.updateUser(id, updateDTO);
+    public ResponseEntity<AppUserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody AppUserUpdateDTO updateDTO) {
+        AppUserDTO updated = appUserService.updateUser(id, updateDTO);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 

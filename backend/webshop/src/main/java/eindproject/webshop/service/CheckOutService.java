@@ -1,5 +1,6 @@
 package eindproject.webshop.service;
 
+import eindproject.webshop.controllers.exceptions.NotEnoughStockException;
 import eindproject.webshop.dto.order.OrderDTO;
 import eindproject.webshop.model.appuser.AppUser;
 import eindproject.webshop.model.appuser.Adress;
@@ -60,6 +61,7 @@ public class CheckOutService {
         order.setAddress(address);
 
         double total = 0.0;
+        double roundedTotal = 0.0;
 
         for (CartItem cartItem : cart.getCartItems()) {
 
@@ -68,20 +70,25 @@ public class CheckOutService {
                             new RuntimeException("Product not found: " + cartItem.getProductId()));
 
             OrderItem orderItem = new OrderItem();
+
             orderItem.setOrder(order);
             orderItem.setProductId(product.getId());
             orderItem.setProductName(product.getName());
             orderItem.setQuantity(cartItem.getQuantity());
 
+            if (product.getStock() < orderItem.getQuantity()) {
+                throw new NotEnoughStockException("We only have " + product.getStock() + " of these in stock.");
+            }
+
             orderItem.calculateLineTotal(product.getPrice());
             total += orderItem.getLineTotal();
+            roundedTotal = (double) Math.round(total * 100 / 100);
 
-
-
+            product.setStock(product.getStock()-cartItem.getQuantity());
             order.addOrderItem(orderItem);
         }
 
-        order.setTotalSum(total);
+        order.setTotalSum(roundedTotal);
 
         Order savedOrder = orderRepository.save(order);
         appUser.addOrder(savedOrder);
