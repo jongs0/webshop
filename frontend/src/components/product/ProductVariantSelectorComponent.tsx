@@ -77,6 +77,11 @@ const ProductVariantSelectorComponent = ({
 
     setSelectedValues(next);
 
+    if (Object.keys(next).length !== fields.length) {
+    onChange(null);
+    return;
+  }
+
     const match = products.find((product) =>
       Object.entries(next).every(([f, v]) => product[f] === v)
     );
