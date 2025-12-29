@@ -252,8 +252,10 @@ const inputStyle: React.CSSProperties = {
   height: "40px",
   padding: "8px",
   borderRadius: "8px",
-  color: "white",
-  border: "2px solid white",
+  backgroundColor: "transparent",
+  caretColor: "white",
+
+  border: "1px solid rgba(0, 0, 0, 0.3)", // ← THIS
 };
 
 const errorStyle: React.CSSProperties = {
