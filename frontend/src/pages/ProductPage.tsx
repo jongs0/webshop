@@ -3,6 +3,7 @@ import ProductDetailComponent from "../components/product/ProductDetailComponent
 import ProductVariantSelectorComponent from "../components/product/ProductVariantSelectorComponent";
 import AddToCartComponent from "../components/product/AddToCartComponent";
 import { useParams } from "react-router";
+import getCategoryEndPoint from "../components/product/config/categoryEndPointHelper";
 
 const ProductPage = () => {
   const { category, variant } = useParams();
@@ -14,9 +15,11 @@ const ProductPage = () => {
   useEffect(() => {
     if (!normalizedCategory || !variant) return;
 
-    fetch(`http://localhost:8080/${normalizedCategory}`)
+    fetch(`http://localhost:8080/${getCategoryEndPoint(normalizedCategory)}`)
       .then((res) => res.json())
+      
       .then((data) => {
+  console.log("FIRST PRODUCT:", data[0]);
         const filtered = data.filter((product: any) => {
           switch (normalizedCategory) {
             case "iphone":
