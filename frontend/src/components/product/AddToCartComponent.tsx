@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type { ProductDTO } from "../../types/models";
+import { currentUser } from "../../stores/UserStore";
+
 
 type Props = {
   product: ProductDTO;
@@ -7,8 +9,16 @@ type Props = {
 
 const AddToCartComponent = ({ product }: Props) => {
   const [quantity, setQuantity] = useState(1);
+  const user = currentUser();
+
 
   const addToCart = () => {
+
+    if (!user.id || Number.isNaN(user.id)) {
+      alert("Please log in first");
+      return;
+    }
+    
     fetch(
       `http://localhost:8080/cart/${userId}/add/${product.id}`,
       {
