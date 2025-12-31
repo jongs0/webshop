@@ -1,0 +1,49 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  width: 100%;
+}
+
+.banner-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-banner {
+  width: 100%;
+  height: clamp(80px, 18vw, 140px); 
+  object-fit: cover;
+  display: block;
+}
+
+.main-navbar {
+  background-color: #0d6efd;
+  padding: 0;
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-navbar .nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 10px;
+  color: #fff !important;
+  white-space: nowrap;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 6px;
+}

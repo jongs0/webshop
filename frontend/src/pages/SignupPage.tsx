@@ -220,7 +220,7 @@ const SignupPage = () => {
                 },
                 adress: {
                   street: register.street,
-                  houseNumber: register.houseNumber,
+                  houseNumber: Number(register.houseNumber),
                   postalCode: register.postalCode.toUpperCase(),
                   city: register.city,
                 },
@@ -253,6 +253,7 @@ const inputStyle: React.CSSProperties = {
   padding: "8px",
   borderRadius: "8px",
   backgroundColor: "transparent",
+  color: "black",
   caretColor: "white",
 
   border: "1px solid rgba(0, 0, 0, 0.3)", // ← THIS
