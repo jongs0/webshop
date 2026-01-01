@@ -33,7 +33,22 @@ const ProductPage = () => {
           }
         });
 
-        setProducts(filtered);
+        const productsWithImages = filtered.map((product: any) => {
+          const categoryKey = normalizedCategory?.toUpperCase();
+          const key = `product_images_${categoryKey}_${product.id}`;
+          const stored = localStorage.getItem(key);
+          if (stored) {
+            try {
+              const imageUrls = JSON.parse(stored);
+              return { ...product, imageUrls, category: categoryKey };
+            } catch {
+              return { ...product, category: categoryKey };
+            }
+          }
+          return { ...product, category: categoryKey };
+        });
+
+        setProducts(productsWithImages);
 
         setSelectedProduct(null);
       });
@@ -54,18 +69,9 @@ const ProductPage = () => {
         gap: "32px",
       }}
     >
-      <div
-        style={{
-          border: "1px solid rgba(0, 0, 0, 0.15)",
-          borderRadius: "12px",
-          padding: "24px",
-        }}
-      >
-       
-        <ProductDetailComponent
-          product={selectedProduct ?? products[0]}
-        />
-      </div>
+      <ProductDetailComponent
+        product={selectedProduct ?? products[0]}
+      />
 
       <div
         style={{
@@ -77,12 +83,14 @@ const ProductPage = () => {
           gap: "24px",
         }}
       >
-        <ProductVariantSelectorComponent
-          category={normalizedCategory}
-          products={products}
-          selectedProduct={selectedProduct}
-          onChange={setSelectedProduct}
-        />
+        {normalizedCategory && (
+          <ProductVariantSelectorComponent
+            category={normalizedCategory}
+            products={products}
+            selectedProduct={selectedProduct}
+            onChange={setSelectedProduct}
+          />
+        )}
 
         {selectedProduct ? (
           <AddToCartComponent product={selectedProduct} />

@@ -78,15 +78,27 @@ const ProductForm = ({ category, product, onChange, disabled = false }: ProductF
         );
 
       case "textarea":
+        const displayValue = field.key === "imageUrls" && Array.isArray(value)
+          ? value.join("\n")
+          : field.key === "imageUrls" && typeof value === "string" && value.includes("[")
+          ? JSON.parse(value).join("\n")
+          : value;
         return (
           <textarea
             id={fieldId}
-            value={value}
-            onChange={(e) => handleChange(field.key, e.target.value)}
+            value={displayValue}
+            onChange={(e) => {
+              if (field.key === "imageUrls") {
+                const lines = e.target.value.split("\n").filter(line => line.trim() !== "");
+                handleChange(field.key, lines);
+              } else {
+                handleChange(field.key, e.target.value);
+              }
+            }}
             disabled={disabled}
             required={field.required}
             placeholder={field.placeholder}
-            rows={4}
+            rows={field.key === "imageUrls" ? 6 : 4}
             style={{
               width: "100%",
               padding: "8px",

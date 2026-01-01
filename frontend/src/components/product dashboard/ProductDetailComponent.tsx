@@ -82,6 +82,48 @@ const ProductDetailComponent = ({
           </button>
         </div>
 
+        {(() => {
+          const getImageUrls = (): string[] => {
+            if (Array.isArray(product.imageUrls)) {
+              return product.imageUrls.filter(url => url && url.trim() !== "");
+            }
+            if (typeof product.imageUrls === "string") {
+              try {
+                const parsed = JSON.parse(product.imageUrls);
+                if (Array.isArray(parsed)) {
+                  return parsed.filter(url => url && url.trim() !== "");
+                }
+              } catch {
+                const lines = product.imageUrls.split("\n").filter(line => line.trim() !== "");
+                return lines;
+              }
+            }
+            if (product.imageUrl) {
+              return [product.imageUrl];
+            }
+            return [];
+          };
+          const imageUrls = getImageUrls();
+          const mainImage = imageUrls[0];
+          return mainImage && (
+            <div style={{ marginBottom: "24px" }}>
+              <img 
+                src={mainImage} 
+                alt={product.name || "Product image"}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "8px",
+                  border: "1px solid #ddd",
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            </div>
+          );
+        })()}
         <div style={{ marginBottom: "24px" }}>
           <ProductForm category={category} product={product} onChange={handleChange} disabled={true} />
         </div>

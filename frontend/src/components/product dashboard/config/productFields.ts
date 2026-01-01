@@ -24,6 +24,7 @@ const commonFields: FieldConfig[] = [
     enumValues: ["AS_NEW", "GOOD", "USED"] as const,
   },
   { key: "model", type: "text", label: "Model", required: true },
+  { key: "imageUrls", type: "textarea", label: "Image URLs (one per line)", required: false, placeholder: "https://example.com/image1.jpg\nhttps://example.com/image2.jpg" },
 ];
 
 export const productFields: Record<Category, FieldConfig[]> = {

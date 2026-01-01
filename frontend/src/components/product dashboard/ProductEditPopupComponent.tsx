@@ -94,6 +94,48 @@ const ProductEditPopupComponent = ({
           </button>
         </div>
 
+        {(() => {
+          const getImageUrls = (): string[] => {
+            if (Array.isArray(formData.imageUrls)) {
+              return formData.imageUrls.filter(url => url && url.trim() !== "");
+            }
+            if (typeof formData.imageUrls === "string") {
+              try {
+                const parsed = JSON.parse(formData.imageUrls);
+                if (Array.isArray(parsed)) {
+                  return parsed.filter(url => url && url.trim() !== "");
+                }
+              } catch {
+                const lines = formData.imageUrls.split("\n").filter(line => line.trim() !== "");
+                return lines;
+              }
+            }
+            if (formData.imageUrl) {
+              return [formData.imageUrl];
+            }
+            return [];
+          };
+          const imageUrls = getImageUrls();
+          const mainImage = imageUrls[0];
+          return mainImage && (
+            <div style={{ marginBottom: "24px" }}>
+              <img 
+                src={mainImage} 
+                alt={formData.name || "Product image"}
+                style={{
+                  width: "100%",
+                  maxWidth: "400px",
+                  height: "auto",
+                  borderRadius: "8px",
+                  border: "1px solid #ddd",
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            </div>
+          );
+        })()}
         <div style={{ marginBottom: "24px" }}>
           <ProductForm category={category} product={formData} onChange={handleChange} />
         </div>

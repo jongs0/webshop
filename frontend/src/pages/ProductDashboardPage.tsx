@@ -92,12 +92,35 @@ const ProductDashboardPage = () => {
     setShowCategorySelector(false);
   };
 
+  const saveImageUrls = (productId: number, category: Category, imageUrls: string[]) => {
+    const key = `product_images_${category}_${productId}`;
+    if (imageUrls && imageUrls.length > 0) {
+      localStorage.setItem(key, JSON.stringify(imageUrls));
+    } else {
+      localStorage.removeItem(key);
+    }
+  };
+
+  const getImageUrls = (productId: number, category: Category): string[] => {
+    const key = `product_images_${category}_${productId}`;
+    const stored = localStorage.getItem(key);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  };
+
   const handleSelectProduct = async (product: ProductAdminSummaryDTO) => {
     setLoading(true);
     try {
       const fullProduct = await fetchProductDetails(product.id, product.category);
       if (fullProduct) {
-        setSelectedProduct(fullProduct);
+        const storedImageUrls = getImageUrls(product.id, product.category);
+        setSelectedProduct({ ...fullProduct, imageUrls: storedImageUrls });
         setSelectedCategory(product.category);
         setViewMode("view");
       }
@@ -113,6 +136,9 @@ const ProductDashboardPage = () => {
   };
 
   const handleSave = async (productData: Record<string, any>) => {
+    const imageUrls = Array.isArray(productData.imageUrls) ? productData.imageUrls : [];
+    const processedData = { ...productData };
+    delete processedData.imageUrls;
     if (!selectedCategory) return;
 
     setLoading(true);
@@ -123,11 +149,16 @@ const ProductDashboardPage = () => {
         const response = await fetch(`${API_URL}/${endpoint}`, {
           method: "POST",
           headers: authHeaders,
-          body: JSON.stringify(productData),
+          body: JSON.stringify(processedData),
         });
 
         if (!response.ok) {
           throw new Error(`Failed to create product: ${response.statusText}`);
+        }
+
+        const createdProduct = await response.json();
+        if (imageUrls.length > 0) {
+          saveImageUrls(createdProduct.id, selectedCategory, imageUrls);
         }
 
         const responseProducts = await fetch(`${API_URL}/products/all`, {
@@ -145,7 +176,7 @@ const ProductDashboardPage = () => {
         const response = await fetch(`${API_URL}/${endpoint}/${selectedProduct.id}`, {
           method: "PUT",
           headers: authHeaders,
-          body: JSON.stringify(productData),
+          body: JSON.stringify(processedData),
         });
 
         if (!response.ok) {
@@ -153,7 +184,11 @@ const ProductDashboardPage = () => {
         }
 
         const updatedProduct = await response.json();
-        setSelectedProduct({ ...updatedProduct, category: selectedCategory });
+        if (imageUrls.length > 0) {
+          saveImageUrls(updatedProduct.id, selectedCategory, imageUrls);
+        }
+        const storedImageUrls = getImageUrls(updatedProduct.id, selectedCategory);
+        setSelectedProduct({ ...updatedProduct, category: selectedCategory, imageUrls: storedImageUrls });
 
         const responseProducts = await fetch(`${API_URL}/products/all`, {
           headers: authHeaders,
