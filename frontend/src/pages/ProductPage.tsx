@@ -35,7 +35,6 @@ const ProductPage = () => {
 
         setProducts(filtered);
 
-        // 🔴 IMPORTANT: do NOT auto-select a product
         setSelectedProduct(null);
       });
   }, [normalizedCategory, variant]);

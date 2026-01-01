@@ -6,9 +6,8 @@ import { logout } from "../stores/UserStore";
 import { useNavigate } from "react-router";
 
 const Header = () => {
-
   const user = currentUser();
-  const isLoggedIn = !Number.isNaN(user.id);
+  const isLoggedIn = user && user.id !== undefined && !Number.isNaN(user.id);
   const navigate = useNavigate();
 
 
@@ -36,6 +35,42 @@ const Header = () => {
             <Link className="nav-link" to="/support">Support</Link>
             <Link className="nav-link" to="/cart">Cart</Link>
             <Link className="nav-link" to="/profile">Profile</Link>
+
+            {isLoggedIn && user.email === "admin@webshop.com" && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0",
+                  marginLeft: "12px",
+                  paddingLeft: "12px",
+                  borderLeft: "2px solid rgba(255, 255, 255, 0.3)",
+                }}
+              >
+                <Link
+                  className="nav-link"
+                  to="/admin/products"
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.15)",
+                    borderRadius: "4px 0 0 4px",
+                    fontWeight: "600",
+                  }}
+                >
+                  Products
+                </Link>
+                <Link
+                  className="nav-link"
+                  to="/admin/users"
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.15)",
+                    borderRadius: "0 4px 4px 0",
+                    fontWeight: "600",
+                  }}
+                >
+                  Users
+                </Link>
+              </div>
+            )}
 
             {isLoggedIn ? (
               <span

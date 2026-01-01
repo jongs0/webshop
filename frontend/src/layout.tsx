@@ -4,17 +4,15 @@ import Footer from "./navigation/Footer";
 // import Footer from "./components/navigation/Footer";
 
 const MainLayout = () => {
-
+  
   return (
-    <>
-      <div className="app">
-        <Header/>
-        <main>
-          <Outlet />
-        </main>
-        <Footer/>
-      </div>
-    </>
+    <div className="app-layout">
+      <Header />
+      <main className="page-content">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

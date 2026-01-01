@@ -19,6 +19,7 @@ const SignupPage = () => {
     city: "",
     postalCode: "",
   });
+  const [registrationError, setRegistrationError] = useState<string | null>(null);
 
   const passwordsMatch =
     register.tempPassword.length > 0 &&
@@ -26,7 +27,7 @@ const SignupPage = () => {
     register.tempPassword === register.verifiedPassword;
 
   const passwordLengthCheck = register.tempPassword.length >= 8;
-  const isEmail = register.email.includes("@");
+  const isEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(register.email.toLowerCase());
 
   const isValidHouseNumber =
     register.houseNumber.length === 0 ||
@@ -43,12 +44,18 @@ const SignupPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dto),
       });
-      if (!res.ok) throw new Error("Registration failed");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Registration failed");
+      }
       return res.json();
     },
     onSuccess: (user) => {
       updateUser(user);
       navigate("/");
+    },
+    onError: (error: Error) => {
+      setRegistrationError(error.message || "Registration failed. Please check your input.");
     },
   });
 
@@ -110,7 +117,10 @@ const SignupPage = () => {
           style={inputStyle}
         />
         {!isEmail && register.email.length > 0 && (
-          <p style={errorStyle}>Not a valid email address</p>
+          <p style={errorStyle}>Email must be lowercase (e.g., test@test.nl)</p>
+        )}
+        {registrationError && (
+          <p style={errorStyle}>{registrationError}</p>
         )}
 
         <label>Password</label>
@@ -211,9 +221,10 @@ const SignupPage = () => {
               !isValidPostalCode
             }
             onClick={() => {
+              setRegistrationError(null);
               const registerDto: RegisterDTO = {
                 appUser: {
-                  email: register.email,
+                  email: register.email.toLowerCase(),
                   password: register.verifiedPassword,
                   firstName: register.firstName,
                   lastName: register.lastName,
