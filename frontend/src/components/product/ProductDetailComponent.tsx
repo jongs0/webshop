@@ -72,7 +72,7 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ textAlign: "center" }}>
               <h1 style={{ margin: "0 0 8px 0", fontSize: "28px", fontWeight: "600" }}>{product.name}</h1>
-              <p style={{ margin: 0, fontSize: "16px", color: "#666", lineHeight: "1.6" }}>{product.description}</p>
+              <p style={{ margin: "0 0 12px 0", fontSize: "0.875rem", color: "#666", lineHeight: "1.5" }}>{product.description}</p>
             </div>
             {mainImage && (
               <img 

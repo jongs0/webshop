@@ -3,7 +3,10 @@ import { productFields } from "./productFields";
 
 type ProductDefaults = Record<string, any>;
 
-const getDefaultValue = (type: string): any => {
+const getDefaultValue = (type: string, key: string): any => {
+  if (key === "imageUrls") {
+    return [];
+  }
   switch (type) {
     case "number":
       return 0;
@@ -24,7 +27,7 @@ const createDefaultsForCategory = (category: Category): ProductDefaults => {
 
   fields.forEach((field) => {
     if (field.key === "category") return;
-    defaults[field.key] = getDefaultValue(field.type);
+    defaults[field.key] = getDefaultValue(field.type, field.key);
   });
 
   return defaults;

@@ -78,21 +78,43 @@ const ProductForm = ({ category, product, onChange, disabled = false }: ProductF
         );
 
       case "textarea":
-        const displayValue = field.key === "imageUrls" && Array.isArray(value)
-          ? value.join("\n")
-          : field.key === "imageUrls" && typeof value === "string" && value.includes("[")
-          ? JSON.parse(value).join("\n")
-          : value;
+        let displayValue: string;
+        if (field.key === "imageUrls") {
+          if (Array.isArray(value)) {
+            displayValue = value.join("\n");
+          } else if (typeof value === "string" && value.trim() !== "") {
+            try {
+              const parsed = JSON.parse(value);
+              if (Array.isArray(parsed)) {
+                displayValue = parsed.join("\n");
+              } else {
+                displayValue = value;
+              }
+            } catch {
+              displayValue = value;
+            }
+          } else {
+            displayValue = "";
+          }
+        } else {
+          displayValue = value || "";
+        }
         return (
           <textarea
             id={fieldId}
             value={displayValue}
             onChange={(e) => {
               if (field.key === "imageUrls") {
-                const lines = e.target.value.split("\n").filter(line => line.trim() !== "");
+                const lines = e.target.value.split("\n");
                 handleChange(field.key, lines);
               } else {
                 handleChange(field.key, e.target.value);
+              }
+            }}
+            onBlur={(e) => {
+              if (field.key === "imageUrls") {
+                const lines = e.target.value.split("\n").filter(line => line.trim() !== "");
+                handleChange(field.key, lines);
               }
             }}
             disabled={disabled}
