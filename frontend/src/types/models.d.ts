@@ -313,7 +313,7 @@ export interface MacbookDTO {
     model: string;
     releaseYear: number;
     macbookChipType: MacbookChipType;
-    ram: MacbookRamSize;
+    macbookRamSize: MacbookRamSize;
     macbookStorage: MacbookStorage;
     macbookColor: MacbookColor;
     category: Category;

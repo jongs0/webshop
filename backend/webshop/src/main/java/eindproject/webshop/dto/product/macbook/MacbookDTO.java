@@ -25,7 +25,7 @@ public record MacbookDTO(
         @NotNull
         MacbookChipType macbookChipType,
         @NotNull
-        MacbookRamSize ram,
+        MacbookRamSize macbookRamSize,
         @NotNull
         MacbookStorage macbookStorage,
         @NotNull
