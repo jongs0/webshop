@@ -7,6 +7,10 @@ import './styles/general/buttonStyling.css';
 import './styles/pages/homepageStyling.css';
 import './styles/general/imageStyling.css';
 import './styles/general/colorStyling.css';
+import './styles/general/spacingStyling.css';
+import './styles/components/formStyling.css';
+import './styles/components/listStyling.css';
+
 
 
 
