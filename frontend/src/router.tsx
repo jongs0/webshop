@@ -7,6 +7,7 @@ import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDashboardPage from "./pages/ProductDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
+import CartPage from "./pages/CartPage";
 
 const Router = () => {
   return (
@@ -15,13 +16,14 @@ const Router = () => {
         <Route element={<MainLayout />}>
           {/* <Route index element={<HomePage />} /> */}
           <Route path="signup" index element={<SignupPage />} />
+          <Route path="checkout" element={<CartPage />} />
           <Route path="/" index element={<HomePage />} />
           <Route path="/product/:category" index element={<CategoryPage />} />
-          <Route path="/product/:category/:variant" index element={<ProductPage />}/>
+          <Route path="/product/:category/:variant" index element={<ProductPage />} />
           <Route path="/admin/products" element={<ProductDashboardPage />} />
           <Route path="/admin/users" element={<UserDashboardPage />} />
         </Route>
-        <Route path="login" element={<LoginPage/>}/>
+        <Route path="login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );

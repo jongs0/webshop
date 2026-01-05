@@ -1,7 +1,7 @@
 import { createStore } from "@odemian/react-store";
 // import type { Role } from "../types/models.js";
 
-interface User {
+export interface User {
     email: String
     id: number
 }
