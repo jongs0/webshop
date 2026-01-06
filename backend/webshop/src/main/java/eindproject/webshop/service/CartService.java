@@ -76,6 +76,26 @@ public class CartService {
         return CartDTO.fromEntity(cart, productService);
     }
 
+    public CartDTO removeFromCart(Long userId, Long productId) {
+
+        AppUser user = appUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Cart cart = loadOrCreateCart(user);
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        CartItem existingProduct = cart.getCartItems().stream()
+                .filter(cartItem -> cartItem.getProductId().equals(productId))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Product not in cart"));
+
+        cart.removeCartItem(existingProduct);
+        cartRepository.save(cart);
+        return CartDTO.fromEntity(cart, productService);
+    }
+
     public CartDTO increaseItem(Long userId, Long productId) {
 
         AppUser user = appUserRepository.findById(userId)

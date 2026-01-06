@@ -3,6 +3,7 @@ package eindproject.webshop.controllers;
 import eindproject.webshop.dto.order.OrderDTO;
 import eindproject.webshop.model.enums.PaymentMethod;
 import eindproject.webshop.service.CheckOutService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +22,7 @@ public class CartController {
     private final CartService cartService;
     private final CheckOutService checkOutService;
 
-
+    @Autowired
     public CartController(CartService cartService, CheckOutService checkOutService) {
         this.cartService = cartService;
         this.checkOutService = checkOutService;
@@ -46,6 +47,14 @@ public class CartController {
             @PathVariable Long productId
     ) {
         return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCart(appUserId, productId));
+    }
+
+    @DeleteMapping("/{appUserId}/remove/{productId}")
+    public ResponseEntity<CartDTO> removeFromCart(
+            @PathVariable Long appUserId,
+            @PathVariable Long productId
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(cartService.removeFromCart(appUserId, productId));
     }
 
     @PostMapping("/{userId}/increase/{productId}")
