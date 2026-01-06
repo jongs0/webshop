@@ -20,11 +20,11 @@ const PaymentMethodDropdownComponent = ({ paymentMethods, paymentMethod, setPaym
     return (
         <>
             <Form.Select aria-label="Select payment method" value={paymentMethod} onChange={handleChange}>
-                <option key="">Select payment method</option>
+                <option key="" value={""}>Select payment method</option>
                 {paymentMethods.map((method) => (
-                    <option key={method}>{method}</option>
+                    <option key={method} value={method}>{method}</option>
                 ))}
-            </Form.Select >
+            </Form.Select>
         </>
     );
 };

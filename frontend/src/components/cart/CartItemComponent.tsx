@@ -18,14 +18,15 @@ const CartItemComponent = ({ product }: Props) => {
   let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
 
   const onQuantityChange = useMutation({
-    mutationFn: async (quantity: number) => {
+    mutationFn: async (delta: number) => {
+
       let endpointType = '';
 
-      switch (quantity) {
-        case quantityState + 1:
+      switch (delta) {
+        case 1:
           endpointType = 'increase';
           break;
-        case quantityState - 1:
+        case -1:
           endpointType = 'decrease';
           break;
         default:
@@ -38,6 +39,7 @@ const CartItemComponent = ({ product }: Props) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
           }
         }
       );
@@ -49,20 +51,21 @@ const CartItemComponent = ({ product }: Props) => {
     }
   });
 
-  const handleChange = (quantity: number) => {
-    setQuantity(quantity)
-    onQuantityChange.mutate(quantity)
-    console.log(quantity)
+  const handleChange = (delta: number) => {
+    onQuantityChange.mutate(delta)
+    setQuantity(quantityState + delta)
+    console.log(delta)
   }
 
   const onDelete = useMutation({
     mutationFn: async () => {
       await fetch(
-        `${API_URL}/cart/${user.id}/clear`,
+        `${API_URL}/cart/${user.id}/remove/${product.productId}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
           }
         }
       );
@@ -76,11 +79,11 @@ const CartItemComponent = ({ product }: Props) => {
     <section>
       {/* Image */}
       <p><strong>€{product.name}</strong></p>
-      <p><strong>Price:</strong> €{product.price}</p>
+      <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
       {/* Quantity selector (+-) */}
-      <Button onClick={() => { handleChange(quantityState + 1) }}>+</Button>
+      <Button onClick={() => { handleChange(1) }}>+</Button>
       {quantityState}
-      <Button onClick={() => { handleChange(quantityState - 1) }}>-</Button>
+      <Button onClick={() => { handleChange(-1) }}>-</Button>
 
       <br />
 

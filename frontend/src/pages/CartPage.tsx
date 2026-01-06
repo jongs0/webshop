@@ -57,9 +57,9 @@ const CartPage = () => {
 
     return (
         <>
-            {cartData.cartProductDTOs.map((product) => (
+            {cartData.cartProductDTOs.sort((a, b) => a.name.localeCompare(b.name)).map((product) => (
                 <div key={product.productId}>
-                    <CartItemComponent product={product} />
+                    <CartItemComponent key={product.productId} product={product} />
                 </div>
             ))}
 

@@ -22,11 +22,12 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
         mutationFn: async (paymentMethod: string) => {
 
             const res = await fetch(
-                `${API_URL}/${user.id}/checkout?paymentMethod=${paymentMethod}`,
+                `${API_URL}/cart/${user.id}/checkout?paymentMethod=${paymentMethod}`,
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
                     }
                 }
             );
@@ -42,11 +43,11 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
         <>
             {cart.cartProductDTOs.map((product) => (
                 <div key={product.productId}>
-                    <p><strong>{product.name}</strong> (quantity: {product.quantity}) €{product.price}</p>
+                    <p><strong>{product.name}</strong> (quantity: {product.quantity}) €{(product.price * product.quantity).toFixed(2)}</p>
                 </div>
             ))}
 
-            <p><strong>Total</strong> €{totalPrice}</p>
+            <p><strong>Total</strong> €{totalPrice.toFixed(2)}</p>
 
             <Button onClick={() => onCheckout.mutate(paymentMethod)}>Pay now</Button>
         </>
