@@ -7,6 +7,8 @@ import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDashboardPage from "./pages/ProductDashboardPage";
 import UserDashboardPage from "./pages/UserDashboardPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import SupportPage from "./pages/SupportPage";
 
 const Router = () => {
   return (
@@ -20,6 +22,8 @@ const Router = () => {
           <Route path="/product/:category/:variant" index element={<ProductPage />}/>
           <Route path="/admin/products" element={<ProductDashboardPage />} />
           <Route path="/admin/users" element={<UserDashboardPage />} />
+          <Route path="/cart/finished" element={<OrderConfirmationPage />} />
+          <Route path="/FAQ" element={<SupportPage/>} />
         </Route>
         <Route path="login" element={<LoginPage/>}/>
       </Routes>
