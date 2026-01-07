@@ -10,6 +10,7 @@ import CartSummaryComponent from "../components/cart/CartSummaryComponent.tsx";
 import PaymentMethodDropdownComponent from "../components/cart/PaymentMethodDropdownComponent.tsx";
 import type { PaymentMethod } from "../types/models";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 let paymentMethods: PaymentMethod[];
 paymentMethods = ["IDEAL", "CREDITCARD", "PAYPAL"];
@@ -19,6 +20,8 @@ const CartPage = () => {
     const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("IDEAL");
 
     const queryClient = useQueryClient();
+
+    const navigate = useNavigate();
 
     const user = currentUser();
 
@@ -62,6 +65,10 @@ const CartPage = () => {
             <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
 
             <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+
+            <div>
+                Verder winkelen? <Button onClick={() => navigate("/")}>Terug naar winkel</Button>
+            </div>
         </>
     )
 
