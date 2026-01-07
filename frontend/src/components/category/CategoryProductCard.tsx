@@ -42,17 +42,31 @@ const CategoryProductCard = ({ product, category }: Props) => {
       onClick={handleClick}
     >
       {thumbnailImage && (
-        <Card.Img
-          variant="top"
-          src={thumbnailImage}
-          style={{
-            height: "150px",
-            objectFit: "cover",
-          }}
-          onError={(e) => {
-            e.currentTarget.style.display = "none";
-          }}
-        />
+        <div style={{ 
+          width: "100%", 
+          aspectRatio: "1", 
+          overflow: "hidden",
+          borderRadius: "8px 8px 0 0",
+          backgroundColor: "#f5f5f5",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <img
+            src={thumbnailImage}
+            alt={product.name}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "100%",
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+            }}
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
+          />
+        </div>
       )}
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
