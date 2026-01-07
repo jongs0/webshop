@@ -48,25 +48,50 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
         <div style={{ display: "grid", gridTemplateColumns: "80px 1fr", gap: "16px", alignItems: "start" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             {imageUrls.map((url, index) => (
-              <img
+              <div
                 key={index}
-                src={url}
-                alt={`${product.name} view ${index + 1}`}
-                onClick={() => setSelectedImageIndex(index)}
                 style={{
                   width: "100%",
                   aspectRatio: "1",
-                  objectFit: "cover",
                   borderRadius: "6px",
                   border: selectedImageIndex === index ? "2px solid #007bff" : "1px solid #ddd",
-                  cursor: "pointer",
                   backgroundColor: "#f5f5f5",
-                  transition: "border-color 0.2s",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
                 }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
+                onClick={() => setSelectedImageIndex(index)}
+                onMouseEnter={(e) => {
+                  if (selectedImageIndex !== index) {
+                    e.currentTarget.style.borderColor = "#007bff";
+                    e.currentTarget.style.backgroundColor = "#e7f3ff";
+                  }
                 }}
-              />
+                onMouseLeave={(e) => {
+                  if (selectedImageIndex !== index) {
+                    e.currentTarget.style.borderColor = "#ddd";
+                    e.currentTarget.style.backgroundColor = "#f5f5f5";
+                  }
+                }}
+              >
+                <img
+                  src={url}
+                  alt={`${product.name} view ${index + 1}`}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
             ))}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -75,22 +100,31 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
               <p style={{ margin: "0 0 12px 0", fontSize: "0.875rem", color: "#666", lineHeight: "1.5" }}>{product.description}</p>
             </div>
             {mainImage && (
-              <img 
-                src={mainImage} 
-                alt={product.name}
-                style={{
-                  width: "100%",
-                  maxWidth: "600px",
-                  maxHeight: "600px",
-                  height: "auto",
-                  objectFit: "contain",
-                  borderRadius: "8px",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
+              <div style={{ 
+                display: "flex", 
+                justifyContent: "center", 
+                width: "100%",
+                maxWidth: "600px",
+                margin: "0 auto",
+              }}>
+                <img 
+                  src={mainImage} 
+                  alt={product.name}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "500px",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                    display: "block",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>
