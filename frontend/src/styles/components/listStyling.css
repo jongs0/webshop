@@ -1,0 +1,15 @@
+.list {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    background-color: var(--gray);
+}
+
+.list .item{
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    align-items: center;
+    padding: 10px;
+    margin:6px;
+}
