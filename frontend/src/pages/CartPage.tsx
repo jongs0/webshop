@@ -20,14 +20,7 @@ const CartPage = () => {
 
     const queryClient = useQueryClient();
 
-    //DEBUG: user --> user1
     const user = currentUser();
-    console.log("User from store: ")
-    console.log(user)
-    // ### Temp fix for dysfunctional user store functionality:
-    // let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
-
-    // const navigate = useNavigate();
 
     const { data: cartData, isLoading, error } = useQuery<CartDTO>({
         queryKey: ["cart", user.id],
@@ -60,7 +53,7 @@ const CartPage = () => {
 
     return (
         <>
-            {cartData.cartProductDTOs.sort((a, b) => a.name.localeCompare(b.name)).map((product) => (
+            {cartData.cartProductDTOs.sort((a, b) => (a.name.localeCompare(b.name) != 0 ? a.name.localeCompare(b.name) : (a.productId - b.productId))).map((product) => (
                 <div key={product.productId}>
                     <CartItemComponent key={product.productId} product={product} />
                 </div>

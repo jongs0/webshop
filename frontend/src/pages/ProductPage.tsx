@@ -35,7 +35,7 @@ const ProductPage = () => {
 
         const productsWithImages = filtered.map((product: any) => {
           const categoryKey = normalizedCategory?.toUpperCase();
-          const key = `product_images_${categoryKey}_${product.id}`;
+          const key = `product_images_${product.id}`;
           const stored = localStorage.getItem(key);
           if (stored) {
             try {
