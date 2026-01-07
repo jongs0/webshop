@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { API_URL } from "../../App";
-import type { CartDTO, PaymentMethod } from "../../types/models";
+import type { CartDTO, OrderDTO, PaymentMethod } from "../../types/models";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { currentUser } from "../../stores/UserStore";
+import { useNavigate } from "react-router";
 
 type Props = {
     totalPrice: number;
@@ -18,6 +19,8 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
     // let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
 
     const queryClient = useQueryClient();
+
+    const navigate = useNavigate();
 
     const onCheckout = useMutation({
         mutationFn: async (paymentMethod: string) => {
@@ -35,8 +38,9 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
             if (!res.ok) throw new Error("Checkout failed");
             return res.json();
         },
-        onSuccess: () => {
+        onSuccess: (order: OrderDTO) => {
             queryClient.invalidateQueries({ queryKey: ["cart", user.id] })
+            navigate(`/checkout/${order.id}`)
         }
     });
 
