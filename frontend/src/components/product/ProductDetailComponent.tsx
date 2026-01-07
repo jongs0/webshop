@@ -81,7 +81,9 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
                 style={{
                   width: "100%",
                   maxWidth: "600px",
+                  maxHeight: "600px",
                   height: "auto",
+                  objectFit: "contain",
                   borderRadius: "8px",
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
                 }}
