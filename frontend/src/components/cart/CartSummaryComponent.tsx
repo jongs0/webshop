@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { API_URL } from "../../App";
 import type { CartDTO, PaymentMethod } from "../../types/models";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { currentUser } from "../../stores/UserStore";
 
 type Props = {
     totalPrice: number;
@@ -12,9 +13,9 @@ type Props = {
 
 const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
 
-    // const user = currentUser();
+    const user = currentUser();
     // ### Temp fix for dysfunctional user store functionality:
-    let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
+    // let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
 
     const queryClient = useQueryClient();
 
@@ -27,7 +28,7 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
+                        'Authorization': user.authHeader
                     }
                 }
             );

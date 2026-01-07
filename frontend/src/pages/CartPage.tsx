@@ -20,11 +20,14 @@ const CartPage = () => {
 
     const queryClient = useQueryClient();
 
-    // const user = currentUser();
+    //DEBUG: user --> user1
+    const user = currentUser();
+    console.log("User from store: ")
+    console.log(user)
     // ### Temp fix for dysfunctional user store functionality:
-    let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
+    // let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const { data: cartData, isLoading, error } = useQuery<CartDTO>({
         queryKey: ["cart", user.id],
@@ -34,7 +37,7 @@ const CartPage = () => {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
+                        'Authorization': user.authHeader
                     }
                 }
             );

@@ -3,6 +3,7 @@ import type { CartProductDTO, ProductDTO } from "../../types/models";
 import { Button } from "react-bootstrap";
 import { API_URL } from "../../App";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { currentUser } from "../../stores/UserStore";
 
 type Props = {
   product: CartProductDTO;
@@ -13,9 +14,9 @@ const CartItemComponent = ({ product }: Props) => {
 
   const queryClient = useQueryClient();
 
-  // const user = currentUser();
+  const user = currentUser();
   // ### Temp fix for dysfunctional user store functionality:
-  let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
+  // let user = { email: "admin@webshop.com", id: 1, password: "admin123" };
 
   const onQuantityChange = useMutation({
     mutationFn: async (delta: number) => {
@@ -39,7 +40,7 @@ const CartItemComponent = ({ product }: Props) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
+            'Authorization': user.authHeader
           }
         }
       );
@@ -65,7 +66,7 @@ const CartItemComponent = ({ product }: Props) => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            'Authorization': `Basic ${btoa(`${user.email}:${user.password}`)}`
+            'Authorization': user.authHeader
           }
         }
       );
