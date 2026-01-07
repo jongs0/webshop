@@ -25,6 +25,16 @@ flex-direction: column;
     display: flex;
 }
 
+.left{
+   display: flex;
+   direction: left;
+}
+
+.right{
+    display: flex;
+    direction: right;
+}
+
 .card{
 
 }
