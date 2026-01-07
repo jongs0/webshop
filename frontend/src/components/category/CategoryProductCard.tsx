@@ -67,11 +67,21 @@ const CategoryProductCard = ({ product, category }: Props) => {
 
 export default CategoryProductCard;
 
+const formatGeneration = (gen: string): string => {
+  const match = gen.match(/GEN_(\d+)/);
+  if (match) {
+    const num = parseInt(match[1]);
+    const suffix = num === 1 ? "st" : num === 2 ? "nd" : num === 3 ? "rd" : "th";
+    return `${num}${suffix} generation`;
+  }
+  return gen;
+};
+
 const getSubtitle = (product: any, category: string) => {
-  if (category === "iphone") return product.iphoneGeneration;
+  if (category === "iphone") return formatGeneration(product.iphoneGeneration);
   if (category === "macbook") return product.macbookChipType;
-  if (category === "ipad") return product.ipadGeneration;
-  if (category === "iwatch") return product.releaseYear;
+  if (category === "ipad") return formatGeneration(product.ipadGeneration);
+  if (category === "iwatch") return product.releaseYear ? `Released ${product.releaseYear}` : "";
   return "";
 };
 
