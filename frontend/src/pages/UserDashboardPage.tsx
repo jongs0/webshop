@@ -20,10 +20,6 @@ const UserDashboardPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    updateUser({
-      email: "admin@webshop.com",
-      id: 1,
-    });
 
     const loadUsers = async () => {
       setLoading(true);

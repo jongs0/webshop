@@ -76,10 +76,70 @@ const CartItemComponent = ({ product }: Props) => {
     }
   });
 
+  const getImageUrls = (): string[] => {
+    if (product.productId) {
+      const key = `product_images_${product.productId}`
+      console.log('Debug: key:')
+      console.log(key)
+      const stored = localStorage.getItem(key);
+      console.log('Debug: stored:')
+      console.log(stored)
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            return parsed.filter(url => url && url.trim() !== "");
+          }
+        } catch {
+          return [];
+        }
+      }
+    }
+    if (Array.isArray(product.imageUrls)) {
+      return product.imageUrls.filter(url => url && url.trim() !== "");
+    }
+    if (typeof product.imageUrls === "string") {
+      try {
+        const parsed = JSON.parse(product.imageUrls);
+        if (Array.isArray(parsed)) {
+          return parsed.filter(url => url && url.trim() !== "");
+        }
+      } catch {
+        const lines = product.imageUrls.split("\n").filter(line => line.trim() !== "");
+        return lines;
+      }
+    }
+    if ((product as any).imageUrl) {
+      return [(product as any).imageUrl];
+    }
+    return [];
+  };
+
+  const imageUrls = getImageUrls();
+  const mainImage = imageUrls[0];
+  console.log("Debug")
+  console.log("image URLs:")
+  console.log(imageUrls)
+  console.log("main image (index 0):")
+  console.log(mainImage)
+
   return (
     <section>
       {/* Image */}
-      <p><strong>€{product.name}</strong></p>
+      <p><strong>{product.name}</strong></p>
+      <img
+        src={mainImage}
+        alt={product.name}
+        style={{
+          maxWidth: "600px",
+          height: "100px",
+          borderRadius: "8px",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        }}
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+      />
       <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
       {/* Quantity selector (+-) */}
       <Button onClick={() => { handleChange(1) }}>+</Button>
