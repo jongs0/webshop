@@ -1,4 +1,4 @@
-import { Image } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import { Link } from "react-router";
 import "../styles/general/bannerStyling.css";
 import { currentUser } from "../stores/UserStore";
@@ -32,6 +32,7 @@ const Header = () => {
           </div>
 
           <div className="nav-right">
+            <Button onClick={() => navigate("cart/finalize/1")}>TEST</Button>
             <Link className="nav-link" to="/support">Support</Link>
             <Link className="nav-link" to="/cart">Cart</Link>
             <Link className="nav-link" to="/profile">Profile</Link>
