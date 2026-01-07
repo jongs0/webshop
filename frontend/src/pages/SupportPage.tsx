@@ -59,9 +59,10 @@ const SupportPage = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="6">
-                    <Accordion.Header>Question #7</Accordion.Header>
+                    <Accordion.Header>Ik heb een andere vraag!</Accordion.Header>
                     <Accordion.Body>
-                        Antwoord #7
+                        You can always contact us by calling our number, 000-123-4567, a fully theoretical phone number.
+                        We are also available for questioning during the presentation.
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
