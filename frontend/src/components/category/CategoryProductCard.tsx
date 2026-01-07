@@ -32,7 +32,12 @@ const CategoryProductCard = ({ product, category }: Props) => {
   const thumbnailImage = getThumbnailImage();
 
   const handleClick = () => {
-    navigate(`/product/${category}/${getVariantParam(product)}`);
+    const variant = getVariantParam(product);
+    if (variant) {
+      navigate(`/product/${category}/${variant}`);
+    } else {
+      navigate(`/product/${category}`);
+    }
   };
 
   return (
@@ -47,7 +52,7 @@ const CategoryProductCard = ({ product, category }: Props) => {
           aspectRatio: "1", 
           overflow: "hidden",
           borderRadius: "8px 8px 0 0",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "white",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -81,7 +86,8 @@ const CategoryProductCard = ({ product, category }: Props) => {
 
 export default CategoryProductCard;
 
-const formatGeneration = (gen: string): string => {
+const formatGeneration = (gen: string | undefined | null): string => {
+  if (!gen || typeof gen !== "string") return "";
   const match = gen.match(/GEN_(\d+)/);
   if (match) {
     const num = parseInt(match[1]);
@@ -92,9 +98,9 @@ const formatGeneration = (gen: string): string => {
 };
 
 const getSubtitle = (product: any, category: string) => {
-  if (category === "iphone") return formatGeneration(product.iphoneGeneration);
-  if (category === "macbook") return product.macbookChipType;
-  if (category === "ipad") return formatGeneration(product.ipadGeneration);
+  if (category === "iphone") return product.iphoneGeneration ? formatGeneration(product.iphoneGeneration) : "";
+  if (category === "macbook") return product.macbookChipType || "";
+  if (category === "ipad") return product.ipadGeneration ? formatGeneration(product.ipadGeneration) : "";
   if (category === "iwatch") return product.releaseYear ? `Released ${product.releaseYear}` : "";
   return "";
 };

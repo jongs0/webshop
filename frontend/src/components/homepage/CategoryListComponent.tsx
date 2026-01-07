@@ -37,7 +37,7 @@ const CategoryListComponent = () => {
             <Row className="g-4">
                 {categories.map(category => (
                     <Col key={category.id} xs={12} sm={6} md={3}>
-                        <NavLink to="{category.link}" style={{ textDecoration: 'none' }}>
+                        <NavLink to={category.link} style={{ textDecoration: 'none' }}>
                             <Card>
                                 <Card.Img variant="top" src={category.image} />
                                 <Card.Body>
