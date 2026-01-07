@@ -141,10 +141,10 @@ const CartItemComponent = ({ product }: Props) => {
         }}
       />
       <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
-      {/* Quantity selector (+-) */}
-      <Button onClick={() => { handleChange(1) }}>+</Button>
-      {quantityState}
+      {/* Quantity selector */}
       <Button onClick={() => { handleChange(-1) }}>-</Button>
+      {quantityState}
+      <Button onClick={() => { handleChange(1) }}>+</Button>
 
       <br />
 
