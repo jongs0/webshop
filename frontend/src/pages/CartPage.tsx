@@ -56,15 +56,27 @@ const CartPage = () => {
 
     return (
         <>
-            {cartData.cartProductDTOs.sort((a, b) => (a.name.localeCompare(b.name) != 0 ? a.name.localeCompare(b.name) : (a.productId - b.productId))).map((product) => (
-                <div key={product.productId}>
-                    <CartItemComponent key={product.productId} product={product} />
-                </div>
-            ))}
+            <div>
+                {
+                    cartData.cartProductDTOs.length != 0 ?
+                        cartData.cartProductDTOs.sort((a, b) => (a.name.localeCompare(b.name) != 0 ? a.name.localeCompare(b.name) : (a.productId - b.productId))).map((product) => (
+                            <div key={product.productId}>
+                                <CartItemComponent key={product.productId} product={product} />
+                            </div>
+                        ))
+                        :
+                        <p>Cart is empty</p>
+                }
+            </div>
 
-            <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
-
-            <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+            <br />
+            {cartData.cartProductDTOs.length > 0 &&
+                <>
+                    <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
+                    <br />
+                    <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+                </>
+            }
 
             <div>
                 Verder winkelen? <Button onClick={() => navigate("/")}>Terug naar winkel</Button>

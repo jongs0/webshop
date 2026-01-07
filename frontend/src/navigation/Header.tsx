@@ -30,11 +30,13 @@ const Header = () => {
                         <Link className="nav-link" to="/product/macbook">Macbook</Link>
                         <Link className="nav-link" to="/product/iwatch">iWatch</Link>
                     </div>
-                    
+
                     <div className="nav-right">
                         <Link className="nav-link" to="/support">Support</Link>
-                        <Link className="nav-link" to="/checkout">Cart</Link>
-                        <Link className="nav-link" to="/profile">Profile</Link>
+                        {isLoggedIn && <>
+                            <Link className="nav-link" to="/checkout">Cart</Link>
+                            <Link className="nav-link" to="/profile">Profile</Link>
+                        </>}
 
                         {isLoggedIn && user.email === "admin@webshop.com" && (
                             <div
