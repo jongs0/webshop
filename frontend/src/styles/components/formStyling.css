@@ -1,19 +1,22 @@
 .form {
     padding: 10px;
     margin: 10px;
-    border-radius: 15px;
-    background-color: var(--gray);
+    border-radius: 5px;
+    border: var(--gray);
+    background-color: var(--white);
 }
 
 .form input{
     padding: 10px;
     margin: 10px;
-    border-radius: 15px;
-    background-color: var(--black);
+    border-radius: 5px;
+    background-color: var(--white);
+    color: black;
 }
 
 .form .item{
-    background-color: black;
+    background-color: white;
+    border: gray;
     border-radius: 10px;
     color: white;
     align-items: center;
