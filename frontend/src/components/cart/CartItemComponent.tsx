@@ -53,6 +53,8 @@ const CartItemComponent = ({ product }: Props) => {
   });
 
   const handleChange = (delta: number) => {
+    if (quantityState + delta < 0)
+      return;
     onQuantityChange.mutate(delta)
     setQuantity(quantityState + delta)
     console.log(delta)
