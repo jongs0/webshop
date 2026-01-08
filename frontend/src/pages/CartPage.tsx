@@ -1,7 +1,7 @@
 
-import type { CartDTO } from "../types/models.js";
+import type { CartDTO, OrderDTO } from "../types/models.js";
 import { currentUser } from "../stores/UserStore.ts";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { API_URL } from "../App.js";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
@@ -50,6 +50,28 @@ const CartPage = () => {
         return total;
     }
 
+    const onCheckout = useMutation({
+        mutationFn: async (paymentMethod: string) => {
+
+            const res = await fetch(
+                `${API_URL}/cart/${user.id}/checkout?paymentMethod=${paymentMethod}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'Authorization': user.authHeader
+                    }
+                }
+            );
+            if (!res.ok) throw new Error("Checkout failed");
+            return res.json();
+        },
+        onSuccess: (order: OrderDTO) => {
+            queryClient.invalidateQueries({ queryKey: ["cart", user.id] })
+            navigate(`/checkout/${order.id}`)
+        }
+    });
+
     if (isLoading) return <div>Loading cart...</div>;
     if (error) return <div style={{ color: "red" }}>Error loading cart.</div>;
     if (!cartData) return <div></div>;
@@ -68,9 +90,17 @@ const CartPage = () => {
                                 ))}
                             </Col>
                             <Col xs={4}>
-                                <div style={{ border: "1px solid gray", borderRadius: "10px" }}>
-                                    <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
+                                <div style={{ margin: "10px" }}>
+                                    <div style={{ border: "1px solid gray", borderRadius: "10px" }}>
+                                        <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} />
+                                    </div>
+                                    <br />
+                                    Payment method
+                                    <br />
+                                    <br />
                                     <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+                                    <br />
+                                    <Button onClick={() => onCheckout.mutate(paymentMethod)}>Pay now</Button>
                                 </div>
                             </Col>
                         </Row>
