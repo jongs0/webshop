@@ -10,7 +10,7 @@ import CartSummaryComponent from "../components/cart/CartSummaryComponent.tsx";
 import PaymentMethodDropdownComponent from "../components/cart/PaymentMethodDropdownComponent.tsx";
 import type { PaymentMethod } from "../types/models";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 let paymentMethods: PaymentMethod[];
 paymentMethods = ["IDEAL", "CREDITCARD", "PAYPAL"];
@@ -56,26 +56,29 @@ const CartPage = () => {
 
     return (
         <>
-            <div>
-                {
-                    cartData.cartProductDTOs.length != 0 ?
-                        cartData.cartProductDTOs.sort((a, b) => (a.name.localeCompare(b.name) != 0 ? a.name.localeCompare(b.name) : (a.productId - b.productId))).map((product) => (
-                            <div key={product.productId}>
-                                <CartItemComponent key={product.productId} product={product} />
-                            </div>
-                        ))
-                        :
-                        <p>Cart is empty</p>
-                }
-            </div>
-
-            <br />
-            {cartData.cartProductDTOs.length > 0 &&
+            {cartData.cartProductDTOs.length > 0 ?
                 <>
-                    <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
+                    <Container>
+                        <Row>
+                            <Col>
+                                {cartData.cartProductDTOs.sort((a, b) => (a.name.localeCompare(b.name) != 0 ? a.name.localeCompare(b.name) : (a.productId - b.productId))).map((product) => (
+                                    <div key={product.productId} style={{ border: "1px solid gray", margin: "10px" }}>
+                                        <CartItemComponent key={product.productId} product={product} />
+                                    </div>
+                                ))}
+                            </Col>
+                            <Col xs={4}>
+                                <div style={{ border: "1px solid gray", borderRadius: "10px" }}>
+                                    <CartSummaryComponent totalPrice={calcTotalPrice(cartData)} cart={cartData} paymentMethod={paymentMethod} />
+                                    <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                     <br />
-                    <PaymentMethodDropdownComponent paymentMethods={paymentMethods} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod} />
                 </>
+                :
+                <p>Cart is empty</p>
             }
 
             <div>

@@ -52,7 +52,7 @@ const CartSummaryComponent = ({ totalPrice, cart, paymentMethod }: Props) => {
                 </div>
             ))}
 
-            <p><strong>Total</strong> €{totalPrice.toFixed(2)}</p>
+            <p style={{ border: "1px solid gray", borderRadius: "5px" }}><strong>Total</strong> €{totalPrice.toFixed(2)}</p>
 
             <Button onClick={() => onCheckout.mutate(paymentMethod)}>Pay now</Button>
         </>
