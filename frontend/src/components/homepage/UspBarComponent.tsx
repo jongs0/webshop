@@ -8,27 +8,27 @@ import co2Img from "../../assets/images/usp/co2.png";
 
 const UspBarComponent = () => {
   return (
-    <div className="usp-background py-4">
-      <div className="container">
-        <Row className="text-center g-4">
+    <div className="usp-background" style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+      <div className="container" style={{ paddingTop: "0.5rem", paddingBottom: "0.5rem" }}>
+        <Row className="text-center g-2">
           <Col xs={6} md={3}>
-            <img className="usp-image mb-2" src={shippingImg} alt="Shipping included" />
-            <p className="mb-0">Shipping included</p>
+            <img className="usp-image" src={shippingImg} alt="Shipping included" style={{ marginBottom: "0.25rem" }} />
+            <p className="mb-0" style={{ fontSize: "0.875rem" }}>Shipping included</p>
           </Col>
 
           <Col xs={6} md={3}>
-            <img className="usp-image mb-2" src={trialImg} alt="30-day free trial" />
-            <p className="mb-0">30-day free trial</p>
+            <img className="usp-image" src={trialImg} alt="30-day free trial" style={{ marginBottom: "0.25rem" }} />
+            <p className="mb-0" style={{ fontSize: "0.875rem" }}>30-day free trial</p>
           </Col>
 
           <Col xs={6} md={3}>
-            <img className="usp-image mb-2" src={warrantyImg} alt="12-month warranty" />
-            <p className="mb-0">Min 12-month warranty</p>
+            <img className="usp-image" src={warrantyImg} alt="12-month warranty" style={{ marginBottom: "0.25rem" }} />
+            <p className="mb-0" style={{ fontSize: "0.875rem" }}>Min 12-month warranty</p>
           </Col>
 
           <Col xs={6} md={3}>
-            <img className="usp-image mb-2" src={co2Img} alt="Saves CO₂ vs new" />
-            <p className="mb-0">Saves CO₂ vs new</p>
+            <img className="usp-image" src={co2Img} alt="Saves CO₂ vs new" style={{ marginBottom: "0.25rem" }} />
+            <p className="mb-0" style={{ fontSize: "0.875rem" }}>Saves CO₂ vs new</p>
           </Col>
         </Row>
       </div>

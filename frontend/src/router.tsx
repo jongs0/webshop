@@ -10,6 +10,9 @@ import UserDashboardPage from "./pages/UserDashboardPage";
 import CartPage from "./pages/CartPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import SupportPage from "./pages/SupportPage";
+import ProfilePage from "./pages/ProfilePage";
+import UserOrderHistoryComponent from "./components/profile/UserOrderHistoryComponent";
+import UserOrderDetailComponent from "./components/profile/UserOrderDetailComponent";
 
 const Router = () => {
   return (
@@ -26,6 +29,10 @@ const Router = () => {
           <Route path="/admin/products" element={<ProductDashboardPage />} />
           <Route path="/admin/users" element={<UserDashboardPage />} />
           <Route path="/support" element={<SupportPage/>} />
+          <Route path="/profile" element={<ProfilePage />}>
+            <Route path="orders" element={<UserOrderHistoryComponent />} />
+            <Route path="orders/:orderId" element={<UserOrderDetailComponent />} />
+          </Route>
         </Route>
         <Route path="login" element={<LoginPage />} />
       </Routes>
