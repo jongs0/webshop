@@ -110,9 +110,10 @@ const CartPage = () => {
                 :
                 <p>Cart is empty</p>
             }
-
             <div>
-                Verder winkelen? <Button onClick={() => navigate("/")}>Terug naar winkel</Button>
+                <p>
+                    Verder winkelen? <Button onClick={() => navigate("/")}>Terug naar winkel</Button>
+                </p>
             </div>
         </>
     )
