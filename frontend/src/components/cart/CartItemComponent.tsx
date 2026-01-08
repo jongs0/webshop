@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CartProductDTO, ProductDTO } from "../../types/models";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { API_URL } from "../../App";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { currentUser } from "../../stores/UserStore";
@@ -53,6 +53,8 @@ const CartItemComponent = ({ product }: Props) => {
   });
 
   const handleChange = (delta: number) => {
+    if (quantityState + delta < 0)
+      return;
     onQuantityChange.mutate(delta)
     setQuantity(quantityState + delta)
     console.log(delta)
@@ -124,36 +126,41 @@ const CartItemComponent = ({ product }: Props) => {
   console.log(mainImage)
 
   return (
-    <section>
-      {/* Image */}
-      <p><strong>{product.name}</strong></p>
-      <img
-        src={mainImage}
-        alt={product.name}
-        style={{
-          maxWidth: "600px",
-          height: "100px",
-          borderRadius: "8px",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-        }}
-        onError={(e) => {
-          e.currentTarget.style.display = "none";
-        }}
-      />
-      <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
-      {/* Quantity selector */}
-      <Button onClick={() => { handleChange(-1) }}>-</Button>
-      {quantityState}
-      <Button onClick={() => { handleChange(1) }}>+</Button>
-
-      <br />
-
-      <button
-        onClick={() => onDelete.mutate()}
-      >
-        Delete
-      </button>
-    </section>
+    <div>
+      <Container>
+        <Row>
+          <Col>
+            <p><strong>{product.name}</strong></p>
+            <img
+              src={mainImage}
+              alt={product.name}
+              style={{
+                maxWidth: "600px",
+                height: "100px",
+                borderRadius: "8px",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              }}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            <br />
+            <button
+              onClick={() => onDelete.mutate()}
+            >
+              Delete
+            </button>
+          </Col>
+          <Col>
+            <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
+            {/* Quantity selector */}
+            <Button onClick={() => { handleChange(-1) }}>-</Button>
+            &nbsp;{quantityState}&nbsp;
+            <Button onClick={() => { handleChange(1) }}>+</Button>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
