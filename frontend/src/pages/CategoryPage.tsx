@@ -7,6 +7,7 @@ import {
   dedupeIpads,
   dedupeIwatches,
 } from "../components/category/categoryConfig/deduplicationHelper";
+import { API_URL } from "../App";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -25,7 +26,7 @@ const CategoryPage = () => {
     queryKey: ["products", normalizedCategory],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:8080/${normalizedCategory}`
+        `${API_URL}/${normalizedCategory}`
       );
       const data = await res.json();
 

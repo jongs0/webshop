@@ -4,6 +4,7 @@ import ProductDetailComponent from "../components/product/ProductDetailComponent
 import ProductVariantSelectorComponent from "../components/product/ProductVariantSelectorComponent";
 import AddToCartComponent from "../components/product/AddToCartComponent";
 import getCategoryEndPoint from "../components/product/config/categoryEndPointHelper";
+import { API_URL } from "../App";
 
 const ProductPage = () => {
   const { category, variant } = useParams();
@@ -15,7 +16,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (!normalizedCategory || !variant) return;
 
-    fetch(`http://localhost:8080/${getCategoryEndPoint(normalizedCategory)}`)
+    fetch(`${API_URL}/${getCategoryEndPoint(normalizedCategory)}`)
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((product: any) => {
