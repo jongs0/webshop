@@ -110,40 +110,48 @@ const CartItemComponent = ({ product }: Props) => {
 
   return (
     <div>
-      <Container>
+      <Container style={{ padding: "20px" }}>
         <Row>
           <Col>
-            <p><strong>{product.name}</strong></p>
-            <img
-              src={mainImage}
-              alt={product.name}
-              style={{
-                maxWidth: "600px",
-                height: "100px",
-                borderRadius: "8px",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-              }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-            <br />
-            <button
-              onClick={() => onDelete.mutate()}
-            >
-              Delete
-            </button>
+            <div style={{ float: "left" }}>
+              <p><h3>{product.name}</h3></p>
+              <img
+                src={mainImage}
+                alt={product.name}
+                style={{
+                  maxWidth: "600px",
+                  height: "100px",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+              <br />
+              <br />
+              <Button variant="secondary" size="sm" style={{ color: "white" }}
+                onClick={() => onDelete.mutate()}
+              >
+                Delete
+              </Button>
+            </div>
           </Col>
-          <Col>
-            <p><strong>€{product.price.toFixed(2)}</strong></p>
+          <Col style={{ position: "relative", paddingRight: "10px" }}>
+            <div style={{ float: "right" }}>
+              <div style={{ fontSize: "18px", backgroundColor: "gray", borderRadius: "5px", color: "white", float: "right", padding: "5px 10px" }}>€{product.price.toFixed(2)}</div>
+            </div>
+            <br />
             {/* Quantity selector */}
-            <Button onClick={() => { handleChange(-1) }}>-</Button>
-            &nbsp;{quantityState}&nbsp;
-            <Button onClick={() => { handleChange(1) }}>+</Button>
+            <div style={{ position: "absolute", bottom: "0px", right: "0px", paddingRight: "10px" }}>
+              <button type="button" onClick={() => { handleChange(-1) }} style={{ fontSize: "15px", borderRadius: "50%", border: "1px solid black", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "white", padding: "0px" }}>-</button>
+              &nbsp;{quantityState}&nbsp;
+              <button type="button" onClick={() => { handleChange(1) }} style={{ fontSize: "15px", borderRadius: "50%", border: "1px solid black", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "white", padding: "0px" }}>+</button>
+            </div>
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 };
 
