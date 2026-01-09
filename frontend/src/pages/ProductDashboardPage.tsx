@@ -56,10 +56,6 @@ const ProductDashboardPage = () => {
   const categories: Category[] = ["IPHONE", "IPAD", "MACBOOK", "IWATCH"];
 
   useEffect(() => {
-    updateUser({
-      email: "admin@webshop.com",
-      id: 1,
-    });
 
     const loadProducts = async () => {
       setLoading(true);
@@ -92,7 +88,7 @@ const ProductDashboardPage = () => {
     setShowCategorySelector(false);
   };
 
-  const saveImageUrls = (productId: number, imageUrls: string[]) => {
+  const saveImageUrls = (productId: number, category: Category, imageUrls: string[]) => {
     const key = `product_images_${productId}`;
     if (imageUrls && imageUrls.length > 0) {
       localStorage.setItem(key, JSON.stringify(imageUrls));
@@ -101,7 +97,7 @@ const ProductDashboardPage = () => {
     }
   };
 
-  const getImageUrls = (productId: number): string[] => {
+  const getImageUrls = (productId: number, category: Category): string[] => {
     const key = `product_images_${productId}`;
     const stored = localStorage.getItem(key);
     if (stored) {
@@ -230,14 +226,14 @@ const ProductDashboardPage = () => {
       const response = await fetch(`${API_URL}/${endpoint}/${productId}`, {
         headers: authHeaders,
       });
-      
+
       if (!response.ok) {
         throw new Error(`Failed to fetch product: ${response.statusText}`);
       }
-      
+
       const fullProduct = await response.json();
       const updatedProduct = { ...fullProduct, stock: newStock };
-      
+
       const updateResponse = await fetch(`${API_URL}/${endpoint}/${productId}`, {
         method: "PUT",
         headers: authHeaders,

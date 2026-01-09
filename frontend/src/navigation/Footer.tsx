@@ -1,4 +1,5 @@
 import { Col, Container, Image, Nav, Navbar, Row, Stack } from "react-bootstrap";
+import { Link } from "react-router";
 
 const Footer = () => {
     return (
@@ -7,12 +8,11 @@ const Footer = () => {
                 <Stack direction="horizontal" gap={2}>
                     <Container className="whitebackground">
                         <Nav className="whitebackground flex-column">
-                            <h3>SUPPORT:</h3>
-                            <Nav.Link href="">FAQ</Nav.Link>
-                            <Nav.Link href="">Contact us</Nav.Link>
-                            <Nav.Link href="">Return</Nav.Link>
-                            <Nav.Link href="">Careers</Nav.Link>
-                            <Nav.Link href="">About us</Nav.Link>
+                            <h3>Support:</h3>
+                            <Link className="nav-link" to="/support">FAQ</Link>
+                            <Link className="nav-link" to="/support">Return</Link>
+                            <Link className="nav-link" to="/support">Careers</Link>
+                            <Link className="nav-link" to="/support">About us</Link>
                         </Nav>
                     </Container>
                     <Container fluid="sm">
