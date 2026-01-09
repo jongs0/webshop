@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import type { ProductDTO } from "../../types/models";
 import { currentUser } from "../../stores/UserStore";
 import { API_URL } from "../../App";
@@ -11,6 +12,7 @@ const AddToCartComponent = ({ product }: Props) => {
   const [quantity, setQuantity] = useState(1);
   const user = currentUser();
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
   
   
   const addToCart = () => {
@@ -65,14 +67,36 @@ const AddToCartComponent = ({ product }: Props) => {
       </>
     )}
     
-    <button
-    className="btn btn-primary"
-    onClick={addToCart}
-    disabled={product.stock === 0}
-    style={{ height: "40px" }}
-    >
-    Add to cart
-    </button>
+    <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+      <button
+        className="btn btn-primary"
+        onClick={addToCart}
+        disabled={product.stock === 0}
+        style={{ 
+          height: "40px",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Add to cart
+      </button>
+      
+      <button
+        className="btn btn-outline-primary"
+        onClick={() => navigate("/checkout")}
+        style={{ 
+          height: "40px",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        Go to Cart
+      </button>
+    </div>
     
     {error && (
       <p style={{ color: "red", fontSize: "12px", marginTop: "8px" }}>

@@ -12,8 +12,7 @@ const CategoryProductCard = ({ product, category }: Props) => {
 
   const getThumbnailImage = (): string | null => {
     if (product.id) {
-      const categoryKey = category.toUpperCase();
-      const key = `product_images_${categoryKey}_${product.id}`;
+      const key = `product_images_${product.id}`;
       const stored = localStorage.getItem(key);
       if (stored) {
         try {

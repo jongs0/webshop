@@ -4,8 +4,8 @@ import type { ProductDTO, Category } from "../../types/models"
 
 const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?: Category }}) => {
   const getImageUrls = (): string[] => {
-    if (product.id && product.category) {
-      const key = `product_images_${product.category}_${product.id}`;
+    if (product.id) {
+      const key = `product_images_${product.id}`;
       const stored = localStorage.getItem(key);
       if (stored) {
         try {
@@ -55,7 +55,7 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
                   aspectRatio: "1",
                   borderRadius: "6px",
                   border: selectedImageIndex === index ? "2px solid #007bff" : "1px solid #ddd",
-                  backgroundColor: "#f5f5f5",
+                  backgroundColor: "white",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -73,7 +73,7 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
                 onMouseLeave={(e) => {
                   if (selectedImageIndex !== index) {
                     e.currentTarget.style.borderColor = "#ddd";
-                    e.currentTarget.style.backgroundColor = "#f5f5f5";
+                    e.currentTarget.style.backgroundColor = "white";
                   }
                 }}
               >
@@ -106,6 +106,10 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
                 width: "100%",
                 maxWidth: "600px",
                 margin: "0 auto",
+                backgroundColor: "white",
+                borderRadius: "8px",
+                padding: "16px",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
               }}>
                 <img 
                   src={mainImage} 
@@ -116,8 +120,6 @@ const ProductDetailComponent = ({ product }: { product: ProductDTO & { category?
                     width: "auto",
                     height: "auto",
                     objectFit: "contain",
-                    borderRadius: "8px",
-                    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
                     display: "block",
                   }}
                   onError={(e) => {
