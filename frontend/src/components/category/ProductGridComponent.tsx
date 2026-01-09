@@ -6,8 +6,6 @@ type Props = {
 };
 
 const ProductGridComponent = ({ products, category }: Props) => {
-      console.log("GRID RECEIVED CATEGORY:", category);
-
   return (
     <div className="row">
       {products.map((product) => (
