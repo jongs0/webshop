@@ -152,7 +152,7 @@ const CartItemComponent = ({ product }: Props) => {
             </button>
           </Col>
           <Col>
-            <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
+            <p><strong>€{product.price.toFixed(2)}</strong></p>
             {/* Quantity selector */}
             <Button onClick={() => { handleChange(-1) }}>-</Button>
             &nbsp;{quantityState}&nbsp;
