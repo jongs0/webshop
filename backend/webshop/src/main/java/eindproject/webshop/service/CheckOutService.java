@@ -82,7 +82,7 @@ public class CheckOutService {
 
             orderItem.calculateLineTotal(product.getPrice());
             total += orderItem.getLineTotal();
-            roundedTotal = (double) Math.round(total * 100 / 100);
+            roundedTotal = Math.round(total * 100) / 100.;
 
             product.setStock(product.getStock()-cartItem.getQuantity());
             order.addOrderItem(orderItem);
