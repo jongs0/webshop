@@ -97,23 +97,6 @@ const CartItemComponent = ({ product }: Props) => {
         }
       }
     }
-    if (Array.isArray(product.imageUrls)) {
-      return product.imageUrls.filter(url => url && url.trim() !== "");
-    }
-    if (typeof product.imageUrls === "string") {
-      try {
-        const parsed = JSON.parse(product.imageUrls);
-        if (Array.isArray(parsed)) {
-          return parsed.filter(url => url && url.trim() !== "");
-        }
-      } catch {
-        const lines = product.imageUrls.split("\n").filter(line => line.trim() !== "");
-        return lines;
-      }
-    }
-    if ((product as any).imageUrl) {
-      return [(product as any).imageUrl];
-    }
     return [];
   };
 
