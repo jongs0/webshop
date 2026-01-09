@@ -92,13 +92,8 @@ const ProductDashboardPage = () => {
     setShowCategorySelector(false);
   };
 
-<<<<<<< Updated upstream
-  const saveImageUrls = (productId: number, category: Category, imageUrls: string[]) => {
-    const key = `product_images_${category}_${productId}`;
-=======
   const saveImageUrls = (productId: number, imageUrls: string[]) => {
     const key = `product_images_${productId}`;
->>>>>>> Stashed changes
     if (imageUrls && imageUrls.length > 0) {
       localStorage.setItem(key, JSON.stringify(imageUrls));
     } else {
@@ -106,13 +101,8 @@ const ProductDashboardPage = () => {
     }
   };
 
-<<<<<<< Updated upstream
-  const getImageUrls = (productId: number, category: Category): string[] => {
-    const key = `product_images_${category}_${productId}`;
-=======
   const getImageUrls = (productId: number): string[] => {
     const key = `product_images_${productId}`;
->>>>>>> Stashed changes
     const stored = localStorage.getItem(key);
     if (stored) {
       try {

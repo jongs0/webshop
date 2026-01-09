@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import { useState } from "react";
 import type { CartProductDTO, ProductDTO } from "../../types/models";
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -59,7 +57,6 @@ const CartItemComponent = ({ product }: Props) => {
       return;
     onQuantityChange.mutate(delta)
     setQuantity(quantityState + delta)
-    console.log(delta)
   }
 
   const onDelete = useMutation({
@@ -83,11 +80,7 @@ const CartItemComponent = ({ product }: Props) => {
   const getImageUrls = (): string[] => {
     if (product.productId) {
       const key = `product_images_${product.productId}`
-      console.log('Debug: key:')
-      console.log(key)
       const stored = localStorage.getItem(key);
-      console.log('Debug: stored:')
-      console.log(stored)
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
@@ -121,11 +114,6 @@ const CartItemComponent = ({ product }: Props) => {
 
   const imageUrls = getImageUrls();
   const mainImage = imageUrls[0];
-  console.log("Debug")
-  console.log("image URLs:")
-  console.log(imageUrls)
-  console.log("main image (index 0):")
-  console.log(mainImage)
 
   const [isHovering, setIsHovering] = useState(false);
 
@@ -199,7 +187,6 @@ const CartItemComponent = ({ product }: Props) => {
           </Col>
           <Col>
             <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
-            {/* Quantity selector */}
             <Button onClick={() => { handleChange(-1) }}>-</Button>
             &nbsp;{quantityState}&nbsp;
             <Button onClick={() => { handleChange(1) }}>+</Button>
@@ -211,4 +198,3 @@ const CartItemComponent = ({ product }: Props) => {
 };
 
 export default CartItemComponent;
->>>>>>> Stashed changes
