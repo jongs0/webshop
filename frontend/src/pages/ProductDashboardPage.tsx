@@ -88,7 +88,7 @@ const ProductDashboardPage = () => {
     setShowCategorySelector(false);
   };
 
-  const saveImageUrls = (productId: number, category: Category, imageUrls: string[]) => {
+  const saveImageUrls = (productId: number, imageUrls: string[]) => {
     const key = `product_images_${productId}`;
     if (imageUrls && imageUrls.length > 0) {
       localStorage.setItem(key, JSON.stringify(imageUrls));
@@ -97,7 +97,7 @@ const ProductDashboardPage = () => {
     }
   };
 
-  const getImageUrls = (productId: number, category: Category): string[] => {
+  const getImageUrls = (productId: number): string[] => {
     const key = `product_images_${productId}`;
     const stored = localStorage.getItem(key);
     if (stored) {

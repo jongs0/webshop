@@ -10,7 +10,6 @@ const CategoryProductCard = ({ product, category }: Props) => {
   const navigate = useNavigate();
 
   const getThumbnailImage = (): string | null => {
-<<<<<<< Updated upstream
     if (!product || !product.id) {
       return null;
     }
@@ -25,16 +24,6 @@ const CategoryProductCard = ({ product, category }: Props) => {
           const firstUrl = imageUrls[0];
           if (firstUrl && typeof firstUrl === "string" && firstUrl.trim() !== "") {
             return firstUrl;
-=======
-    if (product.id) {
-      const key = `product_images_${product.id}`;
-      const stored = localStorage.getItem(key);
-      if (stored) {
-        try {
-          const imageUrls = JSON.parse(stored);
-          if (Array.isArray(imageUrls) && imageUrls.length > 0) {
-            return imageUrls[0];
->>>>>>> Stashed changes
           }
         }
       } catch (error) {
