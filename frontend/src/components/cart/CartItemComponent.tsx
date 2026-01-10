@@ -125,6 +125,8 @@ const CartItemComponent = ({ product }: Props) => {
   console.log("main image (index 0):")
   console.log(mainImage)
 
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div>
       <Container>
