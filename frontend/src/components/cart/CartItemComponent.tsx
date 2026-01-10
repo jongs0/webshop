@@ -127,6 +127,8 @@ const CartItemComponent = ({ product }: Props) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div>
       <Container>
