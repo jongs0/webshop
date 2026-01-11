@@ -1,4 +1,4 @@
-import { Accordion } from "react-bootstrap"
+import { Accordion, Button } from "react-bootstrap"
 
 const SupportPage = () => {
     return (
@@ -59,14 +59,13 @@ const SupportPage = () => {
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="6">
-                    <Accordion.Header>Ik heb een andere vraag!</Accordion.Header>
+                    <Accordion.Header>I have additional questions!</Accordion.Header>
                     <Accordion.Body>
                         You can always contact us by calling our number, 000-123-4567, a fully theoretical phone number.
                         We are also available for questioning during the presentation.
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-            <h3>Additional questions? Contact us!</h3>
             </div>
         </div>
     )
