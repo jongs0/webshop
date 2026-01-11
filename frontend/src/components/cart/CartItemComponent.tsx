@@ -57,7 +57,6 @@ const CartItemComponent = ({ product }: Props) => {
       return;
     onQuantityChange.mutate(delta)
     setQuantity(quantityState + delta)
-    console.log(delta)
   }
 
   const onDelete = useMutation({
@@ -81,11 +80,7 @@ const CartItemComponent = ({ product }: Props) => {
   const getImageUrls = (): string[] => {
     if (product.productId) {
       const key = `product_images_${product.productId}`
-      console.log('Debug: key:')
-      console.log(key)
       const stored = localStorage.getItem(key);
-      console.log('Debug: stored:')
-      console.log(stored)
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
@@ -119,14 +114,6 @@ const CartItemComponent = ({ product }: Props) => {
 
   const imageUrls = getImageUrls();
   const mainImage = imageUrls[0];
-  console.log("Debug")
-  console.log("image URLs:")
-  console.log(imageUrls)
-  console.log("main image (index 0):")
-  console.log(mainImage)
-
-  const [isHovering, setIsHovering] = useState(false);
-
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -135,25 +122,67 @@ const CartItemComponent = ({ product }: Props) => {
         <Row>
           <Col>
             <p><strong>{product.name}</strong></p>
-            <img
-              src={mainImage}
-              alt={product.name}
+            <div
               style={{
-                maxWidth: "600px",
-                height: "100px",
-                borderRadius: "8px",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                display: "inline-block",
+                position: "relative",
               }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-            <br />
-            <button
-              onClick={() => onDelete.mutate()}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
-              Delete
-            </button>
+              <div
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: "8px",
+                  padding: "8px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                }}
+              >
+                <img
+                  src={mainImage}
+                  alt={product.name}
+                  style={{
+                    maxWidth: "600px",
+                    height: "100px",
+                    borderRadius: "4px",
+                    objectFit: "contain",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
+              {isHovering && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete.mutate();
+                  }}
+                  style={{
+                    position: "absolute",
+                    bottom: "-32px",
+                    left: "8px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                    padding: "4px 12px",
+                    fontSize: "12px",
+                    cursor: "pointer",
+                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                    zIndex: 10,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#c82333";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#dc3545";
+                  }}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </Col>
           <Col>
             <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>

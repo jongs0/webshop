@@ -15,7 +15,13 @@ const CategoryProductCard = ({ product, category }: Props) => {
     }
     
     const key = `product_images_${product.id}`;
-    const stored = localStorage.getItem(key);
+    const categoryKey = category.toUpperCase();
+    const oldFormatKey = `product_images_${categoryKey}_${product.id}`;
+    let stored = localStorage.getItem(key);
+    
+    if (!stored) {
+      stored = localStorage.getItem(oldFormatKey);
+    }
     
     if (stored) {
       try {
