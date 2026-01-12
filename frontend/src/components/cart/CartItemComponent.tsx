@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CartProductDTO, ProductDTO } from "../../types/models";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { API_URL } from "../../App";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { currentUser } from "../../stores/UserStore";
@@ -97,23 +97,6 @@ const CartItemComponent = ({ product }: Props) => {
         }
       }
     }
-    if (Array.isArray(product.imageUrls)) {
-      return product.imageUrls.filter(url => url && url.trim() !== "");
-    }
-    if (typeof product.imageUrls === "string") {
-      try {
-        const parsed = JSON.parse(product.imageUrls);
-        if (Array.isArray(parsed)) {
-          return parsed.filter(url => url && url.trim() !== "");
-        }
-      } catch {
-        const lines = product.imageUrls.split("\n").filter(line => line.trim() !== "");
-        return lines;
-      }
-    }
-    if ((product as any).imageUrl) {
-      return [(product as any).imageUrl];
-    }
     return [];
   };
 
@@ -129,73 +112,82 @@ const CartItemComponent = ({ product }: Props) => {
 
   return (
     <div>
-      <Container>
+      <Container style={{ padding: "20px" }}>
         <Row>
           <Col>
-          <p><h3>{product.name}</h3></p>
-            <div
-              style={{
-                display: "inline-block",
-                position: "relative",
-              }}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <img
-                src={mainImage}
-                alt={product.name}
-                style={{
-                  maxWidth: "600px",
-                  height: "100px",
-                  borderRadius: "8px",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              {isHovering && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete.mutate();
-                  }}
+            <div style={{ float: "left" }}>
+              <p><h3>{product.name}</h3></p>
+              <div
+                style={{ position: "relative", display: "inline-block", paddingBottom: "32px" }}
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
+              >
+                <img
+                  src={mainImage}
+                  alt={product.name}
                   style={{
-                    position: "absolute",
-                    bottom: "-28px",
-                    left: "8px",
-                    backgroundColor: "#dc3545",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "3px",
-                    padding: "3px 10px",
-                    fontSize: "11px",
-                    cursor: "pointer",
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-                    zIndex: 10,
+                    width: "200px",
+                    height: "100px",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    display: "block",
+                    backgroundColor: "transparent",
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#c82333";
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
                   }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#dc3545";
-                  }}
-                >
-                  Delete
-                </button>
-              )}
+                />
+                {isHovering && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete.mutate();
+                    }}
+                    onMouseEnter={() => setIsHovering(true)}
+                    style={{
+                      position: "absolute",
+                      top: "108px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      backgroundColor: "#dc3545",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      padding: "4px 10px",
+                      fontSize: "11px",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.15)",
+                      transition: "background-color 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = "#c82333";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = "#dc3545";
+                    }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           </Col>
-          <Col>
-            <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
+          <Col style={{ position: "relative", paddingRight: "10px" }}>
+            <div style={{ float: "right" }}>
+              <div style={{ fontSize: "18px", backgroundColor: "gray", borderRadius: "5px", color: "white", float: "right", padding: "5px 10px" }}>€{product.price.toFixed(2)}</div>
+            </div>
+            <br />
             {/* Quantity selector */}
-            <Button onClick={() => { handleChange(-1) }}>-</Button>
-            &nbsp;{quantityState}&nbsp;
-            <Button onClick={() => { handleChange(1) }}>+</Button>
+            <div style={{ position: "absolute", bottom: "0px", right: "0px", paddingRight: "10px" }}>
+              <button type="button" onClick={() => { handleChange(-1) }} style={{ fontSize: "18px", fontWeight: "600", borderRadius: "50%", border: "1px solid #0d6efd", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "transparent", color: "#0d6efd", padding: "0px" }}>-</button>
+              &nbsp;{quantityState}&nbsp;
+              <button type="button" onClick={() => { handleChange(1) }} style={{ fontSize: "18px", fontWeight: "600", borderRadius: "50%", border: "1px solid #0d6efd", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "transparent", color: "#0d6efd", padding: "0px" }}>+</button>
+            </div>
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 };
 
