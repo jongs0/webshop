@@ -1,9 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
-import type { OrderDTO } from "../types/models";
+import type { OrderDTO, OrderItemDTO } from "../types/models";
 import { API_URL } from "../App";
 import { Link, useParams } from "react-router";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { currentUser } from "../stores/UserStore";
+
+const getProductImage = (productId: number): string | null => {
+    const key = `product_images_${productId}`;
+    const stored = localStorage.getItem(key);
+    
+    if (stored) {
+        try {
+            const imageUrls = JSON.parse(stored);
+            if (Array.isArray(imageUrls) && imageUrls.length > 0) {
+                const firstUrl = imageUrls[0];
+                if (firstUrl && typeof firstUrl === "string" && firstUrl.trim() !== "") {
+                    return firstUrl;
+                }
+            }
+        } catch (error) {
+            return null;
+        }
+    }
+    return null;
+};
 
 const OrderConfirmationPage = () => {
     const params = useParams()
@@ -43,30 +63,55 @@ const OrderConfirmationPage = () => {
                 <h6>Hij komt eraan, en veel plezier!</h6>
                 <Row/>
                     <Col className="g-4,justify-content-centre">
-                                    {fetchedOrder.orderItems.map(product => (
+                                    {fetchedOrder.orderItems.map((product: OrderItemDTO) => {
+                            const productImage = getProductImage(product.productId);
+                            return (
                             <Row className="justify-content-md-center" key={product.id} xs={12} sm={6} md={6} lg={3}>
                                 <Card className="h-100">
                                     <Link
                                         to={`/products/${product.id}`}
                                         className="text-decoration-none text-dark"
                                     >
-                                        {/* <Card.Img
-                                        variant="top"
-                                        src={getProductCategoryImage(product.category)}
-                                        alt={product.name}
-                                    /> */}
-                                        <Card.Body>
-                                            <Card.Title>{product.productName}</Card.Title>
-                                            <Card.Text>{product.quantity}x = €{product.lineTotal}</Card.Text>
-                                            {/* <ListGroup className="list-group-flush">
-                                                <ListGroup.Item>Price: €{product.lineTotal}</ListGroup.Item>
-                                                <ListGroup.Item>Quantity: {product.quantity}</ListGroup.Item>
-                                            </ListGroup> */}
+                                        <Card.Body style={{ display: "flex", alignItems: "center", gap: "15px", padding: "15px" }}>
+                                            {productImage && (
+                                                <div style={{
+                                                    width: "100px",
+                                                    height: "100px",
+                                                    minWidth: "100px",
+                                                    overflow: "hidden",
+                                                    backgroundColor: "white",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    justifyContent: "center",
+                                                    borderRadius: "4px",
+                                                    padding: "5px"
+                                                }}>
+                                                    <img
+                                                        src={productImage}
+                                                        alt={product.productName}
+                                                        style={{
+                                                            maxWidth: "100%",
+                                                            maxHeight: "100%",
+                                                            width: "auto",
+                                                            height: "auto",
+                                                            objectFit: "contain"
+                                                        }}
+                                                        onError={(e) => {
+                                                            e.currentTarget.style.display = "none";
+                                                        }}
+                                                    />
+                                                </div>
+                                            )}
+                                            <div style={{ flex: 1 }}>
+                                                <Card.Title style={{ marginBottom: "8px" }}>{product.productName}</Card.Title>
+                                                <Card.Text>{product.quantity}x = €{product.lineTotal}</Card.Text>
+                                            </div>
                                         </Card.Body>
                                     </Link>
                                 </Card>
                             </Row>
-                        ))}
+                            );
+                        })}
                     </Col>
             </Container>
         )
