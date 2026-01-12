@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import type { RegisterDTO } from "../types/models";
+import type { AppUserDTO, RegisterDTO } from "../types/models";
 import { updateUser } from "../stores/UserStore";
 import { API_URL } from "../App";
 
@@ -50,8 +50,12 @@ const SignupPage = () => {
       }
       return res.json();
     },
-    onSuccess: (user) => {
-      updateUser(user);
+    onSuccess: (response: AppUserDTO) => {
+      updateUser({
+        email: response.email,
+        id: response.id,
+        authHeader: `Basic ${btoa(`${response.email}:${register.tempPassword}`)}`
+      });
       navigate("/");
     },
     onError: (error: Error) => {
