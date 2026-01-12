@@ -127,33 +127,64 @@ const CartItemComponent = ({ product }: Props) => {
 
   const [isHovering, setIsHovering] = useState(false);
 
-  const [isHovering, setIsHovering] = useState(false);
-
   return (
     <div>
       <Container>
         <Row>
           <Col>
             <p><strong>{product.name}</strong></p>
-            <img
-              src={mainImage}
-              alt={product.name}
+            <div
               style={{
-                maxWidth: "600px",
-                height: "100px",
-                borderRadius: "8px",
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                display: "inline-block",
+                position: "relative",
               }}
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-              }}
-            />
-            <br />
-            <button
-              onClick={() => onDelete.mutate()}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
             >
-              Delete
-            </button>
+              <img
+                src={mainImage}
+                alt={product.name}
+                style={{
+                  maxWidth: "600px",
+                  height: "100px",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+              {isHovering && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete.mutate();
+                  }}
+                  style={{
+                    position: "absolute",
+                    bottom: "-28px",
+                    left: "8px",
+                    backgroundColor: "#dc3545",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "3px",
+                    padding: "3px 10px",
+                    fontSize: "11px",
+                    cursor: "pointer",
+                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                    zIndex: 10,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#c82333";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#dc3545";
+                  }}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           </Col>
           <Col>
             <p><strong>Price:</strong> €{product.price.toFixed(2)}</p>
