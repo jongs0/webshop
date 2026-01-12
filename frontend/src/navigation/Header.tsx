@@ -14,11 +14,7 @@ const Header = () => {
     return (
         <header className="site-header">
             <div className="banner-wrapper">
-                <Image
-                    src="/images/bannerv1.png"
-                    alt="Banner"
-                    className="header-banner"
-                />
+                <h2 style={{ fontSize: "60px"}} className="site-title">Rerefurbed</h2>
             </div>
 
             <nav className="main-navbar">
