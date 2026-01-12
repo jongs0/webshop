@@ -132,7 +132,7 @@ const CartItemComponent = ({ product }: Props) => {
       <Container>
         <Row>
           <Col>
-            <p><strong>{product.name}</strong></p>
+          <p><h3>{product.name}</h3></p>
             <div
               style={{
                 display: "inline-block",
