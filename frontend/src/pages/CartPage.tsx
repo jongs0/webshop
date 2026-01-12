@@ -112,9 +112,10 @@ const CartPage = () => {
             }
             <div>
                 <p>
-                    Verder winkelen? <Button onClick={() => navigate("/")}>Terug naar winkel</Button>
+                    Continue shopping? <Button onClick={() => navigate("/")}>Back to shop</Button>
                 </p>
             </div>
+            <br />
         </>
     )
 
