@@ -7,29 +7,33 @@ const Footer = () => {
         <>
             <Navbar bg='primary' className="footer justify-content-center">
                 <Stack direction="horizontal" gap={2}>
-                    <Container fluid="xs" className="justify-content-center, side-container">
-                        <Col xs={6} className="whitebackground, flex-column, justify-content-center">
-                            <h3 className="footer-text justify-content-center">Support:</h3>
+                    <Container fluid="xs" className="justify-content-center side-container">
+                        <Col className="justify-content-center">
+                            <Row className="justify-content-center">
+                                <h3 className="justify-content-center footer-text">Support:</h3>
+                            </Row>
+                            <Row className="justify-content-center">
                             <Link className="nav-link" to="/support">FAQ</Link>
                             <Link className="nav-link" to="/support">Return</Link>
                             <Link className="nav-link" to="/support">Careers</Link>
                             <Link className="nav-link" to="/support">About us</Link>
+                            </Row>
                         </Col>
                     </Container>
                     <Container className="justify-content-center image-container">
                         <Row>
                             <h3 className="image-row footer-text justify-content-center">Payment Methods</h3>
                         </Row>
-                        <Row className="image-row, justify-content-center">
+                        <Row className="image-row justify-content-center">
                             <div className="image-div">
-                                <Image className="logo-payment" src="/images/mastercard.svg" fluid/>
+                                <Image className="logo-payment" src="/images/mastercard.svg" fluid />
                             </div><div className="image-div">
                                 <Image className="logo-payment" src="/images/visa_white.svg" fluid />
                             </div><div className="image-div">
                                 <Image className="logo-payment" fluid src="/images/pay_apple_pay.svg" />
                             </div>
                         </Row>
-                        <Row className="image-row, justify-content-center">
+                        <Row className="image-row justify-content-center">
                             <div className="image-div">
                                 <Image className="logo-payment" fluid src="/images/pay_google_pay.svg" />
                             </div><div className="image-div">
@@ -39,17 +43,17 @@ const Footer = () => {
                             </div>
                         </Row>
                     </Container>
-                    <Container fluid="xs" className="justify-content-center, side-container">
+                    <Container fluid="xs" className="justify-content-center side-container">
                         <Row>
                             <h3 className="footer-text">Reviews</h3>
                         </Row>
-                        <Row className="image-row-rev, justify-content-center">
+                        <Row className="image-row-rev justify-content-center">
                             <div className="image-div-rev">
-                            <Image className="logo-review" fluid src="/images/prof_checkmark.png" roundedCircle />
+                                <Image className="logo-review" fluid src="/images/prof_checkmark.png" roundedCircle />
                             </div><div className="image-div-rev">
-                            <Image className="logo-review" fluid src="/images/prof_stars.png" />
+                                <Image className="logo-review" fluid src="/images/prof_stars.png" />
                             </div><div className="image-div-rev">
-                            <Image className="logo-review" fluid src="/images/placeholder_review_3.png" />
+                                <Image className="logo-review" fluid src="/images/placeholder_review_3.png" />
                             </div>
                         </Row>
                         <Row>
