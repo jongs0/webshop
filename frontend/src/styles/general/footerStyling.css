@@ -1,0 +1,51 @@
+.image-div {
+    height: 90px;
+    width: 165px;
+}
+
+.image-div-rev {
+    height: 100px;
+    width: 100px;
+}
+
+.logo-payment {
+    max-height: 75px;
+    max-width: 150px;
+    min-height: 60px;
+    min-width: 120px;
+}
+
+.logo-review {
+    height: 60px;
+    width: 60px;
+}
+
+.image-row {
+    max-width: 600px;
+    max-height: 125px;
+}
+
+.image-row-rev {
+    max-width: 400px;
+    max-height: 150px;
+}
+
+.image-container{
+    max-width: 650px;
+    min-width: 650px;
+    max-height: 300px;
+    min-height: 300px;
+}
+
+.side-container{
+    max-width:475px;
+    min-width:225px;
+    max-height: 220px;
+    min-height: 220px;
+
+}
+
+.footer-text, .nav-link {
+    color:white
+}
+

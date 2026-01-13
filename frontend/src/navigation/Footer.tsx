@@ -1,54 +1,68 @@
-import { Col, Container, Image, Nav, Navbar, Row, Stack } from "react-bootstrap";
+import { Col, Container, Image, Navbar, Row, Stack } from "react-bootstrap";
 import { Link } from "react-router";
+import "../styles/general/footerStyling.css";
 
 const Footer = () => {
     return (
         <>
             <Navbar bg='primary' className="footer justify-content-center">
                 <Stack direction="horizontal" gap={2}>
-                    <Container className="whitebackground">
-                        <Nav className="whitebackground flex-column">
-                            <h3>Support:</h3>
+                    <Container fluid="xs" className="justify-content-center side-container">
+                        <Col className="justify-content-center">
+                            <Row className="justify-content-center">
+                                <h3 className="justify-content-center footer-text">Support:</h3>
+                            </Row>
+                            <Row className="justify-content-center">
                             <Link className="nav-link" to="/support">FAQ</Link>
                             <Link className="nav-link" to="/support">Return</Link>
                             <Link className="nav-link" to="/support">Careers</Link>
                             <Link className="nav-link" to="/support">About us</Link>
-                        </Nav>
-                    </Container>
-                    <Container fluid="sm">
-                            <Row>
-                                <h3>Payment Methods</h3>
                             </Row>
-                            <Row>
-                            <Col xs={3}>
-                                <Image className="logo" src="/images/mastercard.svg" />
-                                <Image className="logo" src="/images/visa_white.svg" />
-                            </Col>
-                            <Col xs={3}>                            
-                                <Image className="logo" src="/images/pay_apple_pay.svg" />
-                                <Image className="logo"  src="/images/pay_google_pay.svg" />
-                            </Col>
-                            <Col xs={3}>
-                                <Image className="logo" src="/images/pay_paypal_logo.svg" />
-                                <Image className="logo" src="/images/klarna.svg" />
-                                </Col>
-                            </Row>
-                    </Container>
-                    <Container>
-                        <Row>
-                        <h2>Reviews</h2>
-                        </Row><Col>
-                        <Image className="logo" src="/images/placeholder_review_1.png" />
-                                <Image className="logo" src="/images/placeholder_review_2.png" />
-                                <Image className="logo" src="/images/placeholder_review_3.png" />
                         </Col>
+                    </Container>
+                    <Container className="justify-content-center image-container">
                         <Row>
-                        <h3>Vragen? Bel ons!</h3>
-                        <h3>000-123-4567</h3>
+                            <h3 className="image-row footer-text justify-content-center">Payment Methods</h3>
+                        </Row>
+                        <Row className="image-row justify-content-center">
+                            <div className="image-div">
+                                <Image className="logo-payment" src="/images/mastercard.svg" fluid />
+                            </div><div className="image-div">
+                                <Image className="logo-payment" src="/images/visa_white.svg" fluid />
+                            </div><div className="image-div">
+                                <Image className="logo-payment" fluid src="/images/pay_apple_pay.svg" />
+                            </div>
+                        </Row>
+                        <Row className="image-row justify-content-center">
+                            <div className="image-div">
+                                <Image className="logo-payment" fluid src="/images/pay_google_pay.svg" />
+                            </div><div className="image-div">
+                                <Image className="logo-payment" fluid src="/images/pay_paypal_logo.svg" />
+                            </div><div className="image-div">
+                                <Image className="logo-payment" fluid src="/images/klarna.svg" />
+                            </div>
                         </Row>
                     </Container>
-                </Stack>
-            </Navbar>
+                    <Container fluid="xs" className="justify-content-center side-container">
+                        <Row>
+                            <h3 className="footer-text">Reviews</h3>
+                        </Row>
+                        <Row className="image-row-rev justify-content-center">
+                            <div className="image-div-rev">
+                                <Image className="logo-review" fluid src="/images/prof_checkmark.png" roundedCircle />
+                            </div><div className="image-div-rev">
+                                <Image className="logo-review" fluid src="/images/prof_stars.png" />
+                            </div><div className="image-div-rev">
+                                <Image className="logo-review" fluid src="/images/placeholder_review_3.png" />
+                            </div>
+                        </Row>
+                        <Row>
+                            <h5 className="footer-text">Questions? Call us!</h5>
+                            <h5 className="footer-text">000-123-4567 24/7</h5>
+                        </Row>
+                    </Container>
+                </Stack >
+            </Navbar >
         </>
     )
 
