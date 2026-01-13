@@ -1,23 +1,23 @@
 .image-div {
-    height: 100px;
-    width: 200px;
+    height: 90px;
+    width: 165px;
 }
 
 .image-div-rev {
-    height: 150px;
-    width: 150px;
+    height: 90px;
+    width: 90px;
 }
 
 .logo-payment {
-    max-height: 88px;
-    max-width: 175px;
-    min-height: 75px;
-    min-width: 150px;
+    max-height: 75px;
+    max-width: 150px;
+    min-height: 60px;
+    min-width: 120px;
 }
 
 .logo-review {
-    height: 125px;
-    width: 125px;
+    height: 75px;
+    width: 75px;
 }
 
 .image-row {
@@ -41,7 +41,7 @@
 
 }
 
-h3, h5, .nav-link {
+.footer-text, .nav-link {
     color:white
 }
 
