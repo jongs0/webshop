@@ -8,22 +8,26 @@ type Props = {
 
 const CategoryProductCard = ({ product, category }: Props) => {
   const navigate = useNavigate();
-  console.log("GRID RECEIVED CATEGORY:", category);
 
   const getThumbnailImage = (): string | null => {
-    if (product.id) {
-      const categoryKey = category.toUpperCase();
-      const key = `product_images_${categoryKey}_${product.id}`;
-      const stored = localStorage.getItem(key);
-      if (stored) {
-        try {
-          const imageUrls = JSON.parse(stored);
-          if (Array.isArray(imageUrls) && imageUrls.length > 0) {
-            return imageUrls[0];
+    if (!product || !product.id) {
+      return null;
+    }
+    
+    const key = `product_images_${product.id}`;
+    const stored = localStorage.getItem(key);
+    
+    if (stored) {
+      try {
+        const imageUrls = JSON.parse(stored);
+        if (Array.isArray(imageUrls) && imageUrls.length > 0) {
+          const firstUrl = imageUrls[0];
+          if (firstUrl && typeof firstUrl === "string" && firstUrl.trim() !== "") {
+            return firstUrl;
           }
-        } catch {
-          return null;
         }
+      } catch (error) {
+        return null;
       }
     }
     return null;

@@ -10,13 +10,18 @@ html, body {
 .banner-wrapper {
   width: 100%;
   overflow: hidden;
+  background-color: #06389b;
+  color:white;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .header-banner {
   width: 100%;
   height: clamp(80px, 18vw, 140px); 
   object-fit: cover;
-  display: block;
+  display: flex;
+  align-items: center;
 }
 
 .main-navbar {

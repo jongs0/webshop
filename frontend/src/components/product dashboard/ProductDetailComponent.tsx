@@ -107,20 +107,28 @@ const ProductDetailComponent = ({
           const mainImage = imageUrls[0];
           return mainImage && (
             <div style={{ marginBottom: "24px" }}>
-              <img 
-                src={mainImage} 
-                alt={product.name || "Product image"}
-                style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  height: "auto",
-                  borderRadius: "8px",
-                  border: "1px solid #ddd",
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
+              <div style={{
+                backgroundColor: "white",
+                borderRadius: "8px",
+                padding: "12px",
+                border: "1px solid #ddd",
+                display: "inline-block",
+              }}>
+                <img 
+                  src={mainImage} 
+                  alt={product.name || "Product image"}
+                  style={{
+                    width: "100%",
+                    maxWidth: "400px",
+                    height: "auto",
+                    borderRadius: "4px",
+                    objectFit: "contain",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </div>
             </div>
           );
         })()}

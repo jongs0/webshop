@@ -1,4 +1,4 @@
-import { Accordion, Button } from "react-bootstrap"
+import { Accordion } from "react-bootstrap"
 
 const SupportPage = () => {
     return (
@@ -13,7 +13,7 @@ const SupportPage = () => {
             }}
         >
             <div>
-            <h1>FAQ</h1>
+            <h1 style={{ paddingBottom: "20px", paddingTop: "20px" }}>FAQ</h1>
             <Accordion style={{width:"720px"}} className="justify-content-center">
 
                 <Accordion.Item eventKey="0">
@@ -66,6 +66,7 @@ const SupportPage = () => {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
+            <h3 style={{ paddingTop: "30px", paddingBottom: "20px" }}>Additional questions? Contact us!</h3>
             </div>
         </div>
     )
