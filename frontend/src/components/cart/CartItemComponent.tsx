@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CartProductDTO, ProductDTO } from "../../types/models";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { API_URL } from "../../App";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { currentUser } from "../../stores/UserStore";
@@ -108,6 +108,8 @@ const CartItemComponent = ({ product }: Props) => {
   console.log("main image (index 0):")
   console.log(mainImage)
 
+  const [isHovering, setIsHovering] = useState(false);
+
   return (
     <div>
       <Container style={{ padding: "20px" }}>
@@ -115,26 +117,60 @@ const CartItemComponent = ({ product }: Props) => {
           <Col>
             <div style={{ float: "left" }}>
               <p><h3>{product.name}</h3></p>
-              <img
-                src={mainImage}
-                alt={product.name}
-                style={{
-                  maxWidth: "600px",
-                  height: "100px",
-                  borderRadius: "8px",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-                }}
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <br />
-              <br />
-              <Button variant="secondary" size="sm" style={{ color: "white" }}
-                onClick={() => onDelete.mutate()}
+              <div
+                style={{ position: "relative", display: "inline-block", paddingBottom: "32px" }}
+                onMouseEnter={() => setIsHovering(true)}
+                onMouseLeave={() => setIsHovering(false)}
               >
-                Delete
-              </Button>
+                <img
+                  src={mainImage}
+                  alt={product.name}
+                  style={{
+                    width: "200px",
+                    height: "100px",
+                    objectFit: "contain",
+                    borderRadius: "8px",
+                    display: "block",
+                    backgroundColor: "transparent",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+                {isHovering && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete.mutate();
+                    }}
+                    onMouseEnter={() => setIsHovering(true)}
+                    style={{
+                      position: "absolute",
+                      top: "108px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      backgroundColor: "#dc3545",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      padding: "4px 10px",
+                      fontSize: "11px",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.15)",
+                      transition: "background-color 0.2s ease",
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = "#c82333";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = "#dc3545";
+                    }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
           </Col>
           <Col style={{ position: "relative", paddingRight: "10px" }}>
@@ -144,9 +180,9 @@ const CartItemComponent = ({ product }: Props) => {
             <br />
             {/* Quantity selector */}
             <div style={{ position: "absolute", bottom: "0px", right: "0px", paddingRight: "10px" }}>
-              <button type="button" onClick={() => { handleChange(-1) }} style={{ fontSize: "15px", borderRadius: "50%", border: "1px solid black", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "white", padding: "0px" }}>-</button>
+              <button type="button" onClick={() => { handleChange(-1) }} style={{ fontSize: "18px", fontWeight: "600", borderRadius: "50%", border: "1px solid #0d6efd", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "transparent", color: "#0d6efd", padding: "0px" }}>-</button>
               &nbsp;{quantityState}&nbsp;
-              <button type="button" onClick={() => { handleChange(1) }} style={{ fontSize: "15px", borderRadius: "50%", border: "1px solid black", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "white", padding: "0px" }}>+</button>
+              <button type="button" onClick={() => { handleChange(1) }} style={{ fontSize: "18px", fontWeight: "600", borderRadius: "50%", border: "1px solid #0d6efd", height: "35px", width: "35px", textAlign: "center", alignContent: "center", backgroundColor: "transparent", color: "#0d6efd", padding: "0px" }}>+</button>
             </div>
           </Col>
         </Row>
