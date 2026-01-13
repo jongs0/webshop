@@ -1,4 +1,9 @@
-.text-left {
+.site-title{
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+}
+
+/* .text-left {
     text-align: left;
 }
 
@@ -9,4 +14,4 @@
 
 .p{
     font-size: 20px;     
-}
+} */

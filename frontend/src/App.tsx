@@ -10,6 +10,7 @@ import './styles/general/colorStyling.css';
 import './styles/general/spacingStyling.css';
 import './styles/components/formStyling.css';
 import './styles/components/listStyling.css';
+import './styles/general/textStyling.css';
 
 
 

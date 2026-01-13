@@ -88,7 +88,7 @@ const ProductDashboardPage = () => {
     setShowCategorySelector(false);
   };
 
-  const saveImageUrls = (productId: number, category: Category, imageUrls: string[]) => {
+  const saveImageUrls = (productId: number, imageUrls: string[]) => {
     const key = `product_images_${productId}`;
     if (imageUrls && imageUrls.length > 0) {
       localStorage.setItem(key, JSON.stringify(imageUrls));
@@ -97,7 +97,7 @@ const ProductDashboardPage = () => {
     }
   };
 
-  const getImageUrls = (productId: number, category: Category): string[] => {
+  const getImageUrls = (productId: number): string[] => {
     const key = `product_images_${productId}`;
     const stored = localStorage.getItem(key);
     if (stored) {
@@ -115,7 +115,7 @@ const ProductDashboardPage = () => {
     try {
       const fullProduct = await fetchProductDetails(product.id, product.category);
       if (fullProduct) {
-        const storedImageUrls = getImageUrls(product.id, product.category);
+        const storedImageUrls = getImageUrls(product.id);
         setSelectedProduct({ ...fullProduct, imageUrls: storedImageUrls });
         setSelectedCategory(product.category);
         setViewMode("view");
@@ -154,7 +154,7 @@ const ProductDashboardPage = () => {
 
         const createdProduct = await response.json();
         if (imageUrls.length > 0) {
-          saveImageUrls(createdProduct.id, selectedCategory, imageUrls);
+          saveImageUrls(createdProduct.id, imageUrls);
         }
 
         const responseProducts = await fetch(`${API_URL}/products/all`, {
@@ -181,9 +181,9 @@ const ProductDashboardPage = () => {
 
         const updatedProduct = await response.json();
         if (imageUrls.length > 0) {
-          saveImageUrls(updatedProduct.id, selectedCategory, imageUrls);
+          saveImageUrls(updatedProduct.id, imageUrls);
         }
-        const storedImageUrls = getImageUrls(updatedProduct.id, selectedCategory);
+        const storedImageUrls = getImageUrls(updatedProduct.id);
         setSelectedProduct({ ...updatedProduct, category: selectedCategory, imageUrls: storedImageUrls });
 
         const responseProducts = await fetch(`${API_URL}/products/all`, {
