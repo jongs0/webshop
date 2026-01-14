@@ -3,6 +3,22 @@
     font-weight: 700;
 }
 
+.trade-in-title {
+    font-size: 40px;       
+    font-weight: 700;     
+}
+
+.trade-in p{
+       font-size: 20px;       
+}
+
+.trade-in-text {
+  display: flex;            /* Zet de kinderen op een rij */
+  align-items: center;      /* Verticaal centreren van de kinderen */
+  gap: 20px;                /* Ruimte tussen tekst en afbeelding */
+  flex-wrap: wrap;          /* Zorg dat het ook goed op kleine schermen werkt */
+}
+
 /* .text-left {
     text-align: left;
 }
