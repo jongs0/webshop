@@ -14,8 +14,8 @@ const AddToCartComponent = ({ product }: Props) => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   
-  
   const addToCart = () => {
+    
     if (!user.id || Number.isNaN(user.id)) {
       setError("You must be logged in to add items to your cart");
       return;
@@ -29,6 +29,8 @@ const AddToCartComponent = ({ product }: Props) => {
     
     if (user.email === "admin@webshop.com") {
       headers.Authorization = `Basic ${btoa("admin@webshop.com:admin123")}`;
+    } else if (user.authHeader) {
+      headers.Authorization = user.authHeader;
     }
     
     fetch(
