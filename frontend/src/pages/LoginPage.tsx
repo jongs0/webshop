@@ -80,12 +80,18 @@ const LoginPage = () => {
     }
 
     return (
-        <>
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "100vh",
+            }}
+        >
             <Header />
 
             <div
                 style={{
-                    minHeight: "calc(64vh - 160px)",
+                    flex: 1,
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "flex-start",
@@ -182,7 +188,7 @@ const LoginPage = () => {
             </div>
 
             <Footer />
-        </>
+        </div>
     );
 };
 
